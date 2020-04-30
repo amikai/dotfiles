@@ -1,0 +1,6 @@
+export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+export PATH="/usr/local/opt/findutils/libexec/gnubin:$PATH"
+export PATH="/usr/local/opt/grep/libexec/gnubin:$PATH"
+export PATH="/usr/local/opt/curl/bin:$PATH"
+
+export GOPATH=$HOME/go
