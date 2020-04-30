@@ -67,19 +67,5 @@ brew install tree
 brew install vbindiff
 brew install zopfli
 
-# ----- My personal tool -----
-brew install tmux
-brew install neovim
-brew install the_silver_searcher
-brew install ripgrep
-brew isntall python
-brew install pyenv
-brew install pyenv-virtualenv
-
-brew install homebrew/cask/google-chrome
-brew install homebrew/cask/visual-studio-code
-brew install homebrew/cask/iterm2
-brew install homebrew/cask/telegram
-
 # Remove outdated versions from the cellar.
 brew cleanup
