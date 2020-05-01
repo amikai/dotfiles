@@ -7,5 +7,6 @@ brew install ripgrep
 brew isntall python
 brew install pyenv
 brew install pyenv-virtualenv
+brew install go
 
 

@@ -5,7 +5,7 @@ for file in ./{basic.sh,extra.sh}; do
 done;
 unset file;
 
-for file in ./{python.sh}; do
+for file in ./{python.sh,golang.sh}; do
 	[ -r "$file" ] && [ -f "$file" ] && bash "$file";
 done;
 unset file;
