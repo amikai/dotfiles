@@ -40,7 +40,7 @@ git: brew
 packages: brew-packages apps
 
 brew-packages: brew
-	$(SHELL) ./tools/exe.sh
+	$(shell export DOTFILES_DIR="$(DOTFILES_DIR)"; ./tools/exe.sh)
 
 apps: brew
-	$(SHELL) ./apps/exe.sh
+	$(shell export DOTFILES_DIR="$(DOTFILES_DIR)"; ./apps/exe.sh)
