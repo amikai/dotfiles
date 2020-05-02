@@ -4,7 +4,7 @@ PATH := $(DOTFILES_DIR)/bin:$(PATH)
 export XDG_CONFIG_HOME := $(HOME)/.config
 export STOW_DIR := $(DOTFILES_DIR)
 
-all: sudo brew
+all: sudo brew bash git packages link
 
 sudo:
 	sudo -v
@@ -43,4 +43,4 @@ brew-packages: brew
 	$(SHELL) ./tools/exe.sh
 
 apps: brew
-	$(SHELL) ./tools/exe.sh
+	$(SHELL) ./apps/exe.sh
