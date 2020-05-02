@@ -4,6 +4,7 @@
 
 [core]
     editor=vim
+	fileMode = false
 
 [merge]
     tool=vimdiff
