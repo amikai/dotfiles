@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-brew tap bui/cask-upgrade
+brew tap buo/cask-upgrade
 brew tap homebrew/cask-fonts
 brew tap homebrew/cask-versions
 
