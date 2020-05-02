@@ -1,0 +1,140 @@
+[user]
+    name = amikai
+    email = as23041248@gmail.com
+
+[core]
+    editor=vim
+
+[merge]
+    tool=vimdiff
+
+[mergetool]
+    prompt=false
+
+[alias]
+
+  # Thanks to 
+  # https://github.com/SixArm/sixarm_git_gitconfig/blob/master/gitconfig.d/alias.txt
+
+
+  ##########
+  # add - record file contents to the index.
+    a = add
+  # add by patch - looks at each change, and asks if we want to put it in the repo.
+    ap = add --patch
+
+  ##########
+  # branch - list, create, or delete branches.
+    br = branch
+
+  ##########
+  # commit - record changes to the repostiory.
+    cm = commit
+
+  ##########
+  # diff - show changes between commits, commit and working tree, etc.
+    d = diff
+
+  # diff - show changes not yet staged
+    dc = diff --cached
+
+  # diff - changes about to be commited
+    ds = diff --staged
+
+
+  ##########
+  # fetch - download objects and refs from another repository.
+    f = fetch
+
+  ##########
+  # grep - print lines matching a pattern.
+    g = grep
+
+  ##########
+
+    lg1 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
+
+    lg2 = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n''          %C(white)%s%C(reset) %C(dim white)- %an%C(reset)' --all
+
+    lg = !"git lg1"
+
+  # log with one line per item.
+    lo = log --oneline
+
+
+  ##########
+  # merge - join two or more development histories together.
+    m = merge
+
+  ##########
+  # checkout - update the working tree to match a branch or paths; we use "o" to mean "out".
+    co = checkout
+
+  ##########
+  # pull - fetch from and merge with another repository or a local branch.
+    p = pull
+
+  ##########
+  # pull with rebase - to provide a cleaner, linear, bisectable history.
+    pr = pull --rebase
+
+  ##########
+  # remote - manage set of tracked repositories.
+    r = remote
+
+  ##########
+  # status - show the working tree differences. (Expert users may prefer: status -sb)
+    st = status
+
+  ##########
+  # rebase - forward-port local commits to the updated upstream head.
+    rb = rebase
+
+  ##########
+  # rebase - interactive
+    rbi = rebase -i
+
+  # rebase - continue the rebasing process after resolving a conflict manually and updating the index with the resolution.
+    rbc = rebase --continue
+
+  # rebase - restart the rebasing process by skipping the current patch.
+    rbs = rebase --skip
+
+
+  ##########
+  # cherry-pick - apply the changes introduced by some existing commits; useful for moving small chunks of code between branches.
+    cp = cherry-pick
+
+
+  ##########
+  # ls-files - show information about files in the index and the working tree; like Unix "ls" command.
+    ls = ls-files
+
+  # ls-ignored -  list files that git has ignored.
+    ls-ignored = ls-files --others --i --exclude-standard
+
+  ##########
+  # Show our defined aliases
+    aliases = !"git config --get-regexp 'alias.*' | colrm 1 6 | sed 's/[ ]/ = /'"
+
+  ##########
+  # Show our tags
+    tags = tag -n1 -l
+ 
+
+  # Stash snapshot - from http://blog.apiaxle.com/post/handy-git-tips-to-stop-you-getting-fired/
+  # Take a snapshot of your current working tree without removing changes.
+  # This is handy for refactoring where you can’t quite fit what you’ve done
+  # into a commit but daren’t stray too far from now without a backup.
+  #
+  # Running this:
+  #
+  #    $ git snapshot
+  #
+  # Creates this stash:
+  #
+  #    stash@{0}: On feature/handy-git-tricks: snapshot: Mon Apr 8 12:39:06 BST 2013
+  #
+  # And seemingly no changes to your working tree.
+  #
+    snapshot = !git stash save "snapshot: $(date)" && git stash apply "stash@{0}"
