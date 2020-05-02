@@ -8,6 +8,9 @@ brew update
 # Upgrade any already-installed formulae.
 brew upgrade
 
+# Replace macos launchctl
+brew tap homebrew/services
+
 # Save Homebrew’s installed location.
 BREW_PREFIX=$(brew --prefix)
 
