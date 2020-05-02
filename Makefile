@@ -4,6 +4,10 @@ PATH := $(DOTFILES_DIR)/bin:$(PATH)
 export XDG_CONFIG_HOME := $(HOME)/.config
 export STOW_DIR := $(DOTFILES_DIR)
 
+
+TARGETS = sudo brew bash stow unkink bash git packages brew-packages apps
+.PHONY: $(TARGETS)
+
 all: sudo brew bash git packages link
 
 sudo:
@@ -13,11 +17,10 @@ sudo:
 brew:
 	curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install | ruby
 
-
 stow: brew
 	brew install stow
 
-link: stow
+link: stow packages
 	for FILE in $$(\ls -A runcom); do if [ -f $(HOME)/$$FILE -a ! -h $(HOME)/$$FILE ]; then mv -v $(HOME)/$$FILE{,.bak}; fi; done
 	mkdir -p $(XDG_CONFIG_HOME)
 	stow -t $(HOME) runcom
@@ -27,7 +30,6 @@ unlink: stow
 	stow --delete -t $(HOME) runcom
 	stow --delete -t $(XDG_CONFIG_HOME) config
 	for FILE in $$(\ls -A runcom); do if [ -f $(HOME)/$$FILE.bak ]; then mv -v $(HOME)/$$FILE.bak $(HOME)/$${FILE%%.bak}; fi; done
-
 
 bash: BASH=/usr/local/bin/bash
 bash: SHELLS=/private/etc/shells
@@ -40,7 +42,7 @@ git: brew
 packages: brew-packages apps
 
 brew-packages: brew
-	$(shell export DOTFILES_DIR="$(DOTFILES_DIR)"; ./tools/exe.sh)
+	$(MAKE) -C ./tools
 
 apps: brew
-	$(shell export DOTFILES_DIR="$(DOTFILES_DIR)"; ./apps/exe.sh)
+	$(MAKE) -C ./apps
