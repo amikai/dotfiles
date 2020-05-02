@@ -11,7 +11,9 @@ eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
 
 # install python2
-pyenv install "$PYENV_LASTEST_VERSION2"
+# pyenv use openssl from homebrew, but python2 need openssl1.0 which brew doesn't support
+SDKROOT=$(xcrun --show-sdk-path) PYTHON_BUILD_HOMEBREW_OPENSSL_FORMULA=x pyenv install "$PYENV_LASTEST_VERSION2"
+
 
 # install python3
 pyenv shell "$PYENV_LASTEST_VERSION2" "$PYENV_LASTEST_VERSION3"
