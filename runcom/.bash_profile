@@ -24,8 +24,8 @@ PATH="$DOTFILES_DIR/bin:$PATH"
 # Export
 
 
-for DOTFILE in "DOTFILES_DIR"/system/.{path,bash_prompt,exports,aliases,functions,extra}; do
-	[ -r "$file" ] && [ -f "$file" ] && source "$file";
+for DOTFILE in "$DOTFILES_DIR"/system/.{path,bash_prompt,exports,aliases,functions,extra}; do
+	[ -r "$DOTFILE" ] && [ -f "$DOTFILE" ] && source "$DOTFILE";
 done;
 
 # Clean up
