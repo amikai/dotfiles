@@ -19,6 +19,4 @@ golang: pkg_install
 	./golang.sh
 
 nvim: pkg_install python
-	pip2 install pynvim neovim
-	pip3 install pynvim neovim
 	./neovim.sh
