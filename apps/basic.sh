@@ -8,7 +8,7 @@ brew tap homebrew/cask-versions
 brew install mas
 mas install 497799835  # Xcode (11.4.1)
 
-brew cask install font-fira-code
+brew cask install font-firacode-nerd-font
 brew cask install google-chrome
 brew cask install visual-studio-code
 brew cask install iterm2
