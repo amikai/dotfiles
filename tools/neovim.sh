@@ -14,7 +14,7 @@ install_dep() {
     # For code navigation and plugin dependencies
     brew install global
     brwe install cscope
-    brew install universal-ctags/universal-ctags/universal-ctags
+    brew install --with-jansson --with-libyaml --HEAD universal-ctags/universal-ctags/universal-ctags
 
     # Shell linter
     brew install shellcheck
