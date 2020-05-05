@@ -18,7 +18,7 @@ python: pkg_install
 golang: pkg_install
 	./golang.sh
 
-nvim: pkg_install python
+nvim: pkg_install python rust
 	./neovim.sh
 
 rust:
