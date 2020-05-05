@@ -3,3 +3,6 @@ export PATH="/usr/local/opt/findutils/libexec/gnubin:$PATH"
 export PATH="/usr/local/opt/grep/libexec/gnubin:$PATH"
 export PATH="/usr/local/opt/curl/bin:$PATH"
 
+# rust
+export PATH="$HOME/.cargo/bin:$PATH"
+

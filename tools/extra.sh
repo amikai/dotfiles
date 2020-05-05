@@ -8,5 +8,6 @@ brew install python
 brew install pyenv
 brew install pyenv-virtualenv
 brew install go
+brew install rustup-init
 
 
