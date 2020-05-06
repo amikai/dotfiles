@@ -24,7 +24,6 @@ stow: brew
 	brew install stow
 
 link: stow packages
-	for FILE in $$(\ls -A runcom); do if [ -f $(HOME)/$$FILE -a ! -h $(HOME)/$$FILE ]; then mv -v $(HOME)/$$FILE{,.bak}; fi; done
 	mkdir -p $(XDG_CONFIG_HOME)
 	stow -t $(HOME) runcom
 	stow -t $(XDG_CONFIG_HOME) config
@@ -32,7 +31,6 @@ link: stow packages
 unlink: stow
 	stow --delete -t $(HOME) runcom
 	stow --delete -t $(XDG_CONFIG_HOME) config
-	for FILE in $$(\ls -A runcom); do if [ -f $(HOME)/$$FILE.bak ]; then mv -v $(HOME)/$$FILE.bak $(HOME)/$${FILE%%.bak}; fi; done
 
 bash: BASH=/usr/local/bin/bash
 bash: SHELLS=/private/etc/shells
