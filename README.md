@@ -5,6 +5,8 @@
 ⚠️ Warning: 如果你想試試看這些 dotfiles，千萬不要直接執行，必須看懂之後進行修改，
 因為 dotfiles 是非常個人化的設定，很多設定不一定適用於你，我寫的是屬於我的 dotfiles，並不是通用的 dotfiles framework
 
+📝 為了讓大家方便使用，[這裡](https://github.com/amikai/dotfiles/labels/documentation)會為大家進行解說
+
 假設你想將設定放在 `$HOME/dotfiles`:
 
 Step 1. 下載:
@@ -15,9 +17,6 @@ Step 2. 進入 dotfiles 資料夾並且安裝:
 ```
 cd "$HOME/dotfiles" && make
 ```
-
-為了讓大家方便使用，[這裡](https://github.com/amikai/dotfiles/labels/documentation)會為大家進行解說
-
 # 目錄結構
 
 - `tools/`: 系統使用的工具
