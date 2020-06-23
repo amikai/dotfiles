@@ -1,5 +1,4 @@
 # If not running interactively, don't do anything
-
 [ -z "$PS1" ] && return
 
 # Resolve DOTFILES_DIR (assuming ~/.dotfiles on distros without readlink and/or $BASH_SOURCE/$0)
@@ -17,13 +16,12 @@ else
   return
 fi
 
-# Export
+# XDG_DIRS
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_DATA_HOME="$HOME/.local/share"
 
-
-for DOTFILE in "$DOTFILES_DIR"/system/.{path,bash_prompt,exports,aliases,functions,extra}; do
+for DOTFILE in "$DOTFILES_DIR"/system/.{bash_prompt,exports,aliases,functions,extra}; do
 	[ -r "$DOTFILE" ] && [ -f "$DOTFILE" ] && source "$DOTFILE";
 done;
 
