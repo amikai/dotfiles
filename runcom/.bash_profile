@@ -17,10 +17,6 @@ else
   return
 fi
 
-# Make utilities available
-
-PATH="$DOTFILES_DIR/bin:$PATH"
-
 # Export
 
 
