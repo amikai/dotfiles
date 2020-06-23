@@ -5,17 +5,17 @@ export XDG_CONFIG_HOME := $(HOME)/.config
 export STOW_DIR := $(DOTFILES_DIR)
 
 
-TARGETS = sudo macos brew bash stow unkink bash git packages brew-packages apps
+TARGETS = sudo macos brew bash stow unkink bash git brew-packages
 .PHONY: $(TARGETS)
 
-all: sudo brew bash git packages link macos
+all: sudo brew bash git link macos
 
 sudo:
 	sudo -v
 	while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
 brew:
-	curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install | ruby
+	[ -x "$(command -v brew)" ] && (curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install | ruby)
 
 macos:
 	./macos
@@ -23,7 +23,7 @@ macos:
 stow: brew
 	brew install stow
 
-link: stow packages
+link: stow brew-packages
 	mkdir -p $(XDG_CONFIG_HOME)
 	stow -t $(HOME) runcom
 	stow -t $(XDG_CONFIG_HOME) config
@@ -40,10 +40,5 @@ bash: brew
 git: brew
 	brew install git git-extras
 
-packages: brew-packages apps
-
 brew-packages: brew
-	$(MAKE) -C ./tools
-
-apps: brew
-	$(MAKE) -C ./apps
+	$(MAKE) -C ./script
