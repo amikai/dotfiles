@@ -12,6 +12,9 @@
 [mergetool]
     prompt=false
 
+[diff]
+    algorithm=patience
+
 [alias]
 
   # Thanks to 
