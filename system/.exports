@@ -11,8 +11,10 @@ export PATH="/usr/local/opt/curl/bin:$PATH"
 # rust
 export PATH="$HOME/.cargo/bin:$PATH"
 
+# golang
 export PATH="$HOME/go/bin:$PATH"
 
+# some binary
 export PATH="$HOME/bin:$PATH"
 
 # nvm dir
