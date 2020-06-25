@@ -12,7 +12,9 @@ export PATH="/usr/local/opt/curl/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
 
 # golang
-export PATH="$HOME/go/bin:$PATH"
+export GOROOT="$(brew --prefix golang)/libexec"
+export GOPATH="$HOME/go"
+export PATH="$GOPATH/bin:$PATH"
 
 # some binary
 export PATH="$HOME/bin:$PATH"
