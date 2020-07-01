@@ -1,18 +1,27 @@
 # Set c compiler
-export CC=$(brew --prefix llvm)/bin/clang
-export CXX=$(brew --prefix llvm)/bin/clang++
+BREW_PREFIX_PATH[llvm]='/usr/local/opt/llvm'
+export CC="${BREW_PREFIX_PATH[llvm]}/bin/clang"
+export CXX="${BREW_PREFIX_PATH[llvm]}/bin/clang++"
 
 # some basic utility
-export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
-export PATH="/usr/local/opt/findutils/libexec/gnubin:$PATH"
-export PATH="/usr/local/opt/grep/libexec/gnubin:$PATH"
-export PATH="/usr/local/opt/curl/bin:$PATH"
+BREW_PREFIX_PATH[coreutils]='/usr/local/opt/coreutils'
+export PATH="${BREW_PREFIX_PATH[coreutils]}libexec/gnubin:$PATH"
+
+BREW_PREFIX_PATH[findutils]='/usr/local/opt/findutils'
+export PATH="${BREW_PREFIX_PATH[findutils]}/libexec/gnubin:$PATH"
+
+BREW_PREFIX_PATH[grep]='/usr/local/opt/grep'
+export PATH="${BREW_PREFIX_PATH[grep]}/libexec/gnubin:$PATH"
+
+BREW_PREFIX_PATH[curl]='/usr/local/opt/curl'
+export PATH="${BREW_PREFIX_PATH[curl]}/bin:$PATH"
 
 # rust
 export PATH="$HOME/.cargo/bin:$PATH"
 
 # golang
-export GOROOT="$(brew --prefix golang)/libexec"
+BREW_PREFIX_PATH[golang]='/usr/local/opt/go'
+export GOROOT="${BREW_PREFIX_PATH[golang]}/libexec"
 export GOPATH="$HOME/go"
 export PATH="$GOPATH/bin:$PATH"
 
