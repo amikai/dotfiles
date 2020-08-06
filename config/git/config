@@ -11,6 +11,7 @@
 
 [mergetool]
     prompt=false
+    keepBackup = true
 
 [diff]
 	algorithm = patience
