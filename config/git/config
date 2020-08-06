@@ -3,17 +3,17 @@
     email = as23041248@gmail.com
 
 [core]
-    editor=vim
+    editor = vim
 	fileMode = false
 
 [merge]
-    tool=vimdiff
+    tool = vimdiff
 
 [mergetool]
     prompt=false
 
 [diff]
-    algorithm=patience
+	algorithm = patience
 
 [alias]
 
