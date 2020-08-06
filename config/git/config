@@ -10,7 +10,7 @@
     tool = vimdiff
 
 [mergetool]
-    prompt=false
+    prompt = false
     keepBackup = true
 
 [diff]
