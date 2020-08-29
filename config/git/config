@@ -92,6 +92,10 @@
     st = status
 
   ##########
+  # stash - save temporal change
+    sta = stash
+
+  ##########
   # rebase - forward-port local commits to the updated upstream head.
     rb = rebase
 
