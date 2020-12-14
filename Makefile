@@ -5,10 +5,10 @@ export XDG_CONFIG_HOME := $(HOME)/.config
 export STOW_DIR := $(DOTFILES_DIR)
 
 
-TARGETS = sudo macos brew bash stow unkink bash git brew-packages
+TARGETS = sudo brew bash stow unkink bash git brew-packages
 .PHONY: $(TARGETS)
 
-all: sudo brew bash git link macos
+all: sudo brew bash git 
 
 sudo:
 	sudo -v
