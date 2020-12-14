@@ -15,13 +15,13 @@ sudo:
 	while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
 brew:
-	[ -x "$(command -v brew)" ] && (curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install | ruby)
+	[ -x "$$(command -v brew)" ] || /bin/bash -c "$$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 
 macos:
 	./macos
 
 stow: brew
-	brew install stow
+	[ -x "$$(command -v brew)" ] || brew install stow
 
 link: stow brew-packages
 	mkdir -p $(XDG_CONFIG_HOME)
