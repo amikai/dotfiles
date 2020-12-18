@@ -7,11 +7,14 @@
 	fileMode = false
 
 [merge]
-    tool = vimdiff
+	tool = vimdiff
 
 [mergetool]
-    prompt = false
+	keepBackup = false
     keepBackup = true
+
+[mergetool "vimdiff"]
+    cmd = nvim -f -c \"Gdiffsplit!\" \"$MERGED\"
 
 [diff]
 	algorithm = patience
