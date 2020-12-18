@@ -19,6 +19,9 @@
 [diff]
 	algorithm = patience
 
+[status]
+    short = true
+
 [alias]
 
   # Thanks to 
