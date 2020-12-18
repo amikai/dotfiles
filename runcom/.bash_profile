@@ -24,7 +24,7 @@ export XDG_DATA_HOME="$HOME/.local/share"
 # Brew prefix path
 declare -A BREW_PREFIX_PATH
 
-for DOTFILE in "$DOTFILES_DIR"/system/.{bash_prompt,exports,aliases,functions,extra,prompt}; do
+for DOTFILE in "$DOTFILES_DIR"/system/.{bash_prompt,exports,aliases,functions,extra,bash_prompt}; do
 	[ -r "$DOTFILE" ] && [ -f "$DOTFILE" ] && source "$DOTFILE";
 done;
 
