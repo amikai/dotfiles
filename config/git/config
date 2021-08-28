@@ -20,7 +20,7 @@
 	algorithm = patience
 
 [status]
-    short = true
+    short = false
 
 [alias]
 
