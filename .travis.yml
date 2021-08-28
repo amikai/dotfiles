@@ -3,4 +3,4 @@ language: minimal
 os: osx
 osx_image: xcode12.5
 
-script: ./setup.sh
+script: IN_CI=true ./setup.sh
