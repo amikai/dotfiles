@@ -12,4 +12,4 @@ jobs:
       - name: Setup dotfiles
         run: |
           sudo chmod a+x ./setup.sh
-          sudo ./setup.sh
+          ./setup.sh
