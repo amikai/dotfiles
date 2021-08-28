@@ -4,5 +4,6 @@ os: osx
 osx_image: xcode12.5
 
 before_install:
+  - rm -rf "$HOME/*"
   - chmod +x setup.sh
 script: ./setup.sh
