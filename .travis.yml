@@ -3,4 +3,6 @@ language: minimal
 os: osx
 osx_image: xcode12.5
 
-script: IN_CI=true ./setup.sh
+before_install:
+  - chmod +x setup.sh
+script: ./setup.sh
