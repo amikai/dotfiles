@@ -3,7 +3,7 @@
 . helper.sh
 set -e
 
-DTFILES_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
+DOTFILES_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 SHELLS="/private/etc/shells"
 
 sudo -v
@@ -11,13 +11,13 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
 # install homebrew
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-success "Home brew installation success"
+success "Homebrew installation success"
 
 
 brew install stow
 mkdir -p "$XDG_CONFIG_HOME"
-stow -t "$HOME" runcom
-stow -t "$XDG_CONFIG_HOME" config
+stow -t "$HOME" "${DOTFILES_DIR}/runcom"
+stow -t "$XDG_CONFIG_HOME" "${DOTFILES_DIR}/config"
 success "Stow link success"
 
 
@@ -32,6 +32,6 @@ brew install git git-extras
 
 scripts=(basic.sh exrta.sh python.sh golang.sh nveovim.sh rust.sh)
 for script in "${scripts[@]}"; do
-    "$BASH" "script/${script}"
+    "$BASH" "${DOTFILES_DIR}/script/${script}"
     success "Run ${script} finish"
 done
