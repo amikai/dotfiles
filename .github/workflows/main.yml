@@ -10,4 +10,6 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Setup dotfiles
-        run: IN_CI=true sudo ./setup.sh
+        run: |
+          sudo chmod a+x ./setup.sh
+          IN_CI=true sudo ./setup.sh
