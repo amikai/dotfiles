@@ -5,7 +5,7 @@ on:
       - master
 jobs:
   build:
-    runs-on: macOS-latest
+    runs-on: [macos-11, macos-10.15]
     steps:
       - uses: actions/checkout@v2
 
