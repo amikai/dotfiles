@@ -13,7 +13,7 @@ if [ "$IN_CI" = false ] ; then
 fi
 
 # install homebrew
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+sudo -n true && /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 success "Homebrew installation success"
 
 
