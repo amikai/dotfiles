@@ -1,2 +1,4 @@
 alias n='nvim'
 
+alias ks=kubectl
+complete -F __start_kubectl ks
