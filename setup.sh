@@ -16,8 +16,8 @@ success "Homebrew installation success"
 
 brew install stow
 mkdir -p "$XDG_CONFIG_HOME"
-stow -t "$HOME" "${DOTFILES_DIR}/runcom"
-stow -t "$XDG_CONFIG_HOME" "${DOTFILES_DIR}/config"
+cd "$DOTFILES_DIR" && stow -t "$HOME" "runcom"
+cd "$DOTFILES_DIR" && stow -t "$XDG_CONFIG_HOME" "config"
 success "Stow link success"
 
 
