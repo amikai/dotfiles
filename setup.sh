@@ -10,10 +10,13 @@ IN_CI=${IN_CI:false}
 if [ "$IN_CI" = false ] ; then
     sudo -v
     while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+else
+    # The user is a sudoer in travis ci, password is not required.
+    sudo -n true 
 fi
 
 # install homebrew
-sudo -n true && /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 success "Homebrew installation success"
 
 
