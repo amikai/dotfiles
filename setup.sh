@@ -9,13 +9,11 @@ SHELLS="/private/etc/shells"
 IN_CI=${IN_CI:false}
 STOW_DIR="$DOTFILES_DIR"
 
+# if not in ci, need ask password
 if [ "$IN_CI" = false ] ; then
     sudo -v
-    while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
-else
-    # The user is a sudoer in travis ci, password is not required.
-    sudo -n true 
 fi
+ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
 # install homebrew
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
