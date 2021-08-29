@@ -7,6 +7,7 @@ DOTFILES_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 XDG_CONFIG_HOME="${HOME}/.config"
 SHELLS="/private/etc/shells"
 IN_CI=${IN_CI:false}
+STOW_DIR="$DOTFILES_DIR"
 
 if [ "$IN_CI" = false ] ; then
     sudo -v
