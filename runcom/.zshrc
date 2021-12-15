@@ -93,10 +93,12 @@ export PATH="$GOPATH/bin:$PATH"
 export NVM_DIR="$XDG_CONFIG_HOME/nvm"
 # }}}
 
+# TODO: use OMZ pyenv and lazy load
 # pyenv {{{
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
-# TODO: pyenv init
+eval "$(pyenv init --path)"
+eval "$(pyenv virtualenv-init -)"
 # }}}
 
 # kubectl setting {{{
