@@ -13,6 +13,10 @@ brew install rustup-init
 brew install --cask visual-studio-code
 brew install --cask google-chrome
 brew install --cask telegram
+# git gui
+brew install --cask fork
+brew install --cask cleanshot
+brew install --cask tableplus
 mas install 539883307 # LINE (5.24.1)
 mas install 1449412482 # Reeder (4.2.3)
 
