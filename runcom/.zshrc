@@ -40,6 +40,8 @@ zinit light zsh-users/zsh-history-substring-search
 export EDITOR="nvim"
 # }}}
 
+declare -A BREW_PREFIX_PATH
+
 # set c compiler {{{
 BREW_PREFIX_PATH[llvm]='/usr/local/opt/llvm'
 export CC="${BREW_PREFIX_PATH[llvm]}/bin/clang"
