@@ -1,5 +1,0 @@
-alias n="/usr/local/bin/nvim"
-
-alias k=kubectl
-compdef __start_kubectl k
-

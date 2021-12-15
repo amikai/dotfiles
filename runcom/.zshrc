@@ -1,7 +1,18 @@
-# XDG_DIRS
+# XDG_DIRS {{{
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_DATA_HOME="$HOME/.local/share"
+# }}}
+
+# initialize zinit {{{
+ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
+if [[ ! -f $ZINIT_HOME/zinit.zsh ]]; then
+    mkdir -p "$(dirname $ZINIT_HOME)"
+    git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
+fi
+
+source "${ZINIT_HOME}/zinit.zsh"
+# }}}
 
 # Enable autocompletion
 autoload -Uz compinit
@@ -12,13 +23,3 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 #set the PERMISSIONS for newly-created files
 umask 077
 
-# Brew prefix path
-declare -A BREW_PREFIX_PATH
-
-ZSH_CONFIG_DIR="$XDG_CONFIG_HOME/zsh"
-for DOTFILE in "$ZSH_CONFIG_DIR"/.{exports,aliases,extra}; do
-	[ -r "$DOTFILE" ] && [ -f "$DOTFILE" ] && source "$DOTFILE";
-done;
-
-
-unset ZSH_CONFIG_DIR DOTFILE
