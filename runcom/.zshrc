@@ -49,6 +49,11 @@ zinit light zsh-users/zsh-history-substring-search
 export EDITOR="nvim"
 # }}}
 
+# aliases {{{
+alias n="/usr/local/bin/nvim"
+alias hh="history -i"
+# }}}
+
 declare -A BREW_PREFIX_PATH
 
 # set c compiler {{{
