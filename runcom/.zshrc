@@ -108,5 +108,11 @@ then
 fi
 # }}}
 
+# helm setting {{{
+if command -v helm &> /dev/null
+then
+    source <(helm completion zsh)
+fi
+# }}}
 
 # -- vim: set foldmethod=marker tw=80 sw=4 ts=4 sts =4 sta nowrap et :
