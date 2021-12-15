@@ -10,9 +10,9 @@ brew install nvm
 brew install rustup-init
 
 # GUI
-brew cask install visual-studio-code
-brew cask install google-chrome
-brew cask install telegram
+brew install --cask visual-studio-code
+brew install --cask google-chrome
+brew install --cask telegram
 mas install 539883307 # LINE (5.24.1)
 mas install 1449412482 # Reeder (4.2.3)
 
