@@ -14,8 +14,8 @@ fi
 source "${ZINIT_HOME}/zinit.zsh"
 # }}}
 
-# General setting {{{
-# Enable autocompletion
+# general setting {{{
+# enable autocompletion
 autoload -Uz compinit
 
 # case insensitive completion
