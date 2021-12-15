@@ -29,4 +29,4 @@ for DOTFILE in "$DOTFILES_DIR"/system/.{bash_prompt,exports,aliases,functions,ex
 done;
 
 # Clean up
-unset READLINK CURRENT_SCRIPT SCRIPT_PATH DOTFILE EXTRAFILE
+unset READLINK CURRENT_SCRIPT SCRIPT_PATH DOTFILE
