@@ -14,6 +14,7 @@ fi
 source "${ZINIT_HOME}/zinit.zsh"
 # }}}
 
+# General setting {{{
 # Enable autocompletion
 autoload -Uz compinit
 
@@ -22,8 +23,60 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 
 #set the PERMISSIONS for newly-created files
 umask 077
+# }}}
 
 # zsh prompt {{{
 zinit ice compile'(pure|async).zsh' pick'async.zsh' src'pure.zsh'
 zinit light sindresorhus/pure
 # }}}
+
+# zsh experience {{{
+zinit light zsh-users/zsh-completions
+zinit light zsh-users/zsh-autosuggestions
+zinit light zsh-users/zsh-history-substring-search
+# }}}
+
+# set the editor to nvim {{{
+export EDITOR="nvim"
+# }}}
+
+# set c compiler {{{
+BREW_PREFIX_PATH[llvm]='/usr/local/opt/llvm'
+export CC="${BREW_PREFIX_PATH[llvm]}/bin/clang"
+export CXX="${BREW_PREFIX_PATH[llvm]}/bin/clang++"
+# }}}
+
+# some basic utility {{{
+BREW_PREFIX_PATH[coreutils]='/usr/local/opt/coreutils'
+export PATH="${BREW_PREFIX_PATH[coreutils]}libexec/gnubin:$PATH"
+
+BREW_PREFIX_PATH[findutils]='/usr/local/opt/findutils'
+export PATH="${BREW_PREFIX_PATH[findutils]}/libexec/gnubin:$PATH"
+
+BREW_PREFIX_PATH[grep]='/usr/local/opt/grep'
+export PATH="${BREW_PREFIX_PATH[grep]}/libexec/gnubin:$PATH"
+
+BREW_PREFIX_PATH[curl]='/usr/local/opt/curl'
+export PATH="${BREW_PREFIX_PATH[curl]}/bin:$PATH"
+# }}}
+
+# rust {{{
+export PATH="$HOME/.cargo/bin:$PATH"
+# }}}
+
+# golang {{{
+BREW_PREFIX_PATH[golang]='/usr/local/opt/go'
+export GOROOT="${BREW_PREFIX_PATH[golang]}/libexec"
+export GOPATH="$HOME/go"
+export PATH="$GOPATH/bin:$PATH"
+# }}}
+
+# nvm dir {{{
+export NVM_DIR="$XDG_CONFIG_HOME/nvm"
+# }}}
+
+# pyenv {{{
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+# }}}
+# -- vim: set foldmethod=marker tw=80 sw=4 ts=4 sts =4 sta nowrap et :
