@@ -94,5 +94,6 @@ export NVM_DIR="$XDG_CONFIG_HOME/nvm"
 # pyenv {{{
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
+# TODO: pyenv init
 # }}}
 # -- vim: set foldmethod=marker tw=80 sw=4 ts=4 sts =4 sta nowrap et :
