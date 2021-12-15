@@ -53,9 +53,11 @@ brew install screen
 brew install php
 brew install gmp
 
-# Install other useful binaries.
+# Install search tools
 brew install ack
-#brew install exiv2
+brew install the_silver_searcher
+brew install ripgrep
+
 brew install git
 brew install git-lfs
 brew install gs
