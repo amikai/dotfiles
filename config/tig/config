@@ -1,1 +1,0 @@
-bind main   B !git rebase -i %(commit)
