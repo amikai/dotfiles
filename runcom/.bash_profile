@@ -10,9 +10,9 @@ export XDG_DATA_HOME="$HOME/.local/share"
 declare -A BREW_PREFIX_PATH
 
 BASH_CONFIG_DIR="$XDG_CONFIG_HOME/bash"
-for DOTFILE in "$BASH_CONFIG_DIR/.{bash_prompt,exports,aliases,functions,extra,bash_prompt}; do
+for DOTFILE in "$BASH_CONFIG_DIR"/.{bash_prompt,exports,aliases,functions,extra,bash_prompt}; do
 	[ -r "$DOTFILE" ] && [ -f "$DOTFILE" ] && source "$DOTFILE";
 done;
 
 # Clean up
-unset READLINK CURRENT_SCRIPT SCRIPT_PATH DOTFILE
+unset DOTFILE BASH_CONFIG_DIR
