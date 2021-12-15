@@ -33,6 +33,7 @@ export SAVEHIST=1000000   # maximum number of items for the history file
 
 setopt INC_APPEND_HISTORY_TIME  # append command to history file immediately after execution
 setopt EXTENDED_HISTORY  # record command start time
+setopt SHARE_HISTORY
 # }}}
 
 # zsh prompt {{{
