@@ -6,10 +6,10 @@ export XDG_CONFIG_HOME := $(HOME)/.config
 export STOW_DIR := $(DOTFILES_DIR)
 
 
-TARGETS = sudo brew bash stow unkink bash git brew-packages
+TARGETS = sudo brew bash stow link unlink bash git brew-packages
 .PHONY: $(TARGETS)
 
-all: sudo brew bash zsh git
+all: sudo brew git bash zsh link brew-packages
 
 sudo:
 	sudo -v
@@ -18,13 +18,10 @@ sudo:
 brew:
 	[ -x "$$(command -v brew)" ] || /bin/bash -c "$$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 
-macos:
-	./macos
-
 stow: brew
 	[ -x "$$(command -v brew)" ] || brew install stow
 
-link: stow brew-packages
+link: stow
 	mkdir -p $(XDG_CONFIG_HOME)
 	stow -t $(HOME) runcom
 	stow -t $(XDG_CONFIG_HOME) config
