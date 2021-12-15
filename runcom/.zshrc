@@ -101,6 +101,8 @@ eval "$(pyenv init --path)"
 eval "$(pyenv virtualenv-init -)"
 # }}}
 
+# TODO: use OMZ nvm and lazy load
+
 # kubectl setting {{{
 if command -v kubectl &> /dev/null
 then
