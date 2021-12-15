@@ -23,3 +23,7 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 #set the PERMISSIONS for newly-created files
 umask 077
 
+# zsh prompt {{{
+zinit ice compile'(pure|async).zsh' pick'async.zsh' src'pure.zsh'
+zinit light sindresorhus/pure
+# }}}
