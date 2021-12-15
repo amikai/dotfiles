@@ -3,7 +3,7 @@
     email = as23041248@gmail.com
 
 [core]
-    editor = vim
+    editor = nvim
 	fileMode = false
 
 [merge]
@@ -135,7 +135,6 @@
   ##########
   # Show our tags
     tags = tag -n1 -l
- 
 
   # Stash snapshot - from http://blog.apiaxle.com/post/handy-git-tips-to-stop-you-getting-fired/
   # Take a snapshot of your current working tree without removing changes.
