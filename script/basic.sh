@@ -37,9 +37,8 @@ if ! fgrep -q "${BREW_PREFIX}/bin/zsh" /etc/shells; then
   chsh -s "${BREW_PREFIX}/bin/zsh";
 fi;
 
-#
+# Install http client tools
 brew install wget
-
 brew install curl
 
 # Install GnuPG to enable PGP-signing commits.
