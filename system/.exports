@@ -1,3 +1,6 @@
+# set the editor to nvim
+export EDITOR="nvim"
+
 # Set c compiler
 BREW_PREFIX_PATH[llvm]='/usr/local/opt/llvm'
 export CC="${BREW_PREFIX_PATH[llvm]}/bin/clang"
