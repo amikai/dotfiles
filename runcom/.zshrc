@@ -17,6 +17,7 @@ source "${ZINIT_HOME}/zinit.zsh"
 # general setting {{{
 # enable autocompletion
 autoload -Uz compinit
+compinit
 
 # case insensitive completion
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
@@ -96,4 +97,15 @@ export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 # TODO: pyenv init
 # }}}
+
+# kubectl setting {{{
+if command -v kubectl &> /dev/null
+then
+    source <(kubectl completion zsh)
+    alias k=kubectl
+    complete -F __start_kubectl k
+fi
+# }}}
+
+
 # -- vim: set foldmethod=marker tw=80 sw=4 ts=4 sts =4 sta nowrap et :
