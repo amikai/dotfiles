@@ -25,6 +25,15 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 umask 077
 # }}}
 
+# history setting {{{
+export HISTFILE=$XDG_CACHE_HOME/.histfile
+export HISTSIZE=1000000   # the number of items for the internal history list
+export SAVEHIST=1000000   # maximum number of items for the history file
+
+setopt INC_APPEND_HISTORY_TIME  # append command to history file immediately after execution
+setopt EXTENDED_HISTORY  # record command start time
+# }}}
+
 # zsh prompt {{{
 zinit ice compile'(pure|async).zsh' pick'async.zsh' src'pure.zsh'
 zinit light sindresorhus/pure
