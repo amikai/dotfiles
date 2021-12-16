@@ -51,6 +51,9 @@ zinit light zsh-users/zsh-syntax-highlighting
 zinit snippet OMZ::lib/key-bindings.zsh
 zinit snippet OMZ::lib/completion.zsh
 zinit snippet OMZ::lib/theme-and-appearance.zsh
+
+zinit ice lucid wait '1'
+zinit snippet OMZ::plugins/colored-man-pages/colored-man-pages.plugin.zsh
 # }}}
 
 # set the editor to nvim {{{
