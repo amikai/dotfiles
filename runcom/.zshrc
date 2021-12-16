@@ -102,25 +102,20 @@ export NVM_DIR="$XDG_CONFIG_HOME/nvm"
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init --path)"
-eval "$(pyenv virtualenv-init -)"
+zinit ice lucid wait '1'
+zinit snippet OMZ::plugins/pyenv/pyenv.plugin.zsh
 # }}}
 
 # TODO: use OMZ nvm and lazy load
 
 # kubectl setting {{{
-if command -v kubectl &> /dev/null
-then
-    source <(kubectl completion zsh)
-    alias k=kubectl
-    complete -F __start_kubectl k
-fi
+zinit ice lucid wait '1'
+zinit snippet OMZ::plugins/kubectl/kubectl.plugin.zsh
 # }}}
 
 # helm setting {{{
-if command -v helm &> /dev/null
-then
-    source <(helm completion zsh)
-fi
+zinit ice lucid wait '1'
+zinit snippet OMZ::plugins/helm/helm.plugin.zsh
 # }}}
 
 # -- vim: set foldmethod=marker tw=80 sw=4 ts=4 sts =4 sta nowrap et :
