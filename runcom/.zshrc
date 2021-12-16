@@ -41,10 +41,14 @@ zinit ice compile'(pure|async).zsh' pick'async.zsh' src'pure.zsh'
 zinit light sindresorhus/pure
 # }}}
 
-# zsh experience {{{
-zinit light zsh-users/zsh-completions
+# zsh user experience {{{
+zinit ice wait lucid atload'_zsh_autosuggest_start'
 zinit light zsh-users/zsh-autosuggestions
 zinit light zsh-users/zsh-history-substring-search
+
+zinit snippet OMZ::lib/key-bindings.zsh
+zinit snippet OMZ::lib/completion.zsh
+zinit snippet OMZ::lib/theme-and-appearance.zsh
 # }}}
 
 # set the editor to nvim {{{
