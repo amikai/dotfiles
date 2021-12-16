@@ -122,4 +122,9 @@ zinit ice lucid wait '1'
 zinit snippet OMZ::plugins/helm/helm.plugin.zsh
 # }}}
 
+# docker setting {{{
+zinit ice lucid wait '1'
+zinit snippet OMZ::plugins/docker/_docker
+# }}}
+
 # -- vim: set foldmethod=marker tw=80 sw=4 ts=4 sts =4 sta nowrap et :
