@@ -87,6 +87,15 @@ BREW_PREFIX_PATH[curl]='/usr/local/opt/curl'
 export PATH="${BREW_PREFIX_PATH[curl]}/bin:$PATH"
 # }}}
 
+# zip tools {{{
+BREW_PREFIX_PATH[zip]='/usr/local/opt/zip'
+export PATH="${BREW_PREFIX_PATH[zip]}/bin:$PATH"
+
+BREW_PREFIX_PATH[unzip]='/usr/local/opt/unzip'
+export PATH="${BREW_PREFIX_PATH[unzip]}/bin:$PATH"
+
+# }}}
+
 # rust {{{
 export PATH="$HOME/.cargo/bin:$PATH"
 # }}}
