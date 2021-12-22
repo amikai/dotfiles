@@ -75,7 +75,7 @@ export CXX="${BREW_PREFIX_PATH[llvm]}/bin/clang++"
 
 # some basic utility {{{
 BREW_PREFIX_PATH[coreutils]='/usr/local/opt/coreutils'
-export PATH="${BREW_PREFIX_PATH[coreutils]}libexec/gnubin:$PATH"
+export PATH="${BREW_PREFIX_PATH[coreutils]}/libexec/gnubin:$PATH"
 
 BREW_PREFIX_PATH[findutils]='/usr/local/opt/findutils'
 export PATH="${BREW_PREFIX_PATH[findutils]}/libexec/gnubin:$PATH"
