@@ -19,6 +19,8 @@ if [[ ! -f $ZINIT_HOME/zinit.zsh ]]; then
 fi
 
 source "${ZINIT_HOME}/zinit.zsh"
+autoload -Uz _zinit
+(( ${+_comps} )) && _comps[zinit]=_zinit
 # }}}
 
 # history setting {{{
@@ -39,7 +41,6 @@ zinit light sindresorhus/pure
 # zsh user experience {{{
 zinit wait lucid for \
     zsh-users/zsh-autosuggestions \
-    zdharma-continuum/fast-syntax-highlighting \
     zdharma-continuum/history-search-multi-word
 
 zinit wait lucid for \
@@ -127,7 +128,6 @@ zinit wait lucid for \
 
 # gcloud setting {{{
 zinit wait lucid for \
-    atload"zicompinit; zicdreplay"  \
     has"gcloud" \
     OMZP::gcloud
 # }}}
@@ -138,6 +138,9 @@ zinit wait lucid for \
     as"completion" \
     OMZP::docker/_docker
 # }}}
+#
+zinit ice wait lucid atinit"ZINIT[COMPINIT_OPTS]=-C; zpcompinit; zpcdreplay"
+zinit light zdharma-continuum/fast-syntax-highlighting
 
 # some binary {{{
 export PATH="$HOME/bin:$PATH"
