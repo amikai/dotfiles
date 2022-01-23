@@ -113,8 +113,6 @@ zinit wait lucid for \
     OMZP::pyenv
 # }}}
 
-# TODO: use OMZ nvm and lazy load
-
 # kubectl setting {{{
 zinit wait lucid for \
     has"kubectl" \
