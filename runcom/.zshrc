@@ -4,6 +4,13 @@ export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_DATA_HOME="$HOME/.local/share"
 # }}}
 
+# general setting {{{
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
+
+#set the PERMISSIONS for newly-created files
+umask 077
+# }}}
+
 # initialize zinit {{{
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 if [[ ! -f $ZINIT_HOME/zinit.zsh ]]; then
@@ -12,18 +19,6 @@ if [[ ! -f $ZINIT_HOME/zinit.zsh ]]; then
 fi
 
 source "${ZINIT_HOME}/zinit.zsh"
-# }}}
-
-# general setting {{{
-# enable autocompletion
-autoload -Uz compinit
-compinit
-
-# case insensitive completion
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
-
-#set the PERMISSIONS for newly-created files
-umask 077
 # }}}
 
 # history setting {{{
@@ -42,18 +37,16 @@ zinit light sindresorhus/pure
 # }}}
 
 # zsh user experience {{{
-zinit ice wait lucid atload'_zsh_autosuggest_start'
-zinit light zsh-users/zsh-autosuggestions
-zinit light zsh-users/zsh-history-substring-search
-zinit light zsh-users/zsh-syntax-highlighting
+zinit wait lucid for \
+    zsh-users/zsh-autosuggestions \
+    zdharma-continuum/fast-syntax-highlighting \
+    zdharma-continuum/history-search-multi-word
 
-
-zinit snippet OMZ::lib/key-bindings.zsh
-zinit snippet OMZ::lib/completion.zsh
-zinit snippet OMZ::lib/theme-and-appearance.zsh
-
-zinit ice lucid wait '1'
-zinit snippet OMZ::plugins/colored-man-pages/colored-man-pages.plugin.zsh
+zinit wait lucid for \
+    OMZL::key-bindings.zsh \
+    OMZL::completion.zsh \
+    OMZL::theme-and-appearance.zsh \
+    OMZP::colored-man-pages
 # }}}
 
 # set the editor to nvim {{{
@@ -115,30 +108,41 @@ export NVM_DIR="$XDG_CONFIG_HOME/nvm"
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init --path)"
-zinit ice lucid wait '1' has'pyenv'
-zinit snippet OMZ::plugins/pyenv/pyenv.plugin.zsh
+zinit wait lucid for \
+    has"pyenv" \
+    OMZP::pyenv
 # }}}
 
 # TODO: use OMZ nvm and lazy load
 
 # kubectl setting {{{
-zinit ice lucid wait'1' has'kubectl'
-zinit snippet OMZ::plugins/kubectl/kubectl.plugin.zsh
+zinit wait lucid for \
+    has"kubectl" \
+    OMZP::kubectl
 # }}}
 
 # helm setting {{{
-zinit ice lucid wait '1' has'helm'
-zinit snippet OMZ::plugins/helm/helm.plugin.zsh
+zinit wait lucid for \
+    has"helm" \
+    OMZP::helm
+# }}}
+
+# gcloud setting {{{
+zinit wait lucid for \
+    atload"zicompinit; zicdreplay"  \
+    has"gcloud" \
+    OMZP::gcloud
 # }}}
 
 # docker setting {{{
-zinit ice lucid wait '1' has'docker'
-zinit snippet OMZ::plugins/docker/_docker
+zinit wait lucid for \
+    has"docker" \
+    as"completion" \
+    OMZP::docker/_docker
 # }}}
 
 # some binary {{{
 export PATH="$HOME/bin:$PATH"
 # }}}
-
 
 # -- vim: set foldmethod=marker tw=80 sw=4 ts=4 sts =4 sta nowrap et :
