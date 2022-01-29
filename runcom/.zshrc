@@ -57,6 +57,7 @@ export EDITOR="nvim"
 # aliases {{{
 alias n="/usr/local/bin/nvim"
 alias hh="history -i"
+alias cc="clear"
 # }}}
 
 declare -A BREW_PREFIX_PATH
