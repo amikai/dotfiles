@@ -40,6 +40,12 @@ install_dep() {
     install install_pylsp_deps
     # jsonnet ls
     go install github.com/grafana/jsonnet-language-server@latest
+    #  vscode-langservers-extracted install following:
+    #     vscode-html-language-server
+    #     vscode-css-language-server
+    #     vscode-json-language-server
+    #     vscode-eslint-language-server
+    npm install -g vscode-langservers-extracted
 }
 
 
