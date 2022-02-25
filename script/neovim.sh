@@ -38,6 +38,8 @@ install_dep() {
     npm install -g vim-language-server
     # python ls
     install install_pylsp_deps
+    # jsonnet ls
+    go install github.com/grafana/jsonnet-language-server@latest
 }
 
 
