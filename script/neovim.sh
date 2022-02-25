@@ -1,13 +1,21 @@
 #!/usr/bin/env bash
 
+PIP2="$(pyenv which pip2)"
+PIP3="$(pyenv which pip3)"
 
 download_nvimrc() {
 	git clone https://github.com/amikai/nvimrc "$DOTFILES_DIR"/config/nvim
 }
 
+install_pylsp_deps() {
+    "$PIP3" install "python-lsp-server[all]"
+    "$PIP3" install pyls-flake8
+    "$PIP3" install pylsp-mypy
+    "$PIP3" install python-lsp-black
+    "$PIP3" install pylsp-rope
+}
+
 install_dep() {
-	local PIP2="$(pyenv which pip2)"
-	local PIP3="$(pyenv which pip3)"
 	"$PIP2" install pynvim neovim
 	"$PIP3" install pynvim neovim
 
@@ -16,19 +24,22 @@ install_dep() {
     brwe install cscope
     brew install --with-jansson --with-libyaml --HEAD universal-ctags/universal-ctags/universal-ctags
 
-    # Shell linter
-    brew install shellcheck
-    # Vim linter
-    "$PIP3" install vim-vint
-    # Python linter
-    "$PIP3" install flake8
-
-    # Python code completion
-    "$PIP3" install jedi
-    # Rust code completion and navigation.
-    cargo install racer
-
+    # terraform ls
+    brew install hashicorp/tap/terraform-ls
+    # dockerfile ls
+    npm install -g dockerfile-language-server-nodejs
+    # ansible ls
+    npm install -g @ansible/ansible-language-server
+    # yaml ls
+    brew install yaml-language-server
+    # bash ls
+    npm install -g bash-language-server
+    # vimscript ls
+    npm install -g vim-language-server
+    # python ls
+    install install_pylsp_deps
 }
+
 
 install_nvim_plugin() {
 	nvim --cmd "so $DOTFILES_DIR/config/nvim/init.vim" +checkhealth +"call dein#remote_plugins()" +qa
