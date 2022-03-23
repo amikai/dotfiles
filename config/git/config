@@ -16,6 +16,9 @@
 [mergetool "vimdiff"]
     cmd = nvim -f -c \"Gdiffsplit!\" \"$MERGED\"
 
+[feature]
+manyFiles = true
+
 [diff]
 	algorithm = patience
 
@@ -24,7 +27,7 @@
 
 [alias]
 
-  # Thanks to 
+  # Thanks to
   # https://github.com/SixArm/sixarm_git_gitconfig/blob/master/gitconfig.d/alias.txt
 
 
