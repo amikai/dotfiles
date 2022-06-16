@@ -50,6 +50,12 @@ zinit wait lucid for \
     OMZP::colored-man-pages
 # }}}
 
+# zsh vi mode {{{
+ZVM_VI_INSERT_ESCAPE_BINDKEY=jk
+zinit wait lucid for \
+    jeffreytse/zsh-vi-mode
+# }}}
+
 # set the editor to nvim {{{
 export EDITOR="nvim"
 # }}}
@@ -58,6 +64,8 @@ export EDITOR="nvim"
 alias n="/usr/local/bin/nvim"
 alias hh="history -i"
 alias cc="clear"
+alias l="exa"
+alias g="git"
 # }}}
 
 declare -A BREW_PREFIX_PATH

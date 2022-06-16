@@ -19,7 +19,7 @@ brew:
 	[ -x "$$(command -v brew)" ] || /bin/bash -c "$$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 
 stow: brew
-	[ -x "$$(command -v brew)" ] || brew install stow
+	[ -x "$$(command -v brew)" ] && [ -x "$$(command -v stow)" ] || brew install stow
 
 link: stow
 	mkdir -p $(XDG_CONFIG_HOME)
