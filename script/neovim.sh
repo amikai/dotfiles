@@ -50,7 +50,7 @@ install_dep() {
 
 
 install_nvim_plugin() {
-	nvim --cmd "so $DOTFILES_DIR/config/nvim/init.vim" +checkhealth +"call dein#remote_plugins()" +qa
+    nvim -c 'checkhealth' -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
 }
 
 download_nvimrc
