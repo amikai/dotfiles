@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-PYENV_LASTEST_VERSION3=$(pyenv install --list | tr -d ' ' | grep '^3.[0-9].[0-9]$' | tail -1)
-
-PYENV_LASTEST_VERSION2=$(pyenv install --list | tr -d ' ' | grep '^2.[0-9].[0-9]$' | tail -1)
+PYENV_LASTEST_VERSION3=3.10.6
+PYENV_LASTEST_VERSION2=2.7.18
+SYSTEM_CC=/usr/bin/clang
 
 # init pyenv
 eval "$(pyenv init -)"
@@ -10,14 +10,12 @@ eval "$(pyenv init -)"
 # init venv
 eval "$(pyenv virtualenv-init -)"
 
-# install python2
-# pyenv use openssl from homebrew, but python2 need openssl1.0 which brew doesn't support
-SDKROOT=$(xcrun --show-sdk-path) PYTHON_BUILD_HOMEBREW_OPENSSL_FORMULA=x pyenv install "$PYENV_LASTEST_VERSION2"
-
-
 # install python3
-SDKROOT=$(xcrun --show-sdk-path) PYTHON_BUILD_HOMEBREW_OPENSSL_FORMULA=x pyenv install "$PYENV_LASTEST_VERSION3"
+CC=${SYSTEM_CC} pyenv install "$PYENV_LASTEST_VERSION3"
 
-pyenv global "$PYENV_LASTEST_VERSION2" "$PYENV_LASTEST_VERSION3"
+# install python2
+CC=${SYSTEM_CC} pyenv install "$PYENV_LASTEST_VERSION2"
+
+pyenv global "$PYENV_LASTEST_VERSION3" "$PYENV_LASTEST_VERSION2"
 
 unset PYENV_LASTEST_VERSION2 PYENV_LASTEST_VERSION3
