@@ -4,6 +4,10 @@ export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_DATA_HOME="$HOME/.local/share"
 # }}}
 
+# binary path installed by homebrew {{{
+export PATH="/opt/homebrew/bin:$PATH"
+# }}}
+
 # general setting {{{
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 
@@ -117,8 +121,7 @@ export PATH="/opt/homebrew/opt/node@16/bin:$PATH"
 
 # pyenv {{{
 export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init --path)"
+eval "$(pyenv init -)"
 zinit wait lucid for \
     has"pyenv" \
     OMZP::pyenv
@@ -148,16 +151,12 @@ zinit wait lucid for \
     as"completion" \
     OMZP::docker/_docker
 # }}}
-#
+
 zinit ice wait lucid atinit"ZINIT[COMPINIT_OPTS]=-C; zpcompinit; zpcdreplay"
 zinit light zdharma-continuum/fast-syntax-highlighting
 
 # some binary {{{
 export PATH="$HOME/bin:$PATH"
-# }}}
-
-# homebrew path {{{
-export PATH="/opt/homebrew/bin:$PATH"
 # }}}
 
 # -- vim: set foldmethod=marker tw=80 sw=4 ts=4 sts =4 sta nowrap et :
