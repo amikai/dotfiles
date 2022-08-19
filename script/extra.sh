@@ -8,6 +8,7 @@ brew install pyenv-virtualenv
 brew install go
 brew install nvm
 brew install rustup-init
+brew install kubectl
 
 
 # font
