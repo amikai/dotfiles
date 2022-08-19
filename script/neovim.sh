@@ -21,8 +21,8 @@ install_dep() {
 
     # For code navigation and plugin dependencies
     brew install global
-    brwe install cscope
-    brew install --with-jansson --with-libyaml --HEAD universal-ctags/universal-ctags/universal-ctags
+    brew install cscope
+    brew install --HEAD universal-ctags/universal-ctags/universal-ctags
 
     # terraform ls
     brew install hashicorp/tap/terraform-ls
