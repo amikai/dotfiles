@@ -61,7 +61,7 @@ export EDITOR="nvim"
 # }}}
 
 # aliases {{{
-alias n="/usr/local/bin/nvim"
+alias n="/opt/homebrew/bin/nvim"
 alias hh="history -i"
 alias cc="clear"
 alias l="exa"
@@ -71,30 +71,30 @@ alias g="git"
 declare -A BREW_PREFIX_PATH
 
 # set c compiler {{{
-BREW_PREFIX_PATH[llvm]='/usr/local/opt/llvm'
+BREW_PREFIX_PATH[llvm]='/opt/homebrew/opt/llvm'
 export CC="${BREW_PREFIX_PATH[llvm]}/bin/clang"
 export CXX="${BREW_PREFIX_PATH[llvm]}/bin/clang++"
 # }}}
 
 # some basic utility {{{
-BREW_PREFIX_PATH[coreutils]='/usr/local/opt/coreutils'
+BREW_PREFIX_PATH[coreutils]='/opt/homebrew/opt/coreutils'
 export PATH="${BREW_PREFIX_PATH[coreutils]}/libexec/gnubin:$PATH"
 
-BREW_PREFIX_PATH[findutils]='/usr/local/opt/findutils'
+BREW_PREFIX_PATH[findutils]='/opt/homebrew/opt/findutils'
 export PATH="${BREW_PREFIX_PATH[findutils]}/libexec/gnubin:$PATH"
 
-BREW_PREFIX_PATH[grep]='/usr/local/opt/grep'
+BREW_PREFIX_PATH[grep]='/opt/homebrew/opt/grep'
 export PATH="${BREW_PREFIX_PATH[grep]}/libexec/gnubin:$PATH"
 
-BREW_PREFIX_PATH[curl]='/usr/local/opt/curl'
+BREW_PREFIX_PATH[curl]='/opt/homebrew/opt/curl'
 export PATH="${BREW_PREFIX_PATH[curl]}/bin:$PATH"
 # }}}
 
 # zip tools {{{
-BREW_PREFIX_PATH[zip]='/usr/local/opt/zip'
+BREW_PREFIX_PATH[zip]='/opt/homebrew/opt/zip'
 export PATH="${BREW_PREFIX_PATH[zip]}/bin:$PATH"
 
-BREW_PREFIX_PATH[unzip]='/usr/local/opt/unzip'
+BREW_PREFIX_PATH[unzip]='/opt/homebrew/opt/unzip'
 export PATH="${BREW_PREFIX_PATH[unzip]}/bin:$PATH"
 
 # }}}
@@ -104,7 +104,7 @@ export PATH="$HOME/.cargo/bin:$PATH"
 # }}}
 
 # golang {{{
-BREW_PREFIX_PATH[golang]='/usr/local/opt/go'
+BREW_PREFIX_PATH[golang]='/opt/homebrew/opt/go'
 export GOROOT="${BREW_PREFIX_PATH[golang]}/libexec"
 export GOPATH="$HOME/go"
 export PATH="$GOPATH/bin:$PATH"
@@ -153,6 +153,10 @@ zinit light zdharma-continuum/fast-syntax-highlighting
 
 # some binary {{{
 export PATH="$HOME/bin:$PATH"
+# }}}
+
+# homebrew path {{{
+export PATH="/opt/homebrew/bin:$PATH"
 # }}}
 
 # -- vim: set foldmethod=marker tw=80 sw=4 ts=4 sts =4 sta nowrap et :
