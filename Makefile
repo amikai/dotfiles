@@ -30,12 +30,12 @@ unlink: stow
 	stow --delete -t $(HOME) runcom
 	stow --delete -t $(XDG_CONFIG_HOME) config
 
-bash: BASH=/usr/local/bin/bash
+bash: BASH=/opt/homebrew/bin/bash
 bash: SHELLS=/private/etc/shells
 bash: brew
 	if ! grep -q $(BASH) $(SHELLS); then brew install bash bash-completion@2 pcre && sudo append $(BASH) $(SHELLS); fi
 
-zsh: ZSH=/usr/local/bin/zsh
+zsh: ZSH=/opt/homebrew/bin/zsh
 zsh: SHELLS=/private/etc/shells
 zsh: brew
 	if ! grep -q $(ZSHELL) $(SHELLS); then brew install zsh pcre && sudo append $(ZSH) $(SHELLS) && chsh -s $(ZSH); fi
