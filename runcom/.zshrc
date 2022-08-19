@@ -112,6 +112,7 @@ export PATH="$GOPATH/bin:$PATH"
 
 # nvm dir {{{
 export NVM_DIR="$XDG_CONFIG_HOME/nvm"
+export PATH="/opt/homebrew/opt/node@16/bin:$PATH"
 # }}}
 
 # pyenv {{{
