@@ -9,6 +9,10 @@ brew install go
 brew install nvm
 brew install rustup-init
 
+
+# font
+brew install --cask font-fira-code-nerd-font
+
 brew install --cask visual-studio-code
 brew install --cask google-chrome
 brew install --cask iterm2
