@@ -29,6 +29,7 @@ brew install --cask logseq
 brew install --cask postman
 brew install --cask welly
 brew install --cask raycast
+brew install --cask slack
 mas install 360593530 # Notability
 # mas install 1505432629 # Noteplan
 mas install 539883307 # LINE (5.24.1)
