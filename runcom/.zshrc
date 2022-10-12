@@ -116,6 +116,11 @@ BREW_PREFIX_PATH[golang]='/opt/homebrew/opt/go'
 export GOROOT="${BREW_PREFIX_PATH[golang]}/libexec"
 export GOPATH="$HOME/go"
 export PATH="$GOPATH/bin:$PATH"
+zinit wait lucid for \
+    has"go" \
+    as"completion" \
+    OMZP::golang/_golang
+
 # }}}
 
 # nvm dir {{{
