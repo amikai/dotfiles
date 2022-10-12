@@ -140,6 +140,10 @@ zinit wait lucid for \
 zinit wait lucid for \
     has"kubectl" \
     OMZP::kubectl
+
+zinit wait lucid for \
+    has"minikube" \
+    OMZP::minikube
 # }}}
 
 # helm setting {{{
