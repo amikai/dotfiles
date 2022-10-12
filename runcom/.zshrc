@@ -13,6 +13,10 @@ zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 
 #set the PERMISSIONS for newly-created files
 umask 077
+
+# cacert
+export SSL_CERT_FILE=/etc/ssl/cert.pem
+
 # }}}
 
 # initialize zinit {{{
