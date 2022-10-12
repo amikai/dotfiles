@@ -9,6 +9,7 @@ export PATH="/opt/homebrew/bin:$PATH"
 # }}}
 
 # general setting {{{
+# case insensitive completion
 zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
 
 #set the PERMISSIONS for newly-created files
