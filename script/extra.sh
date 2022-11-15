@@ -17,6 +17,7 @@ brew install --cask font-fira-code-nerd-font
 brew install --cask visual-studio-code
 brew install --cask google-chrome
 brew install --cask iterm2
+brew install --cask wez/wezterm/wezterm
 brew install --cask docker
 brew install --cask fork
 brew install --cask telegram
