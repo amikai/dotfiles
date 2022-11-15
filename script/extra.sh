@@ -20,8 +20,6 @@ brew install --cask iterm2
 brew install --cask docker
 brew install --cask fork
 brew install --cask telegram
-brew install --cask cleanshot
-brew install --cask telegram
 brew install --cask discord
 brew install --cask fork # Git GUI
 # brew install --cask cleanshot
