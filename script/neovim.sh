@@ -24,28 +24,8 @@ install_dep() {
     brew install cscope
     brew install --HEAD universal-ctags/universal-ctags/universal-ctags
 
-    # terraform ls
-    brew install hashicorp/tap/terraform-ls
-    # dockerfile ls
-    npm install -g dockerfile-language-server-nodejs
-    # ansible ls
-    npm install -g @ansible/ansible-language-server
-    # yaml ls
-    brew install yaml-language-server
-    # bash ls
-    npm install -g bash-language-server
-    # vimscript ls
-    npm install -g vim-language-server
     # python ls
     install_pylsp_deps
-    # jsonnet ls
-    go install github.com/grafana/jsonnet-language-server@latest
-    #  vscode-langservers-extracted install following:
-    #     vscode-html-language-server
-    #     vscode-css-language-server
-    #     vscode-json-language-server
-    #     vscode-eslint-language-server
-    npm install -g vscode-langservers-extracted
 }
 
 
