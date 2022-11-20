@@ -48,8 +48,11 @@ zinit light sindresorhus/pure
 # }}}
 
 # zsh user experience {{{
+zinit wait lucid light-mode for \
+    atload'_zsh_autosuggest_start' \
+    zsh-users/zsh-autosuggestions
+
 zinit wait lucid for \
-    zsh-users/zsh-autosuggestions \
     zdharma-continuum/history-search-multi-word
 
 zinit wait lucid for \
