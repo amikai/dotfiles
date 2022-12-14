@@ -4,9 +4,8 @@ export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_DATA_HOME="$HOME/.local/share"
 # }}}
 
-# binary path installed by homebrew {{{
-BREW_PREFIX="$(brew --prefix)"
-export PATH="${BREW_PREFIX}/bin:$PATH"
+# set some homebrew env variable and set path {{{
+eval $(/opt/homebrew/bin/brew shellenv)
 # }}}
 
 # general setting {{{
@@ -84,30 +83,30 @@ alias g="git"
 declare -A BREW_PREFIX_PATH
 
 # set c compiler {{{
-BREW_PREFIX_PATH[llvm]="${BREW_PREFIX}/opt/llvm"
+BREW_PREFIX_PATH[llvm]="${HOMEBREW_PREFIX}/opt/llvm"
 export CC="${BREW_PREFIX_PATH[llvm]}/bin/clang"
 export CXX="${BREW_PREFIX_PATH[llvm]}/bin/clang++"
 # }}}
 
 # some basic utility {{{
-BREW_PREFIX_PATH[coreutils]="${BREW_PREFIX}/opt/coreutils"
+BREW_PREFIX_PATH[coreutils]="${HOMEBREW_PREFIX}/opt/coreutils"
 export PATH="${BREW_PREFIX_PATH[coreutils]}/libexec/gnubin:$PATH"
 
-BREW_PREFIX_PATH[findutils]="${BREW_PREFIX}/opt/findutils"
+BREW_PREFIX_PATH[findutils]="${HOMEBREW_PREFIX}/opt/findutils"
 export PATH="${BREW_PREFIX_PATH[findutils]}/libexec/gnubin:$PATH"
 
-BREW_PREFIX_PATH[grep]="${BREW_PREFIX}/opt/grep"
+BREW_PREFIX_PATH[grep]="${HOMEBREW_PREFIX}/opt/grep"
 export PATH="${BREW_PREFIX_PATH[grep]}/libexec/gnubin:$PATH"
 
-BREW_PREFIX_PATH[curl]="${BREW_PREFIX}/opt/curl"
+BREW_PREFIX_PATH[curl]="${HOMEBREW_PREFIX}/opt/curl"
 export PATH="${BREW_PREFIX_PATH[curl]}/bin:$PATH"
 # }}}
 
 # zip tools {{{
-BREW_PREFIX_PATH[zip]="${BREW_PREFIX}/opt/zip"
+BREW_PREFIX_PATH[zip]="${HOMEBREW_PREFIX}/opt/zip"
 export PATH="${BREW_PREFIX_PATH[zip]}/bin:$PATH"
 
-BREW_PREFIX_PATH[unzip]="${BREW_PREFIX}/opt/unzip"
+BREW_PREFIX_PATH[unzip]="${HOMEBREW_PREFIX}/opt/unzip"
 export PATH="${BREW_PREFIX_PATH[unzip]}/bin:$PATH"
 
 # }}}
@@ -117,7 +116,7 @@ export PATH="$HOME/.cargo/bin:$PATH"
 # }}}
 
 # golang {{{
-BREW_PREFIX_PATH[golang]="${BREW_PREFIX}/opt/go"
+BREW_PREFIX_PATH[golang]="${HOMEBREW_PREFIX}/opt/go"
 export GOROOT="${BREW_PREFIX_PATH[golang]}/libexec"
 export GOPATH="$HOME/go"
 export PATH="$GOPATH/bin:$PATH"
