@@ -5,7 +5,8 @@ export XDG_DATA_HOME="$HOME/.local/share"
 # }}}
 
 # binary path installed by homebrew {{{
-export PATH="/opt/homebrew/bin:$PATH"
+BREW_PREFIX="$(brew --prefix)"
+export PATH="${BREW_PREFIX}/bin:$PATH"
 # }}}
 
 # general setting {{{
@@ -73,7 +74,7 @@ export EDITOR="nvim"
 # }}}
 
 # aliases {{{
-alias n="/opt/homebrew/bin/nvim"
+alias n="nvim"
 alias hh="history -i"
 alias cc="clear"
 alias l="exa"
@@ -83,30 +84,30 @@ alias g="git"
 declare -A BREW_PREFIX_PATH
 
 # set c compiler {{{
-BREW_PREFIX_PATH[llvm]='/opt/homebrew/opt/llvm'
+BREW_PREFIX_PATH[llvm]="${BREW_PREFIX}/opt/llvm"
 export CC="${BREW_PREFIX_PATH[llvm]}/bin/clang"
 export CXX="${BREW_PREFIX_PATH[llvm]}/bin/clang++"
 # }}}
 
 # some basic utility {{{
-BREW_PREFIX_PATH[coreutils]='/opt/homebrew/opt/coreutils'
+BREW_PREFIX_PATH[coreutils]="${BREW_PREFIX}/opt/coreutils"
 export PATH="${BREW_PREFIX_PATH[coreutils]}/libexec/gnubin:$PATH"
 
-BREW_PREFIX_PATH[findutils]='/opt/homebrew/opt/findutils'
+BREW_PREFIX_PATH[findutils]="${BREW_PREFIX}/opt/findutils"
 export PATH="${BREW_PREFIX_PATH[findutils]}/libexec/gnubin:$PATH"
 
-BREW_PREFIX_PATH[grep]='/opt/homebrew/opt/grep'
+BREW_PREFIX_PATH[grep]="${BREW_PREFIX}/opt/grep"
 export PATH="${BREW_PREFIX_PATH[grep]}/libexec/gnubin:$PATH"
 
-BREW_PREFIX_PATH[curl]='/opt/homebrew/opt/curl'
+BREW_PREFIX_PATH[curl]="${BREW_PREFIX}/opt/curl"
 export PATH="${BREW_PREFIX_PATH[curl]}/bin:$PATH"
 # }}}
 
 # zip tools {{{
-BREW_PREFIX_PATH[zip]='/opt/homebrew/opt/zip'
+BREW_PREFIX_PATH[zip]="${BREW_PREFIX}/opt/zip"
 export PATH="${BREW_PREFIX_PATH[zip]}/bin:$PATH"
 
-BREW_PREFIX_PATH[unzip]='/opt/homebrew/opt/unzip'
+BREW_PREFIX_PATH[unzip]="${BREW_PREFIX}/opt/unzip"
 export PATH="${BREW_PREFIX_PATH[unzip]}/bin:$PATH"
 
 # }}}
@@ -116,7 +117,7 @@ export PATH="$HOME/.cargo/bin:$PATH"
 # }}}
 
 # golang {{{
-BREW_PREFIX_PATH[golang]='/opt/homebrew/opt/go'
+BREW_PREFIX_PATH[golang]="${BREW_PREFIX}/opt/go"
 export GOROOT="${BREW_PREFIX_PATH[golang]}/libexec"
 export GOPATH="$HOME/go"
 export PATH="$GOPATH/bin:$PATH"
