@@ -1,10 +1,10 @@
-TARGETS = basic extra python golang nvim rust
+TARGETS = basic extra python golang npm rust nvim
 
 .PHONY: $(TARGETS)
 all: $(TARGETS)
 
 pkg_install: basic extra
-pkg_set: python golang nvim rust
+pkg_set: python golang rust npm nvim
 
 basic:
 	./basic.sh
@@ -18,7 +18,10 @@ python: pkg_install
 golang: pkg_install
 	./golang.sh
 
-nvim: pkg_install python rust
+npm: pkg_instgall
+	./npm.sh
+
+nvim: pkg_install python rust npm
 	./neovim.sh
 
 rust:
