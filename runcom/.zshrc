@@ -128,8 +128,8 @@ zinit wait lucid for \
 # }}}
 
 # nvm dir {{{
-export NVM_DIR="$XDG_CONFIG_HOME/nvm"
-export PATH="/opt/homebrew/opt/node@16/bin:$PATH"
+zinit wait lucid for \
+    OMZP::nvm
 # }}}
 
 # pyenv {{{
