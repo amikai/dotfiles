@@ -52,10 +52,8 @@ zinit wait lucid light-mode for \
     atload'_zsh_autosuggest_start' \
     zsh-users/zsh-autosuggestions
 
-zinit wait lucid for \
-    zdharma-continuum/history-search-multi-word
-
-zinit wait lucid for \
+zinit wait lucid light-mode for \
+    zdharma-continuum/history-search-multi-word \
     OMZL::key-bindings.zsh \
     OMZL::completion.zsh \
     OMZL::theme-and-appearance.zsh \
@@ -64,7 +62,7 @@ zinit wait lucid for \
 
 # zsh vi mode {{{
 ZVM_VI_INSERT_ESCAPE_BINDKEY=jk
-zinit wait lucid for \
+zinit wait lucid light-mode for \
     jeffreytse/zsh-vi-mode
 # }}}
 
@@ -135,7 +133,7 @@ zinit wait lucid for \
 # pyenv {{{
 export PYENV_ROOT="$HOME/.pyenv"
 eval "$(pyenv init -)"
-zinit wait lucid for \
+zinit wait light-mode lucide for \
     has"pyenv" \
     OMZP::pyenv
 # }}}
@@ -169,8 +167,9 @@ zinit wait lucid for \
     OMZP::docker/_docker
 # }}}
 
-zinit ice wait lucid atinit"ZINIT[COMPINIT_OPTS]=-C; zpcompinit; zpcdreplay"
-zinit light zdharma-continuum/fast-syntax-highlighting
+zinit wait lucid light-mode for \
+    atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
+    zdharma-continuum/fast-syntax-highlighting
 
 # some binary {{{
 export PATH="$HOME/bin:$PATH"
