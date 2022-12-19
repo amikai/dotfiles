@@ -126,8 +126,10 @@ zinit wait lucid for \
 # }}}
 
 # nvm dir {{{
-zinit wait lucid for \
-    OMZP::nvm
+BREW_PREFIX_PATH[nvm]="${HOMEBREW_PREFIX}/opt/nvm"
+NVM_DIR="${BREW_PREFIX_PATH[nvm]}"
+zinit wait'1' lucid light-mode for \
+    if'[[ -d $NVM_DIR ]]' OMZP::nvm
 # }}}
 
 # pyenv {{{
