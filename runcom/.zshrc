@@ -160,6 +160,12 @@ zinit wait lucid for \
     OMZP::gcloud
 # }}}
 
+# aws setting {{{
+zinit wait lucid for \
+    has"aws" \
+    OMZP::aws
+# }}}
+
 # docker setting {{{
 zinit wait lucid for \
     has"docker" \
