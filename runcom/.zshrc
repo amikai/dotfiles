@@ -173,6 +173,19 @@ zinit wait lucid for \
     OMZP::docker/_docker
 # }}}
 
+# rust utility {{{
+zinit wait lucid for \
+    has"rg" \
+    as"completion" \
+    OMZP::ripgrep/_ripgrep
+
+zinit wait lucid for \
+    has"fd" \
+    as"completion" \
+    OMZP::fd/_fd
+# }}}
+
+
 zinit wait lucid light-mode for \
     atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
     zdharma-continuum/fast-syntax-highlighting
