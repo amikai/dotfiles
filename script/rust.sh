@@ -5,6 +5,9 @@ DEFAULT_INSTALLATION=1
 echo $DEFAULT_INSTALLATION | rustup-init
 
 source $HOME/.cargo/env
+CARGO="$(rustup which cargo)"
 
-# Use nightly version
-rustup toolchain install nightly && rustup default nightly
+# Use stable version
+rustup toolchain install stable && rustup default stable
+rustup component add rust-analyzer clippy
+$CARGO install cargo-watch
