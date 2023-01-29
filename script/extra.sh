@@ -9,6 +9,15 @@ brew install go
 brew install nvm
 brew install rustup-init
 brew install kubectl
+brew install helm
+
+# some rust utility
+brew install delta
+brew install fd
+brew install exa
+brew install dust
+brew install procs
+
 
 
 # font
