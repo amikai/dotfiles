@@ -111,6 +111,14 @@ export PATH="${BREW_PREFIX_PATH[unzip]}/bin:$PATH"
 
 # rust {{{
 export PATH="$HOME/.cargo/bin:$PATH"
+zinit wait lucid light-mode for \
+    has"cargo" \
+    OMZP::rust
+
+zinit wait lucid light-mode for \
+    has"cargo" \
+    as"completion" \
+    OMZP::rust/_rustc
 # }}}
 
 # golang {{{
