@@ -59,6 +59,7 @@ brew install ripgrep
 
 brew install git
 brew install git-lfs
+brew install diff-so-fancy
 brew install gs
 brew install imagemagick
 brew install lua

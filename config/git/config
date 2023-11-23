@@ -6,6 +6,12 @@
     editor = nvim
 	fileMode = false
 
+[interactive]
+    diffFilter = diff-so-fancy --patch
+
+[color]
+    ui = true
+
 [merge]
 	tool = vimdiff
 
