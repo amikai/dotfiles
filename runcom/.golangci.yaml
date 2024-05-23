@@ -1,0 +1,53 @@
+# Options for analysis running.
+run:
+  timeout: 1m
+  issues-exit-code: 1
+  tests: true
+  modules-download-mode: readonly
+  allow-parallel-runners: true
+  allow-serial-runners: true
+  go: '1.22'
+
+output:
+  formats:
+    - format: colored-line-number
+      path: stderr
+  # Print lines of code with issue.
+  # Default: true
+  print-issued-lines: true
+  # Print linter name in the end of issue text.
+  # Default: true
+  print-linter-name: true
+  # Make issues output unique by line.
+  # Default: true
+  uniq-by-line: false
+  sort-results: true
+  sort-order:
+    - file # filepath, line, and column.
+    - severity
+    - linter
+  # Show statistics per linter.
+  # Default: false
+  show-stats: true
+# All available settings of specific linters.
+linters:
+  # Disable all linters.
+  # Default: false
+  disable-all: true
+  enable:
+    - gosimple
+    - errcheck
+    - govet
+    - ineffassign
+    - staticcheck
+    - revive
+    - bodyclose
+    - prealloc
+    - nestif
+    - nilerr
+    - nilnil
+    - sloglint
+    - testifylint
+    - promlinter
+  presets: []
+  fast: true
