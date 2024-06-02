@@ -6,7 +6,7 @@ run:
   modules-download-mode: readonly
   allow-parallel-runners: true
   allow-serial-runners: true
-  go: '1.22'
+  go: "1.22"
 
 output:
   formats:
@@ -49,5 +49,14 @@ linters:
     - sloglint
     - testifylint
     - promlinter
+    - goconst
+    - gocyclo
   presets: []
   fast: true
+
+# See issue https://github.com/golangci/golangci-lint/issues/4733
+linters-settings:
+  errcheck:
+    ignore: ""
+  gocyclo:
+    min-complexity: 10
