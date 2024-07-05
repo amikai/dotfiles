@@ -204,4 +204,10 @@ zinit wait lucid light-mode for \
 export PATH="$HOME/bin:$PATH"
 # }}}
 
+autoload edit-command-line
+zle -N edit-command-line
+# bindkey '^x^e' edit-command-line
+bindkey -M vicmd "X" edit-command-line
+
+
 # -- vim: set foldmethod=marker tw=80 sw=4 ts=4 sts =4 sta nowrap et :
