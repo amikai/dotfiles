@@ -9,5 +9,5 @@ CARGO="$(rustup which cargo)"
 
 # Use stable version
 rustup toolchain install stable && rustup default stable
-rustup component add rust-analyzer clippy
+rustup component add rust-analyzer clippy fmt
 $CARGO install cargo-watch
