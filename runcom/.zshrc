@@ -18,18 +18,9 @@ umask 077
 # cacert
 export SSL_CERT_FILE=/etc/ssl/cert.pem
 
-# }}}
+export EDITOR="nvim"
+export VISUAL="nvim"
 
-# initialize zinit {{{
-ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
-if [[ ! -f $ZINIT_HOME/zinit.zsh ]]; then
-    mkdir -p "$(dirname $ZINIT_HOME)"
-    git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
-fi
-
-source "${ZINIT_HOME}/zinit.zsh"
-autoload -Uz _zinit
-(( ${+_comps} )) && _comps[zinit]=_zinit
 # }}}
 
 # history setting {{{
@@ -39,44 +30,59 @@ export SAVEHIST=1000000   # maximum number of items for the history file
 
 setopt INC_APPEND_HISTORY_TIME  # append command to history file immediately after execution
 setopt EXTENDED_HISTORY  # record command start time
+setopt HIST_IGNORE_DUPS
 setopt SHARE_HISTORY
 # }}}
 
-# zsh prompt {{{
-zinit ice compile'(pure|async).zsh' pick'async.zsh' src'pure.zsh'
-zinit light sindresorhus/pure
-# }}}
+
+
+autoload edit-command-line
+zle -N edit-command-line
+# bindkey '^x^e' edit-command-line
+bindkey -M vicmd "X" edit-command-line
+
+
+zstyle ':zim:zmodule' use 'degit'
+ZIM_HOME="${XDG_CACHE_HOME}/zim"
+ZIM_CONFIG_FILE="${XDG_CONFIG_HOME}/zsh/zimrc.zsh"
+
+# Download zimfw plugin manager if missing.
+if [[ ! -e ${ZIM_HOME}/zimfw.zsh ]]; then
+  curl -fsSL --create-dirs -o ${ZIM_HOME}/zimfw.zsh \
+      https://github.com/zimfw/zimfw/releases/latest/download/zimfw.zsh
+fi
+
+# Install missing modules, and update ${ZIM_HOME}/init.zsh if missing or outdated.
+if [[ ! ${ZIM_HOME}/init.zsh -nt ${ZIM_CONFIG_FILE} ]]; then
+  source ${ZIM_HOME}/zimfw.zsh init -q
+fi
+
+# Initialize modules.
+source ${ZIM_HOME}/init.zsh
+
+
+
+
+
+
+
 
 # zsh user experience {{{
-zinit wait lucid light-mode for \
-    atload'_zsh_autosuggest_start' \
-    zsh-users/zsh-autosuggestions
+#
+# zinit wait lucid light-mode for \
+#     zdharma-continuum/history-search-multi-word \
+#     OMZL::completion.zsh \
+#     OMZL::theme-and-appearance.zsh \
+#     OMZP::colored-man-pages
 
-zinit wait lucid light-mode for \
-    zdharma-continuum/history-search-multi-word \
-    OMZL::key-bindings.zsh \
-    OMZL::completion.zsh \
-    OMZL::theme-and-appearance.zsh \
-    OMZP::colored-man-pages
 # }}}
 
 # zsh vi mode {{{
-ZVM_VI_INSERT_ESCAPE_BINDKEY=jk
-zinit wait lucid light-mode for \
-    jeffreytse/zsh-vi-mode
+# ZVM_VI_INSERT_ESCAPE_BINDKEY=jk
+# zinit wait lucid light-mode for \
+#     jeffreytse/zsh-vi-mode
 # }}}
 
-# set the editor to nvim {{{
-export EDITOR="nvim"
-# }}}
-
-# aliases {{{
-alias n="nvim"
-alias hh="history -i"
-alias cc="clear"
-alias l="exa"
-alias g="git"
-# }}}
 
 declare -A BREW_PREFIX_PATH
 
@@ -111,14 +117,6 @@ export PATH="${BREW_PREFIX_PATH[unzip]}/bin:$PATH"
 
 # rust {{{
 export PATH="$HOME/.cargo/bin:$PATH"
-zinit wait lucid light-mode for \
-    has"cargo" \
-    OMZP::rust
-
-zinit wait lucid light-mode for \
-    has"cargo" \
-    as"completion" \
-    OMZP::rust/_rustc
 # }}}
 
 # golang {{{
@@ -126,88 +124,25 @@ BREW_PREFIX_PATH[golang]="${HOMEBREW_PREFIX}/opt/go"
 export GOROOT="${BREW_PREFIX_PATH[golang]}/libexec"
 export GOPATH="$HOME/go"
 export PATH="$GOPATH/bin:$PATH"
-zinit wait lucid for \
-    has"go" \
-    as"completion" \
-    OMZP::golang/_golang
-
 # }}}
 
 # nvm dir {{{
 BREW_PREFIX_PATH[nvm]="${HOMEBREW_PREFIX}/opt/nvm"
 NVM_DIR="${BREW_PREFIX_PATH[nvm]}"
-zinit wait'1' lucid light-mode for \
-    if'[[ -d $NVM_DIR ]]' OMZP::nvm
 # }}}
 
 # pyenv {{{
 export PYENV_ROOT="$HOME/.pyenv"
 eval "$(pyenv init -)"
-zinit wait light-mode lucide for \
-    has"pyenv" \
-    OMZP::pyenv
-# }}}
-
-# kubectl setting {{{
-zinit wait lucid for \
-    has"kubectl" \
-    OMZP::kubectl
-
-zinit wait lucid for \
-    has"minikube" \
-    OMZP::minikube
-# }}}
-
-# helm setting {{{
-zinit wait lucid for \
-    has"helm" \
-    OMZP::helm
-# }}}
-
-# gcloud setting {{{
-zinit wait lucid for \
-    has"gcloud" \
-    OMZP::gcloud
-# }}}
-
-# aws setting {{{
-zinit wait lucid for \
-    has"aws" \
-    OMZP::aws
-# }}}
-
-# docker setting {{{
-zinit wait lucid for \
-    has"docker" \
-    as"completion" \
-    OMZP::docker/_docker
-# }}}
-
-# rust utility {{{
-zinit wait lucid for \
-    has"rg" \
-    as"completion" \
-    OMZP::ripgrep/_ripgrep
-
-zinit wait lucid for \
-    has"fd" \
-    as"completion" \
-    OMZP::fd/_fd
 # }}}
 
 
-zinit wait lucid light-mode for \
-    atinit"ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay" \
-    zdharma-continuum/fast-syntax-highlighting
+
+
 
 # some binary {{{
 export PATH="$HOME/bin:$PATH"
 # }}}
-
-autoload edit-command-line
-zle -N edit-command-line
-# bindkey '^x^e' edit-command-line
-bindkey -M vicmd "X" edit-command-line
 
 
 # -- vim: set foldmethod=marker tw=80 sw=4 ts=4 sts =4 sta nowrap et :
