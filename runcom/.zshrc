@@ -21,6 +21,11 @@ export SSL_CERT_FILE=/etc/ssl/cert.pem
 export EDITOR="nvim"
 export VISUAL="nvim"
 
+autoload edit-command-line
+zle -N edit-command-line
+bindkey -M viins '^x^e' edit-command-line
+bindkey -M vicmd "X" edit-command-line
+
 # }}}
 
 # history setting {{{
@@ -34,14 +39,7 @@ setopt HIST_IGNORE_DUPS
 setopt SHARE_HISTORY
 # }}}
 
-
-
-autoload edit-command-line
-zle -N edit-command-line
-# bindkey '^x^e' edit-command-line
-bindkey -M vicmd "X" edit-command-line
-
-
+# zim setting {{{
 zstyle ':zim:zmodule' use 'degit'
 ZIM_HOME="${XDG_CACHE_HOME}/zim"
 ZIM_CONFIG_FILE="${XDG_CONFIG_HOME}/zsh/zimrc.zsh"
@@ -59,30 +57,7 @@ fi
 
 # Initialize modules.
 source ${ZIM_HOME}/init.zsh
-
-
-
-
-
-
-
-
-# zsh user experience {{{
-#
-# zinit wait lucid light-mode for \
-#     zdharma-continuum/history-search-multi-word \
-#     OMZL::completion.zsh \
-#     OMZL::theme-and-appearance.zsh \
-#     OMZP::colored-man-pages
-
 # }}}
-
-# zsh vi mode {{{
-# ZVM_VI_INSERT_ESCAPE_BINDKEY=jk
-# zinit wait lucid light-mode for \
-#     jeffreytse/zsh-vi-mode
-# }}}
-
 
 declare -A BREW_PREFIX_PATH
 
@@ -136,13 +111,8 @@ export PYENV_ROOT="$HOME/.pyenv"
 eval "$(pyenv init -)"
 # }}}
 
-
-
-
-
 # some binary {{{
 export PATH="$HOME/bin:$PATH"
 # }}}
-
 
 # -- vim: set foldmethod=marker tw=80 sw=4 ts=4 sts =4 sta nowrap et :

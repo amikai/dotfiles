@@ -10,6 +10,7 @@ brew install nvm
 brew install rustup-init
 brew install kubectl
 brew install helm
+brew install fzf
 
 # some rust utility
 brew install delta
@@ -17,8 +18,6 @@ brew install fd
 brew install exa
 brew install dust
 brew install procs
-
-
 
 # font
 brew tap homebrew/cask-fonts
@@ -41,9 +40,9 @@ brew install --cask postman
 brew install --cask welly
 brew install --cask raycast
 brew install --cask slack
+brew install --cask obsidian
 mas install 360593530 # Notability
 # mas install 1505432629 # Noteplan
-mas install 539883307 # LINE (5.24.1)
+mas install 539883307  # LINE (5.24.1)
 mas install 1449412482 # Reeder (4.2.3)
 mas install 1480068668 # Messenger
-
