@@ -29,6 +29,7 @@ zle -N edit-command-line
 bindkey -M viins '^x^e' edit-command-line
 bindkey -M vicmd "X" edit-command-line
 
+alias n='nvim'
 # }}}
 
 # history setting {{{
