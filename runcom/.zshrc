@@ -21,6 +21,9 @@ export SSL_CERT_FILE=/etc/ssl/cert.pem
 export EDITOR="nvim"
 export VISUAL="nvim"
 
+# use vim keybinding
+bindkey -v
+
 autoload edit-command-line
 zle -N edit-command-line
 bindkey -M viins '^x^e' edit-command-line
