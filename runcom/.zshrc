@@ -47,6 +47,7 @@ setopt SHARE_HISTORY
 zstyle ':zim:zmodule' use 'degit'
 ZIM_HOME="${XDG_CACHE_HOME}/zim"
 ZIM_CONFIG_FILE="${XDG_CONFIG_HOME}/zsh/zimrc.zsh"
+ZVM_INIT_MODE=sourcing
 
 # Download zimfw plugin manager if missing.
 if [[ ! -e ${ZIM_HOME}/zimfw.zsh ]]; then

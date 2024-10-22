@@ -4,12 +4,11 @@ zmodule zsh-users/zsh-autosuggestions
 zmodule zsh-users/zsh-completions --fpath src
 zmodule completion
 
+ZVM_VI_ESCAPE_BINDKEY=jk
+zmodule jeffreytse/zsh-vi-mode
 if (( ${+commands[fzf]} )); then
     zmodule fzf
 fi
-
-ZVM_VI_ESCAPE_BINDKEY=jk
-zmodule jeffreytse/zsh-vi-mode
 
 function zvm_after_init() {
     zvm_bindkey viins '^R' fzf-history-widget
