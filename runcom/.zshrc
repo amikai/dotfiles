@@ -120,4 +120,12 @@ eval "$(pyenv init -)"
 export PATH="$HOME/bin:$PATH"
 # }}}
 
+ls() {
+    if command -v eza &> /dev/null; then
+        command eza "$@"
+    else
+        command ls "$@"
+    fi
+}
+
 # -- vim: set foldmethod=marker tw=80 sw=4 ts=4 sts =4 sta nowrap et :
