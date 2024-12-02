@@ -15,7 +15,7 @@ brew install fzf
 # some rust utility
 brew install delta
 brew install fd
-brew install exa
+brew install eza
 brew install dust
 brew install procs
 
