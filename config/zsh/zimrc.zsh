@@ -10,6 +10,9 @@ if (( ${+commands[fzf]} )); then
     zmodule fzf
 fi
 
+export NVM_COMPLETION=true
+zmodule lukechilds/zsh-nvm
+
 function zvm_after_init() {
     zvm_bindkey viins '^R' fzf-history-widget
     zvm_bindkey vicmd '/' fzf-history-widget
