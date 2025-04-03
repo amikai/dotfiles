@@ -92,6 +92,10 @@ manyFiles = true
     co = checkout
 
   ##########
+  # switch
+    sw = switch
+
+  ##########
   # pull - fetch from and merge with another repository or a local branch.
     p = pull
 
