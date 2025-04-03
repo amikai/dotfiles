@@ -24,6 +24,7 @@ brew tap homebrew/cask-fonts
 brew install --cask font-fira-code-nerd-font
 brew install --cask font-jetbrains-mono-nerd-font
 brew install --cask font-hack-nerd-font
+brew install --cask font-maple-mono-normal-cn
 
 brew install --cask visual-studio-code
 brew install --cask google-chrome
