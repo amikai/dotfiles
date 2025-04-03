@@ -38,15 +38,17 @@ wezterm.on(
 
 return {
     keys = {
+        -- clean the screen
         {
             key = 'k',
             mods = 'SUPER',
             action = wezterm.action.ClearScrollback 'ScrollbackAndViewport',
-        },
+        }
     },
     font = wezterm.font_with_fallback({
-        { family = "JetBrainsMono Nerd Font", weight = "Medium", italic = false },
-        { family = "Hack Nerd Font",          weight = "Medium", italic = false },
+        { family = "Maple Mono Normal CN",         weight = "Medium", italic = false },
+        { family = "JetBrainsMono Nerd Font Mono", weight = "Medium", italic = false },
+        { family = "Hack Nerd Font",               weight = "Medium", italic = false },
     }),
     font_size = 16,
     line_height = 1.2,
