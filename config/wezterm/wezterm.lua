@@ -46,7 +46,7 @@ return {
         }
     },
     font = wezterm.font_with_fallback({
-        { family = "Maple Mono Normal CN",         weight = "Medium", italic = false },
+        { family = "Maple Mono Normal NF CN",      weight = "Medium", italic = false },
         { family = "JetBrainsMono Nerd Font Mono", weight = "Medium", italic = false },
         { family = "Hack Nerd Font",               weight = "Medium", italic = false },
     }),
