@@ -1,62 +1,87 @@
-# Options for analysis running.
+version: "2"
 run:
-  timeout: 1m
+  modules-download-mode: readonly
   issues-exit-code: 1
   tests: true
-  modules-download-mode: readonly
   allow-parallel-runners: true
   allow-serial-runners: true
-  go: "1.22"
-
+  relative-path-mode: gomod
 output:
   formats:
-    - format: colored-line-number
+    text:
       path: stderr
-  # Print lines of code with issue.
-  # Default: true
-  print-issued-lines: true
-  # Print linter name in the end of issue text.
-  # Default: true
-  print-linter-name: true
-  # Make issues output unique by line.
-  # Default: true
-  uniq-by-line: false
-  sort-results: true
+      print-linter-name: true
+      print-issued-lines: true
   sort-order:
-    - file # filepath, line, and column.
+    - file
     - severity
     - linter
-  # Show statistics per linter.
-  # Default: false
-  show-stats: true
-# All available settings of specific linters.
 linters:
-  # Disable all linters.
-  # Default: false
-  disable-all: true
+  default: none
   enable:
-    - gosimple
     - errcheck
     - govet
     - ineffassign
     - staticcheck
-    - revive
+    # - unused
     - bodyclose
-    - prealloc
+    - copyloopvar
+    - errorlint
+    - exhaustive
+    - gocritic
+    - gocyclo
+    - sloglint
+    - loggercheck
     - nestif
+    # Inspects source code for security problems.
+    - gosec
+    # Check whether the function uses a non-inherited context.
+    - contextcheck
+    # Finds sending http request without context.Context.
+    - noctx
+    # Checks that fmt.Sprintf can be replaced with a faster alternative
+    - perfsprint
+    # check sql code
+    - rowserrcheck
+    - sqlclosecheck
+    - testifylint
+    # Remove unnecessary type conversions
+    - unconvert
+    # A linter that detect the possibility to use variables/constants from the Go standard library
+    - usestdlibvars
+    # Reports uses of functions with replacement inside the testing package
+    - usetesting
+    # Checks that errors returned from external packages are wrapped
+    - wrapcheck
+    # Finds repeated strings that could be replaced by a constant.
+    - goconst
+    # Finds the code that returns nil even if it checks that the error is not nil.
     - nilerr
     - nilnil
-    - sloglint
-    - testifylint
+    - prealloc
     - promlinter
-    - goconst
-    - gocyclo
-  presets: []
-  fast: true
-
-# See issue https://github.com/golangci/golangci-lint/issues/4733
-linters-settings:
-  errcheck:
-    ignore: ""
-  gocyclo:
-    min-complexity: 10
+    - revive
+  settings:
+    gocyclo:
+      min-complexity: 10
+  exclusions:
+    generated: lax
+    presets:
+      - comments
+      - common-false-positives
+      - legacy
+      - std-error-handling
+    paths:
+      - third_party$
+      - builtin$
+      - examples$
+formatters:
+  enable:
+    - gofumpt
+    - goimports
+  exclusions:
+    generated: lax
+    paths:
+      - third_party$
+      - builtin$
+      - examples$
