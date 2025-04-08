@@ -64,6 +64,8 @@ linters:
   settings:
     gocyclo:
       min-complexity: 10
+    govet:
+      enable-all: true
   exclusions:
     generated: lax
     presets:
