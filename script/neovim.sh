@@ -22,7 +22,7 @@ install_dep() {
     # For code navigation and plugin dependencies
     brew install global
     brew install cscope
-    brew install --HEAD universal-ctags/universal-ctags/universal-ctags
+    brew install universal-ctags
 
     # python ls
     install_pylsp_deps
