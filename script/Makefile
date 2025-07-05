@@ -15,7 +15,7 @@ extra:
 golang: pkg_install
 	./golang.sh
 
-npm: pkg_instgall
+npm: pkg_install
 	./npm.sh
 
 nvim: pkg_install rust npm
