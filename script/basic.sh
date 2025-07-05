@@ -71,6 +71,7 @@ brew install lynx
 brew install p7zip
 brew install pigz
 brew install pv
+brew install unzip
 brew install rename
 brew install rlwrap
 brew install ssh-copy-id
