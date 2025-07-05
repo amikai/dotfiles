@@ -25,7 +25,7 @@ brew install --cask font-maple-mono-normal-nf-cn
 
 brew install --cask visual-studio-code
 brew install --cask wezterm
-brew install --cask docker
+brew install --cask orbstack
 brew install --cask fork
 brew install --cask telegram
 brew install --cask discord
