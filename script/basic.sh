@@ -31,6 +31,8 @@ brew install gnu-time
 brew install gawk
 # Install GNU tar
 brew install gnu-tar
+# Install info command
+brew install texinfo
 # Install a modern version of Bash.
 brew install bash
 brew install bash-completion2
