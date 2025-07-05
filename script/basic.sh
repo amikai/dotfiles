@@ -25,13 +25,15 @@ brew install moreutils
 brew install findutils
 # Install GNU `sed`, overwriting the built-in `sed`.
 brew install gnu-sed
+# Install GNU time
+brew install gnu-time
+# Install GNU AWK
+brew install gawk
 # Install a modern version of Bash.
 brew install bash
 brew install bash-completion2
 # Install modern zsh
 brew install zsh
-# Install GNU time
-brew install gnu-time
 
 # Switch to using brew-installed bash as default shell
 if ! fgrep -q "${BREW_PREFIX}/bin/zsh" /etc/shells; then

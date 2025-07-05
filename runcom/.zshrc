@@ -82,11 +82,18 @@ export PATH="${BREW_PREFIX_PATH[findutils]}/libexec/gnubin:$PATH"
 BREW_PREFIX_PATH[grep]="${HOMEBREW_PREFIX}/opt/grep"
 export PATH="${BREW_PREFIX_PATH[grep]}/libexec/gnubin:$PATH"
 
-BREW_PREFIX_PATH[curl]="${HOMEBREW_PREFIX}/opt/curl"
-export PATH="${BREW_PREFIX_PATH[curl]}/bin:$PATH"
+BREW_PREFIX_PATH[sed]="${HOMEBREW_PREFIX}/opt/gnu-sed"
+export PATH="${BREW_PREFIX_PATH[sed]}/libexec/gnubin:$PATH"
+
+BREW_PREFIX_PATH[awk]="${HOMEBREW_PREFIX}/opt/gawk"
+export PATH="${BREW_PREFIX_PATH[awk]}/libexec/gnubin:$PATH"
 
 # Add to $PATH is not work, because time is built-in command
 BREW_PREFIX_PATH[time]="${HOMEBREW_PREFIX}/opt/gnu-time/libexec/gnubin"
+
+
+BREW_PREFIX_PATH[curl]="${HOMEBREW_PREFIX}/opt/curl"
+export PATH="${BREW_PREFIX_PATH[curl]}/bin:$PATH"
 # }}}
 
 # zip tools {{{
