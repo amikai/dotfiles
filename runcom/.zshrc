@@ -84,6 +84,9 @@ export PATH="${BREW_PREFIX_PATH[grep]}/libexec/gnubin:$PATH"
 
 BREW_PREFIX_PATH[curl]="${HOMEBREW_PREFIX}/opt/curl"
 export PATH="${BREW_PREFIX_PATH[curl]}/bin:$PATH"
+
+# Add to $PATH is not work, because time is built-in command
+BREW_PREFIX_PATH[time]="${HOMEBREW_PREFIX}/opt/gnu-time/libexec/gnubin"
 # }}}
 
 # zip tools {{{
@@ -125,6 +128,16 @@ ls() {
         command eza "$@"
     else
         command ls "$@"
+    fi
+}
+
+xtime() {
+    if [ -f "$BREW_PREFIX_PATH[time]/time" ]; then
+        command "${HOMEBREW_PREFIX}/opt/gnu-time/libexec/gnubin/time" "$@"
+    elif [ -f "/usr/bin/time" ]; then
+        command "/usr/bin/time" "$@"
+    else
+        time "$@"
     fi
 }
 
