@@ -84,5 +84,10 @@ brew install zopfli
 
 brew install llvm
 
+# code indexing tools
+brew install global
+brew install cscope
+brew install universal-ctags
+
 # Remove outdated versions from the cellar.
 brew cleanup

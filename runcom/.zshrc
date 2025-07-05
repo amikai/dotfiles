@@ -29,7 +29,6 @@ zle -N edit-command-line
 bindkey -M viins '^x^e' edit-command-line
 bindkey -M vicmd "X" edit-command-line
 
-alias n='nvim'
 # }}}
 
 # history setting {{{
@@ -118,16 +117,6 @@ BREW_PREFIX_PATH[golang]="${HOMEBREW_PREFIX}/opt/go"
 export GOROOT="${BREW_PREFIX_PATH[golang]}/libexec"
 export GOPATH="$HOME/go"
 export PATH="$GOPATH/bin:$PATH"
-# }}}
-
-# nvm dir {{{
-BREW_PREFIX_PATH[nvm]="${HOMEBREW_PREFIX}/opt/nvm"
-NVM_DIR="${BREW_PREFIX_PATH[nvm]}"
-# }}}
-
-# pyenv {{{
-export PYENV_ROOT="$HOME/.pyenv"
-eval "$(pyenv init -)"
 # }}}
 
 # some binary {{{
