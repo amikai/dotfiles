@@ -29,6 +29,8 @@ brew install gnu-sed
 brew install gnu-time
 # Install GNU AWK
 brew install gawk
+# Install GNU tar
+brew install gnu-tar
 # Install a modern version of Bash.
 brew install bash
 brew install bash-completion2

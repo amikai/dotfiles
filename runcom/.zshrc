@@ -88,6 +88,10 @@ export PATH="${BREW_PREFIX_PATH[sed]}/libexec/gnubin:$PATH"
 BREW_PREFIX_PATH[awk]="${HOMEBREW_PREFIX}/opt/gawk"
 export PATH="${BREW_PREFIX_PATH[awk]}/libexec/gnubin:$PATH"
 
+BREW_PREFIX_PATH[tar]="${HOMEBREW_PREFIX}/opt/gnu-tar"
+export PATH="${BREW_PREFIX_PATH[tar]}/libexec/gnubin:$PATH"
+
+
 # Add to $PATH is not work, because time is built-in command
 BREW_PREFIX_PATH[time]="${HOMEBREW_PREFIX}/opt/gnu-time/libexec/gnubin"
 
