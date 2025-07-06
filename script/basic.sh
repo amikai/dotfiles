@@ -33,6 +33,8 @@ brew install gawk
 brew install gnu-tar
 # Install info command
 brew install texinfo
+# Install newer less
+brew install less
 # Install a modern version of Bash.
 brew install bash
 brew install bash-completion2
