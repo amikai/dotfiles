@@ -36,6 +36,7 @@ brew install --cask raycast
 brew install --cask slack
 brew install --cask obsidian
 brew install --cask notion
+
+brew install mas
 mas install 539883307  # LINE (5.24.1)
-mas install 1449412482 # Reeder (4.2.3)
 mas install 1480068668 # Messenger
