@@ -2,6 +2,7 @@ zmodule sindresorhus/pure --source async.zsh --source pure.zsh
 zmodule zsh-users/zsh-syntax-highlighting
 zmodule zsh-users/zsh-autosuggestions
 zmodule zsh-users/zsh-completions --fpath src
+zmodule lukechilds/zsh-nvm
 zmodule completion
 
 export ZVM_VI_ESCAPE_BINDKEY=jk
