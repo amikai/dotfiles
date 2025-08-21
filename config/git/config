@@ -1,6 +1,6 @@
 [user]
-    name = amikai
-    email = as23041248@gmail.com
+	name = amikai
+	email = amikai.chuang@gmail.com
 
 [core]
     editor = nvim
