@@ -17,7 +17,7 @@ sudo:
 	while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
 brew:
-	[ -x "$$(command -v brew)" ] || /bin/bash -c "$$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+	[ -x "$$(command -v brew)" ] || /bin/bash -c "$$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" 
 
 stow: brew
 	[ -x "$$(command -v brew)" ] && [ -x "$$(command -v stow)" ] || brew install stow
