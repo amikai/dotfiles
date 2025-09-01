@@ -3,7 +3,6 @@
 brew install tmux
 brew install neovim
 brew install go
-brew install n
 brew install rustup
 brew install uv
 brew install kubectl
@@ -29,7 +28,6 @@ brew install --cask orbstack
 brew install --cask fork
 brew install --cask telegram
 brew install --cask discord
-brew install --cask fork # Git GUI
 brew install --cask postman
 brew install --cask welly
 brew install --cask raycast
