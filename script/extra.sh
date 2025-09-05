@@ -28,13 +28,15 @@ brew install --cask orbstack
 brew install --cask fork
 brew install --cask telegram
 brew install --cask discord
-brew install --cask postman
 brew install --cask welly
 brew install --cask raycast
 brew install --cask slack
 brew install --cask obsidian
 brew install --cask notion
+brew install --cask google-chrome
+brew install --cask cleanshot
 
 brew install mas
 mas install 539883307  # LINE (5.24.1)
 mas install 1480068668 # Messenger
+mas install 1355679052 # Dropver
