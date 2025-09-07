@@ -1,6 +1,13 @@
 [user]
 	name = amikai
 	email = amikai.chuang@gmail.com
+	signingkey = 1FE1B8F76C7DD262
+
+[commit]
+	gpgsign = true
+
+[tag]
+	gpgSign = true
 
 [core]
     editor = nvim
