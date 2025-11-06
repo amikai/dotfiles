@@ -123,6 +123,9 @@ export PATH="$GOPATH/bin:$PATH"
 export PATH="$HOME/bin:$PATH"
 # }}}
 
+
+export CODEX_HOME="${XDG_CONFIG_HOME}/codex"
+
 ls() {
     if command -v eza &> /dev/null; then
         command eza "$@"
