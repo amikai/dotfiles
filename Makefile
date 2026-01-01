@@ -24,8 +24,8 @@ stow: brew
 
 link: stow
 	mkdir -p $(XDG_CONFIG_HOME)
-	stow -t $(HOME) runcom
-	stow -t $(XDG_CONFIG_HOME) config
+	stow -R -t $(HOME) runcom
+	stow -R -t $(XDG_CONFIG_HOME) config
 
 unlink: stow
 	stow --delete -t $(HOME) runcom
