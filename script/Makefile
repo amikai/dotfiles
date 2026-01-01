@@ -23,3 +23,6 @@ nvim: pkg_install rust npm
 
 rust:
 	./rust.sh
+
+hammerspoon: pkg_install
+	./hammerspoon.sh
