@@ -1,5 +1,8 @@
 hs.loadSpoon("SpoonInstall")
 
+-- use karabiner to map this hyper key
+local hyper = { "cmd", "alt", "ctrl", "shift" }
+
 local function moveToTargetScreen(win, target_screen)
     local was_full_screen = win:isFullScreen()
 
@@ -74,7 +77,6 @@ local function moveFocusedWindowToScreen()
     chooser:show()
 end
 
-hs.hotkey.bind({ "option" }, "S", moveFocusedWindowToScreen)
 
 
 local function swapFocusedBetween(screenA, screenB)
@@ -148,5 +150,5 @@ local function smartSwapFocused()
     end
 end
 
--- 3. Bind to Option + Shift + S
-hs.hotkey.bind({ "alt", "shift" }, "S", smartSwapFocused)
+hs.hotkey.bind(hyper, "w", moveFocusedWindowToScreen)
+hs.hotkey.bind(hyper, "e", smartSwapFocused)
