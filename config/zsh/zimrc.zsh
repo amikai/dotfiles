@@ -2,8 +2,16 @@ zmodule sindresorhus/pure --source async.zsh --source pure.zsh
 zmodule zsh-users/zsh-syntax-highlighting
 zmodule zsh-users/zsh-autosuggestions
 zmodule zsh-users/zsh-completions --fpath src
+
+# Applies correct bindkeys for input events
+zmodule input
+
+# Provides a convenient way to load ssh-agent. This enables one-time login and
+# caching of ssh credentials per session.
+zstyle ':zim:ssh' ids 'id_ed25519'
+zmodule ssh
+
 zmodule lukechilds/zsh-nvm
-zmodule completion
 
 export ZVM_VI_ESCAPE_BINDKEY=jk
 zmodule jeffreytse/zsh-vi-mode
@@ -20,3 +28,5 @@ function zvm_after_init() {
 
 zmodule ohmyzsh/ohmyzsh --root plugins/colored-man-pages
 autoload -U colors && colors
+
+zmodule completion
