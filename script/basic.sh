@@ -90,8 +90,5 @@ brew install global
 brew install cscope
 brew install universal-ctags
 
-brew install --cask hammerspoon
-brew install --cask karabiner-elements
-
 # Remove outdated versions from the cellar.
 brew cleanup

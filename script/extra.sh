@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+brew install --cask hammerspoon
+brew install --cask karabiner-elements
+
 brew install tmux
 brew install neovim
 brew install go
