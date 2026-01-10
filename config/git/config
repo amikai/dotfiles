@@ -13,6 +13,7 @@
     editor = nvim
 	fileMode = false
     pager = diff-so-fancy | less --tabs=4 -RFX
+	commentChar = ";"
 
 [interactive]
     diffFilter = diff-so-fancy --patch
