@@ -25,6 +25,12 @@ brew install --cask font-jetbrains-mono-nerd-font
 brew install --cask font-hack-nerd-font
 brew install --cask font-maple-mono-normal-nf-cn
 
+# coding assistant
+brew install --cask codex
+brew install --cask claude-code
+brew install gemini-cli
+brew install anomalyco/tap/opencode
+
 brew install --cask visual-studio-code
 brew install --cask wezterm
 brew install --cask orbstack
