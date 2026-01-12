@@ -194,7 +194,10 @@ x-clean-branches() {
             local pr_number=$(gh pr list --head $branch --state merged --json number --jq '.[0].number' 2>/dev/null)
             if [[ -n $pr_number ]]; then
                 is_merged=true
-                merge_reason="merged in #$pr_number"
+                local repo_url=$(gh repo view --json url --jq '.url' 2>/dev/null)
+                local pr_url="${repo_url}/pull/${pr_number}"
+                local pr_link=$'\e]8;;'"${pr_url}"$'\e\\'"#${pr_number}"$'\e]8;;\e\\'
+                merge_reason="merged in ${pr_link}"
             fi
         fi
 
