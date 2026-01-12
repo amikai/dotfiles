@@ -144,10 +144,74 @@ xtime() {
     fi
 }
 
+x-clean-branches() {
+    # Determine the default branch (master or main)
+    local default_branch=$(git symbolic-ref refs/remotes/origin/HEAD 2>/dev/null | sed 's@^refs/remotes/origin/@@')
 
-if [ -z "$SSH_AUTH_SOCK" ] ; then
-    eval "$(ssh-agent -s)"
-    ssh-add ~/.ssh/id_rsa
-fi
+    if [[ -z $default_branch ]]; then
+        if git show-ref --verify --quiet refs/heads/master; then
+            default_branch="master"
+        elif git show-ref --verify --quiet refs/heads/main; then
+            default_branch="main"
+        else
+            print -P "%F{red}Error: Could not determine default branch (master/main)%f"
+            return 1
+        fi
+    fi
+
+    # Check if gh CLI is available
+    local has_gh=false
+    if command -v gh &>/dev/null && gh auth status &>/dev/null; then
+        has_gh=true
+    fi
+
+    print -P "%F{yellow}==> Cleaning branches merged into '$default_branch'...%f"
+
+    local -a all_branches
+    all_branches=("${(@f)$(git branch --format='%(refname:short)' | grep -v "^${default_branch}$")}")
+
+    if [[ ${#all_branches} -eq 0 || (${#all_branches} -eq 1 && -z ${all_branches[1]}) ]]; then
+        print -P "%F{green}No branches to clean up. Repository is already clean!%f"
+        exit 0
+    fi
+
+    local deleted_count=0
+
+    for branch in $all_branches; do
+        [[ -z $branch ]] && continue
+        
+        local is_merged=false
+        local merge_reason=""
+
+        # Check 1: Is branch merged into default branch locally?
+        if git branch --merged $default_branch --format='%(refname:short)' | grep -q "^${branch}$"; then
+            is_merged=true
+            merge_reason="merged into $default_branch"
+        fi
+
+        # Check 2: Is PR merged on GitHub?
+        if [[ $is_merged == false && $has_gh == true ]]; then
+            local pr_number=$(gh pr list --head $branch --state merged --json number --jq '.[0].number' 2>/dev/null)
+            if [[ -n $pr_number ]]; then
+                is_merged=true
+                merge_reason="merged in #$pr_number"
+            fi
+        fi
+
+        # Delete if merged
+        if [[ $is_merged == true ]]; then
+            print -P "%F{green} [OK] Removing branch:%f $branch %F{blue}($merge_reason)%f"
+            
+            if git branch -D $branch &>/dev/null; then
+                ((deleted_count++))
+            else
+                print -P "%F{red} [FAIL] Failed to delete branch: $branch, ${merge_reason}%f"
+            fi
+        fi
+    done
+    print -P "Removed $deleted_count merged branch(es)."
+}
+
 
 # -- vim: set foldmethod=marker tw=80 sw=4 ts=4 sts =4 sta nowrap et :
+
