@@ -1,0 +1,11 @@
+{
+  "buffer_font_family": "Maple Mono Normal NF CN",
+  "buffer_font_fallbacks": [
+    "JetBrainsMono Nerd Font Mono",
+    "Hack Nerd Font"
+  ],
+  "git_panel": {
+    "tree_view": true
+  },
+  "vim_mode": true
+}
