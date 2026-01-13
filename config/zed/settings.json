@@ -1,4 +1,21 @@
 {
+  "telemetry": {
+    "diagnostics": false,
+    "metrics": false
+  },
+  "session": {
+    "trust_all_worktrees": true
+  },
+  "icon_theme": {
+    "mode": "dark",
+    "light": "Zed (Default)",
+    "dark": "Zed (Default)"
+  },
+  "theme": {
+    "mode": "dark",
+    "light": "Gruvbox Light",
+    "dark": "Gruvbox Dark"
+  },
   "buffer_font_family": "Maple Mono Normal NF CN",
   "buffer_font_fallbacks": [
     "JetBrainsMono Nerd Font Mono",
