@@ -1,4 +1,7 @@
-
-
-font-family = "Maple Mono Normal NF CN" 
+font-family = Maple Mono Normal NF CN
 font-size = 16
+font-thicken = true
+window-title-font-family = Maple Mono Normal NF CN
+copy-on-select = true
+adjust-cell-height = 20%
+
