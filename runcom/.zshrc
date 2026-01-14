@@ -125,6 +125,7 @@ export PATH="$HOME/bin:$PATH"
 
 
 export CODEX_HOME="${XDG_CONFIG_HOME}/codex"
+export OPENCODE_EXPERIMENTAL_LSP_TOOL=true
 
 ls() {
     if command -v eza &> /dev/null; then
@@ -145,7 +146,6 @@ xtime() {
 }
 
 x-clean-branches() {
-    # Determine the default branch (master or main)
     local default_branch=$(git symbolic-ref refs/remotes/origin/HEAD 2>/dev/null | sed 's@^refs/remotes/origin/@@')
 
     if [[ -z $default_branch ]]; then
@@ -154,65 +154,74 @@ x-clean-branches() {
         elif git show-ref --verify --quiet refs/heads/main; then
             default_branch="main"
         else
-            print -P "%F{red}Error: Could not determine default branch (master/main)%f"
+            echo "\e[31mError: Could not determine default branch (master/main)\e[0m"
             return 1
         fi
     fi
 
-    # Check if gh CLI is available
     local has_gh=false
-    if command -v gh &>/dev/null && gh auth status &>/dev/null; then
-        has_gh=true
-    fi
+    command -v gh &>/dev/null && gh auth status &>/dev/null && has_gh=true
 
-    print -P "%F{yellow}==> Cleaning branches merged into '$default_branch'...%f"
+    echo "\e[33m==> Cleaning branches merged into '$default_branch'...\e[0m"
 
-    local -a all_branches
-    all_branches=("${(@f)$(git branch --format='%(refname:short)' | grep -v "^${default_branch}$")}")
-
-    if [[ ${#all_branches} -eq 0 || (${#all_branches} -eq 1 && -z ${all_branches[1]}) ]]; then
-        print -P "%F{green}No branches to clean up. Repository is already clean!%f"
-        exit 0
+    local -a branches=("${(@f)$(git branch --format='%(refname:short)' | grep -v "^${default_branch}$")}")
+    if [[ ${#branches} -eq 0 || -z ${branches[1]} ]]; then
+        echo "\e[32mNo branches to clean up. Repository is already clean!\e[0m"
+        return 0
     fi
 
     local deleted_count=0
+    local branch msg pr_url pr_number repo_url
 
-    for branch in $all_branches; do
+    for branch in $branches; do
         [[ -z $branch ]] && continue
-        
-        local is_merged=false
-        local merge_reason=""
 
-        # Check 1: Is branch merged into default branch locally?
+        msg="" pr_url=""
+
+        # Check 1: merged into default branch locally
         if git branch --merged $default_branch --format='%(refname:short)' | grep -q "^${branch}$"; then
-            is_merged=true
-            merge_reason="merged into $default_branch"
-        fi
-
-        # Check 2: Is PR merged on GitHub?
-        if [[ $is_merged == false && $has_gh == true ]]; then
-            local pr_number=$(gh pr list --head $branch --state merged --json number --jq '.[0].number' 2>/dev/null)
+            msg="merged into $default_branch"
+        # Check 2: PR merged on GitHub
+        elif $has_gh; then
+            pr_number=$(gh pr list --head $branch --state merged --json number --jq '.[0].number' 2>/dev/null)
             if [[ -n $pr_number ]]; then
-                is_merged=true
-                local repo_url=$(gh repo view --json url --jq '.url' 2>/dev/null)
-                local pr_url="${repo_url}/pull/${pr_number}"
-                local pr_link=$'\e]8;;'"${pr_url}"$'\e\\'"#${pr_number}"$'\e]8;;\e\\'
-                merge_reason="merged in ${pr_link}"
+                repo_url=$(gh repo view --json url --jq '.url' 2>/dev/null)
+                pr_url="${repo_url}/pull/${pr_number}"
+                msg="#${pr_number}"
             fi
         fi
 
-        # Delete if merged
-        if [[ $is_merged == true ]]; then
-            print -P "%F{green} [OK] Removing branch:%f $branch %F{blue}($merge_reason)%f"
-            
-            if git branch -D $branch &>/dev/null; then
-                ((deleted_count++))
-            else
-                print -P "%F{red} [FAIL] Failed to delete branch: $branch, ${merge_reason}%f"
+        [[ -z $msg ]] && continue
+
+        # Check if branch is checked out in a worktree
+        local worktree_path
+        worktree_path=$(git for-each-ref --format='%(worktreepath)' "refs/heads/$branch")
+
+        # Print status with optional hyperlink
+        if [[ -n $pr_url ]]; then
+            printf "\e[32m [OK] Removing branch:\e[0m %s \e[34m(merged in \e]8;;%s\e\\%s\e]8;;\e\\)\e[0m\n" \
+                "$branch" "$pr_url" "$msg"
+        else
+            echo "\e[32m [OK] Removing branch:\e[0m $branch \e[34m($msg)\e[0m"
+        fi
+
+        # Remove worktree first if branch is checked out there
+        if [[ -n $worktree_path ]]; then
+            echo "  \e[33m-> Removing worktree at: $worktree_path\e[0m"
+            if ! git worktree remove --force "$worktree_path" &>/dev/null; then
+                echo "\e[31m [FAIL] Failed to remove worktree: $worktree_path\e[0m"
+                continue
             fi
+        fi
+
+        if git branch -D $branch &>/dev/null; then
+            ((deleted_count++))
+        else
+            echo "\e[31m [FAIL] Failed to delete branch: $branch\e[0m"
         fi
     done
-    print -P "Removed $deleted_count merged branch(es)."
+
+    echo "Removed $deleted_count merged branch(es)."
 }
 
 
