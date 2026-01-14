@@ -2,6 +2,6 @@ font-family = Maple Mono Normal NF CN
 font-size = 16
 font-thicken = true
 window-title-font-family = Maple Mono Normal NF CN
-copy-on-select = true
+copy-on-select = clipboard
 adjust-cell-height = 20%
 
