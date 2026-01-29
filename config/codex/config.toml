@@ -9,6 +9,7 @@ http_headers = { "CONTEXT7_API_KEY" = "YOUR_API_KEY" }
 [mcp_servers.serena]
 command = "uvx"
 args = ["--from", "git+https://github.com/oraios/serena", "serena", "start-mcp-server", "--context", "codex"]
+args = ["--from", "git+https://github.com/oraios/serena", "serena", "start-mcp-server", "--context", "codex", "--open-web-dashboard", "false"]
 
 [mcp_servers.playwright]
 command = "npx"
