@@ -1,0 +1,22 @@
+# Personal settings (machine-specific paths, personal preferences)
+settings.local.json
+
+# Session and cache data
+cache/
+chrome/
+paste-cache/
+plans/
+ide/
+projects/
+telemetry/
+shell-snapshots/
+statsig/
+todos/
+debug/
+file-history/
+history.jsonl
+.update.lock
+stats-cache.json
+
+# Plugin marketplace data
+plugins/
