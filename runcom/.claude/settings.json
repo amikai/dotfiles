@@ -7,5 +7,74 @@
     "code-simplifier@claude-plugins-official": true,
     "superpowers@claude-plugins-official": true,
     "swift-lsp@claude-plugins-official": true
+  },
+  "permissions": {
+    "allow": [
+      "Read",
+      "Write",
+      "Edit",
+      "Grep",
+      "Glob",
+      "WebFetch",
+      "WebSearch",
+      "Task",
+      "Bash(ls *)",
+      "Bash(pwd)",
+      "Bash(which *)",
+      "Bash(git *)",
+      "Bash(npm *)",
+      "Bash(npx *)",
+      "Bash(node *)",
+      "Bash(go *)"
+    ],
+    "deny": [
+      "Bash(git push *)",
+      "Bash(git push)",
+      "Bash(gh pr create *)",
+      "Bash(gh pr create)",
+      "Bash(gh pr merge *)",
+      "Bash(gh pr close *)",
+      "Bash(gh pr edit *)",
+      "Bash(gh pr comment *)",
+      "Bash(gh pr review *)",
+      "Bash(gh issue create *)",
+      "Bash(gh issue create)",
+      "Bash(gh issue close *)",
+      "Bash(gh issue edit *)",
+      "Bash(gh issue comment *)",
+      "Bash(gh issue delete *)",
+      "Bash(gh release create *)",
+      "Bash(gh release delete *)",
+      "Bash(gh release edit *)",
+      "Bash(gh repo create *)",
+      "Bash(gh repo delete *)",
+      "Bash(gh repo edit *)",
+      "Bash(gh repo fork *)",
+      "Bash(gh gist create *)",
+      "Bash(gh gist delete *)",
+      "Bash(gh gist edit *)"
+    ]
+  },
+  "hooks": {
+    "Notification": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "terminal-notifier -message 'Claude Code Wait' -sound Frog -activate com.github.wez.wezterm -execute \"wezterm cli activate-pane --pane-id $WEZTERM_PANE\""
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "terminal-notifier -message 'Claude Code Done' -sound Frog -activate com.github.wez.wezterm -execute \"wezterm cli activate-pane --pane-id $WEZTERM_PANE\""
+          }
+        ]
+      }
+    ]
   }
 }

@@ -30,6 +30,7 @@ brew install --cask codex
 brew install --cask claude-code
 brew install gemini-cli
 brew install anomalyco/tap/opencode
+brew install terminal-notifier
 
 brew install --cask visual-studio-code
 brew install --cask wezterm
