@@ -1,5 +1,5 @@
 DOTFILES_DIR := $(dir $(realpath $(firstword $(MAKEFILE_LIST))))
-export PATH := $(DOTFILES_DIR)bin:$(PATH)
+export PATH := $(DOTFILES_DIR)runcom/bin:$(PATH)
 export PATH := /opt/homebrew/bin:$(PATH)
 export XDG_CONFIG_HOME := $(HOME)/.config
 export STOW_DIR := $(DOTFILES_DIR)
