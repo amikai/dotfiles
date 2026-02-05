@@ -34,6 +34,8 @@ brew install terminal-notifier
 
 brew install --cask visual-studio-code
 brew install --cask wezterm
+brew install --cask iterm2
+brew install --cask ghostty
 brew install --cask orbstack
 brew install --cask fork
 brew install --cask telegram
