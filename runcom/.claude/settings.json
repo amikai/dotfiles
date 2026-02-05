@@ -61,7 +61,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "sh -c 'BRANCH=$(git branch --show-current 2>/dev/null || echo \"none\"); terminal-notifier -title \"Claude Code ($BRANCH)\" -message \"Waiting\" -sound Frog -activate com.github.wez.wezterm && wezterm cli activate-pane --pane-id $WEZTERM_PANE'"
+            "command": "sh -c 'BRANCH=$(git branch --show-current 2>/dev/null || echo \"none\"); terminal-notifier -title \"Claude Code ($BRANCH)\" -message \"Waiting\" -sound Frog -execute \"/usr/local/bin/iterm2_focus $ITERM_SESSION_ID\"'"
           }
         ]
       }
@@ -71,7 +71,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "sh -c 'BRANCH=$(git branch --show-current 2>/dev/null || echo \"none\"); terminal-notifier -title \"Claude Code ($BRANCH)\" -message \"Done\" -sound Frog -activate com.github.wez.wezterm && wezterm cli activate-pane --pane-id $WEZTERM_PANE'"
+            "command": "sh -c 'BRANCH=$(git branch --show-current 2>/dev/null || echo \"none\"); terminal-notifier -title \"Claude Code ($BRANCH)\" -message \"Done\" -sound Frog -execute \"/usr/local/bin/iterm2_focus $ITERM_SESSION_ID\"'"
           }
         ]
       }

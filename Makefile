@@ -26,10 +26,12 @@ link: stow
 	mkdir -p $(XDG_CONFIG_HOME)
 	stow -R -t $(HOME) runcom
 	stow -R -t $(XDG_CONFIG_HOME) config
+	sudo ln -s $(DOTFILES_DIR)runcom/bin/iterm2_focus /usr/local/bin/iterm2_focus
 
 unlink: stow
 	stow --delete -t $(HOME) runcom
 	stow --delete -t $(XDG_CONFIG_HOME) config
+	sudo rm /usr/local/bin/iterm2_focus
 
 bash: BASH=/opt/homebrew/bin/bash
 bash: SHELLS=/private/etc/shells
