@@ -224,6 +224,13 @@ x-clean-branches() {
     echo "Removed $deleted_count merged branch(es)."
 }
 
+x-aws-login() {
+  local profile="${1:-dev}"
+  aws sso login --profile "$profile" && \
+  export AWS_PROFILE="$profile" && \
+  export AWS_REGION=$(aws configure get region --profile "$profile")
+  echo "Set AWS_PROFILE=$AWS_PROFILE AWS_REGION=$AWS_REGION"
+}
 
 # -- vim: set foldmethod=marker tw=80 sw=4 ts=4 sts =4 sta nowrap et :
 
