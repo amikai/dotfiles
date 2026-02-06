@@ -35,6 +35,24 @@
       "args": [
         "@playwright/mcp@latest"
       ]
+    },
+    "awslabs.cloudwatch-mcp-server": {
+      "autoApprove": [],
+      "disabled": false,
+      "command": "uvx",
+      "args": [
+        "awslabs.cloudwatch-mcp-server@latest"
+      ],
+      "transportType": "stdio"
+    },
+    "codex": {
+      "command": "bunx",
+      "args": [
+        "@openai/codex",
+        "mcp-server",
+        "-c",
+        "sandbox_permissions=[\"disk-full-read-access\"]"
+      ]
     }
   }
 }
