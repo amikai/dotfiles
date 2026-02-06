@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+brew install oven-sh/bun/bun
+
 brew install --cask hammerspoon
 brew install --cask karabiner-elements
 
