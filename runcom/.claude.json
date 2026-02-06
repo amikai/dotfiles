@@ -22,7 +22,7 @@
     },
     "sequentialthinking": {
       "type": "stdio",
-      "command": "npx",
+      "command": "bunx",
       "args": [
         "-y",
         "@modelcontextprotocol/server-sequential-thinking"
@@ -31,6 +31,7 @@
     },
     "playwright": {
       "command": "npx",
+      "command": "bunx",
       "args": [
         "@playwright/mcp@latest"
       ]
