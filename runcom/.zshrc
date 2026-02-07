@@ -127,6 +127,10 @@ export PATH="$HOME/bin:$PATH"
 export CODEX_HOME="${XDG_CONFIG_HOME}/codex"
 export OPENCODE_EXPERIMENTAL_LSP_TOOL=true
 
+export BUN_INSTALL_BIN="${HOME}/.bun/bin"
+export BUN_INSTALL_GLOBAL_DIR="${HOME}/.bun/install/global"
+export PATH="$BUN_INSTALL_BIN:$PATH"
+
 ls() {
     if command -v eza &> /dev/null; then
         command eza "$@"
