@@ -18,6 +18,7 @@
       "WebFetch",
       "WebSearch",
       "Task",
+      "LSP",
       "Bash(ls *)",
       "Bash(pwd)",
       "Bash(which *)",
@@ -25,9 +26,19 @@
       "Bash(npm *)",
       "Bash(npx *)",
       "Bash(node *)",
-      "Bash(go *)"
+      "Bash(go *)",
+      "Bash(gh issue list)",
+      "Bash(gh issue list *)",
+      "Bash(gh issue view)",
+      "Bash(gh issue view *)",
+      "Bash(gh pr list)",
+      "Bash(gh pr list *)",
+      "Bash(gh pr view)",
+      "Bash(gh pr view *)",
+      "Bash(gh pr diff)",
+      "Bash(gh pr diff *)"
     ],
-    "deny": [
+    "ask": [
       "Bash(git push *)",
       "Bash(git push)",
       "Bash(gh pr create *)",
