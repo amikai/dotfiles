@@ -1,5 +1,6 @@
 [mcp_servers.sequentialthinking]
 command = "npx"
+command = "bunx"
 args = ["-y", "@modelcontextprotocol/server-sequential-thinking"]
 
 [mcp_servers.context7]
@@ -10,6 +11,3 @@ http_headers = { "CONTEXT7_API_KEY" = "YOUR_API_KEY" }
 command = "uvx"
 args = ["--from", "git+https://github.com/oraios/serena", "serena", "start-mcp-server", "--context", "codex", "--open-web-dashboard", "false"]
 
-[mcp_servers.playwright]
-command = "npx"
-args = ["@playwright/mcp@latest"]

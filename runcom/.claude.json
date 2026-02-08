@@ -29,13 +29,6 @@
       ],
       "env": {}
     },
-    "playwright": {
-      "command": "npx",
-      "command": "bunx",
-      "args": [
-        "@playwright/mcp@latest"
-      ]
-    },
     "awslabs.cloudwatch-mcp-server": {
       "autoApprove": [],
       "disabled": false,
