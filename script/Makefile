@@ -1,6 +1,6 @@
-TARGETS = basic extra golang npm rust nvim
+TARGETS = basic extra golang npm rust nvim coding_agent hammerspoon
 
-.PHONY: $(TARGETS)
+.PHONY: $(TARGETS) all pkg_install pkg_set
 all: $(TARGETS)
 
 pkg_install: basic extra
@@ -26,3 +26,6 @@ rust:
 
 hammerspoon: pkg_install
 	./hammerspoon.sh
+
+coding_agent: pkg_install
+	./coding_agent.sh
