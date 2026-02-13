@@ -63,6 +63,30 @@
     "plugin": [
         "opencode-gemini-auth@latest"
     ],
+    "mcp": {
+        "context7": {
+            "type": "remote",
+            "url": "https://mcp.context7.com/mcp",
+            "headers": {
+                "CONTEXT7_API_KEY": "YOUR_API_KEY"
+            }
+        },
+        "serena": {
+            "type": "local",
+            "command": ["uvx", "--from", "git+https://github.com/oraios/serena", "serena", "start-mcp-server", "--open-web-dashboard", "false"],
+            "environment": {}
+        },
+        "sequentialthinking": {
+            "type": "local",
+            "command": ["bunx", "-y", "@modelcontextprotocol/server-sequential-thinking"],
+            "environment": {}
+        },
+        "awslabs.cloudwatch-mcp-server": {
+            "type": "local",
+            "command": ["uvx", "awslabs.cloudwatch-mcp-server@latest"],
+            "environment": {}
+        },
+    },
     "provider": {
         "openai": {
             "options": {
