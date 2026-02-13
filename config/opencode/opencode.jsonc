@@ -58,7 +58,9 @@
         "webfetch": "allow",
         "websearch": "allow",
         "codesearch": "allow",
-        "external_directory": "ask"
+        "external_directory": "ask",
+        "serena_*": "allow",
+        "serena_execute_shell_command": "ask"
     },
     "plugin": [
         "opencode-gemini-auth@latest"

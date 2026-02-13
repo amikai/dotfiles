@@ -20,6 +20,7 @@
       "Task",
       "LSP",
       "Bash(ls *)",
+      "Bash(find *)",
       "Bash(pwd)",
       "Bash(which *)",
       "Bash(git *)",
@@ -36,9 +37,11 @@
       "Bash(gh pr view)",
       "Bash(gh pr view *)",
       "Bash(gh pr diff)",
-      "Bash(gh pr diff *)"
+      "Bash(gh pr diff *)",
+      "mcp__serena__*"
     ],
     "ask": [
+      "mcp__serena__execute_shell_command",
       "Bash(git push *)",
       "Bash(git push)",
       "Bash(gh pr create *)",
