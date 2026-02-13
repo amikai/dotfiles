@@ -21,7 +21,7 @@ npm: pkg_install
 nvim: pkg_install rust npm
 	./neovim.sh
 
-rust:
+rust: pkg_install
 	./rust.sh
 
 hammerspoon: pkg_install
