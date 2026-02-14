@@ -63,7 +63,8 @@
         "serena_execute_shell_command": "ask"
     },
     "plugin": [
-        "opencode-gemini-auth@latest"
+        "opencode-gemini-auth@latest",
+        "opencode-antigravity-auth@latest"
     ],
     "mcp": {
         "context7": {
@@ -75,17 +76,32 @@
         },
         "serena": {
             "type": "local",
-            "command": ["uvx", "--from", "git+https://github.com/oraios/serena", "serena", "start-mcp-server", "--open-web-dashboard", "false"],
+            "command": [
+                "uvx",
+                "--from",
+                "git+https://github.com/oraios/serena",
+                "serena",
+                "start-mcp-server",
+                "--open-web-dashboard",
+                "false"
+            ],
             "environment": {}
         },
         "sequentialthinking": {
             "type": "local",
-            "command": ["bunx", "-y", "@modelcontextprotocol/server-sequential-thinking"],
+            "command": [
+                "bunx",
+                "-y",
+                "@modelcontextprotocol/server-sequential-thinking"
+            ],
             "environment": {}
         },
         "awslabs.cloudwatch-mcp-server": {
             "type": "local",
-            "command": ["uvx", "awslabs.cloudwatch-mcp-server@latest"],
+            "command": [
+                "uvx",
+                "awslabs.cloudwatch-mcp-server@latest"
+            ],
             "environment": {}
         },
     },
