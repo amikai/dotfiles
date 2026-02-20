@@ -90,5 +90,8 @@ brew install global
 brew install cscope
 brew install universal-ctags
 
+# network utilities
+brew install iproute2mac
+
 # Remove outdated versions from the cellar.
 brew cleanup
