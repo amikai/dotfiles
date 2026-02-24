@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# install superpowers for codex and opencode
+# install superpowers for codex and opencode under ~/.agent folder
 bunx skills add https://github.com/obra/superpowers --global \
     --agent opencode codex --yes \
     --skill brainstorming dispatching-parallel-agents executing-plans finishing-a-development-branch \
