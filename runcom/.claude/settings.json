@@ -1,4 +1,8 @@
 {
+  "env": {
+    "ENABLE_LSP_TOOL": "1",
+    "CLAUDE_DEBUG": "lsp"
+  },
   "permissions": {
     "allow": [
       "Read",
