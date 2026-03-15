@@ -236,5 +236,8 @@ x-aws-login() {
   echo "Set AWS_PROFILE=$AWS_PROFILE AWS_REGION=$AWS_REGION"
 }
 
+export PATH="${HOME}/bin:$PATH"
+
+
 # -- vim: set foldmethod=marker tw=80 sw=4 ts=4 sts =4 sta nowrap et :
 
