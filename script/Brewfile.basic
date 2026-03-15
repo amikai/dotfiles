@@ -1,0 +1,68 @@
+# GNU core utilities (those that come with macOS are outdated)
+brew "coreutils"
+brew "moreutils"
+brew "findutils"
+brew "gnu-sed"
+brew "gnu-time"
+brew "gawk"
+brew "gnu-tar"
+brew "texinfo"
+brew "less"
+
+# Shells
+brew "bash"
+brew "bash-completion2"
+brew "zsh"
+
+# HTTP client tools
+brew "wget"
+brew "curl"
+
+# GnuPG
+brew "gnupg"
+
+# More recent versions of some macOS tools
+brew "vim"
+brew "grep"
+brew "openssh"
+brew "screen"
+brew "php"
+brew "gmp"
+
+# Search tools
+brew "ack"
+brew "the_silver_searcher"
+brew "ripgrep"
+
+# Git
+brew "git"
+brew "git-lfs"
+brew "diff-so-fancy"
+
+# Misc CLI tools
+brew "gs"
+brew "imagemagick"
+brew "lua"
+brew "lynx"
+brew "p7zip"
+brew "pigz"
+brew "pv"
+brew "unzip"
+brew "gzip"
+brew "rename"
+brew "rlwrap"
+brew "ssh-copy-id"
+brew "tree"
+brew "vbindiff"
+brew "zopfli"
+
+# LLVM
+brew "llvm"
+
+# Code indexing tools
+brew "global"
+brew "cscope"
+brew "universal-ctags"
+
+# Network utilities
+brew "iproute2mac"
