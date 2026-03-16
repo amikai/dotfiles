@@ -9,6 +9,7 @@ brew "uv"
 brew "kubectl"
 brew "helm"
 brew "fzf"
+brew "gh"
 
 # Rust CLI utilities
 brew "delta"
