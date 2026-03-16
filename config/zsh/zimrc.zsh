@@ -11,8 +11,6 @@ zmodule input
 zstyle ':zim:ssh' ids 'id_ed25519'
 zmodule ssh
 
-zmodule lukechilds/zsh-nvm
-
 export ZVM_VI_ESCAPE_BINDKEY=jk
 zmodule jeffreytse/zsh-vi-mode
 if (( ${+commands[fzf]} )); then

@@ -1,13 +1,10 @@
-# Taps
-tap "oven-sh/bun"
-tap "anomalyco/tap"
-
 # Development tools
-brew "bun"
+brew "oven-sh/bun/bun"
 brew "tmux"
 brew "neovim"
 brew "go"
 brew "rustup"
+brew "fnm"
 brew "uv"
 brew "kubectl"
 brew "helm"
@@ -22,7 +19,7 @@ brew "procs"
 
 # Coding assistants
 brew "gemini-cli"
-brew "opencode"
+brew "anomalyco/tap/opencode"
 brew "terminal-notifier"
 
 # Mac App Store CLI
@@ -31,6 +28,7 @@ brew "mas"
 # Casks - Desktop apps
 cask "hammerspoon"
 cask "karabiner-elements"
+cask "codex-app"
 cask "codex"
 cask "claude-code"
 cask "visual-studio-code"
@@ -45,9 +43,12 @@ cask "welly"
 cask "raycast"
 cask "slack"
 cask "obsidian"
-cask "notion"
 cask "google-chrome"
 cask "cleanshot"
+cask "tailscale-app"
+cask "popclip"
+cask "chatgpt"
+cask "claude"
 
 # Fonts
 cask "font-fira-code-nerd-font"
@@ -57,5 +58,5 @@ cask "font-maple-mono-normal-nf-cn"
 
 # Mac App Store apps
 mas "LINE", id: 539883307
-mas "Messenger", id: 1480068668
 mas "Dropover", id: 1355679052
+mas "Bob", id: 1630034110 

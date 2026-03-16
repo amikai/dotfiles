@@ -99,12 +99,6 @@ unlink-hammerspoon:
 
 # --- config: directory symlinks ---
 
-link-bash:
-	ln -sfn $(DOTFILES_DIR)config/bash $(XDG_CONFIG_HOME)/bash
-
-unlink-bash:
-	rm -f $(XDG_CONFIG_HOME)/bash
-
 link-ghostty:
 	ln -sfn $(DOTFILES_DIR)config/ghostty $(XDG_CONFIG_HOME)/ghostty
 
@@ -166,6 +160,7 @@ unlink-opencode:
 # --- iterm2_focus (requires sudo) ---
 
 link-iterm2-focus:
+	sudo mkdir -p /usr/local/bin
 	sudo ln -sf $(DOTFILES_DIR)runcom/bin/iterm2_focus /usr/local/bin/iterm2_focus
 
 unlink-iterm2-focus:
