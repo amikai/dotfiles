@@ -10,6 +10,7 @@ brew "kubectl"
 brew "helm"
 brew "fzf"
 brew "gh"
+cask "git-credential-manager"
 
 # Rust CLI utilities
 brew "delta"
