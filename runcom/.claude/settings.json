@@ -90,6 +90,10 @@
       }
     ]
   },
+  "statusLine": {
+    "type": "command",
+    "command": "input=$(cat); used=$(echo \"$input\" | jq -r '.context_window.used_percentage // empty'); remaining=$(echo \"$input\" | jq -r '.context_window.remaining_percentage // empty'); used_tok=$(echo \"$input\" | jq -r '.context_window.current_usage.input_tokens // empty'); total=$(echo \"$input\" | jq -r '.context_window.context_window_size // empty'); model=$(echo \"$input\" | jq -r '.model.display_name // empty'); out=\"\"; [ -n \"$model\" ] && out=\"$model\"; [ -n \"$used\" ] && out=\"$out | ctx: $(printf '%.0f' \"$used\")% used\"; [ -n \"$remaining\" ] && out=\"$out ($(printf '%.0f' \"$remaining\")% left)\"; [ -n \"$used_tok\" ] && [ -n \"$total\" ] && out=\"$out | tokens: $used_tok / $total\"; echo \"$out\""
+  },
   "enabledPlugins": {
     "gopls-lsp@claude-plugins-official": true,
     "ralph-loop@claude-plugins-official": true,
