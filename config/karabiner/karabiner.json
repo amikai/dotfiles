@@ -6,7 +6,7 @@
                     {
                         "manipulators": [
                             {
-                                "description": "Spacebar as Hyper Key",
+                                "description": "Right-Shift as Hyper Key",
                                 "from": {
                                     "key_code": "right_shift",
                                     "modifiers": { "optional": ["any"] }
