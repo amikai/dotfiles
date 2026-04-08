@@ -131,6 +131,10 @@ export BUN_INSTALL_BIN="${HOME}/.bun/bin"
 export BUN_INSTALL_GLOBAL_DIR="${HOME}/.bun/install/global"
 export PATH="$BUN_INSTALL_BIN:$PATH"
 
+if command -v fnm &> /dev/null; then
+    eval "$(fnm env --use-on-cd --shell zsh)"
+fi
+
 ls() {
     if command -v eza &> /dev/null; then
         command eza "$@"
