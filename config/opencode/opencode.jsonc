@@ -96,14 +96,6 @@
             ],
             "environment": {}
         },
-        "awslabs.cloudwatch-mcp-server": {
-            "type": "local",
-            "command": [
-                "uvx",
-                "awslabs.cloudwatch-mcp-server@latest"
-            ],
-            "environment": {}
-        },
     },
     "provider": {
         "cursor-acp": {

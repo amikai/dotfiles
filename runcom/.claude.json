@@ -29,15 +29,6 @@
       ],
       "env": {}
     },
-    "awslabs.cloudwatch-mcp-server": {
-      "autoApprove": [],
-      "disabled": false,
-      "command": "uvx",
-      "args": [
-        "awslabs.cloudwatch-mcp-server@latest"
-      ],
-      "transportType": "stdio"
-    },
     "codex": {
       "command": "bunx",
       "args": [
