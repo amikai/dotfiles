@@ -1,4 +1,5 @@
 DOTFILES_DIR := $(dir $(realpath $(firstword $(MAKEFILE_LIST))))
+export DOTFILES_DIR
 export PATH := $(DOTFILES_DIR)runcom/bin:$(PATH)
 export PATH := /opt/homebrew/bin:$(PATH)
 export XDG_CONFIG_HOME := $(HOME)/.config
@@ -18,7 +19,7 @@ sudo:
 brew:
 	[ -x "$$(command -v brew)" ] || /bin/bash -c "$$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
-LINK_TARGETS = link-bash-profile link-claude link-commitlintrc link-gemini \
+LINK_TARGETS = link-bash-profile link-claude link-commitlintrc \
 	link-golangci link-hammerspoon link-inputrc link-zshrc link-bin \
 	link-bash link-codex link-ghostty link-git link-karabiner \
 	link-opencode link-tmux link-wezterm link-zed link-zsh link-iterm2-focus
@@ -82,13 +83,6 @@ unlink-claude:
 	rm -f $(HOME)/.claude/.gitignore
 	rm -f $(HOME)/.claude/settings.json
 	rm -f $(HOME)/.claude/skills/golang-style/SKILL.md
-
-link-gemini:
-	mkdir -p $(HOME)/.gemini
-	ln -sf $(DOTFILES_DIR)runcom/.gemini/settings.json $(HOME)/.gemini/settings.json
-
-unlink-gemini:
-	rm -f $(HOME)/.gemini/settings.json
 
 link-hammerspoon:
 	mkdir -p $(HOME)/.hammerspoon

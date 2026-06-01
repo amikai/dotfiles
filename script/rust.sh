@@ -1,10 +1,6 @@
 #!/usr/bin/env bash
 
-# Input 1 install default
-DEFAULT_INSTALLATION=1
-echo $DEFAULT_INSTALLATION | rustup-init
-
-source $HOME/.cargo/env
+export PATH="$(brew --prefix rustup)/bin:$PATH"
 CARGO="$(rustup which cargo)"
 
 # Use stable version

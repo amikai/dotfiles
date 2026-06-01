@@ -109,6 +109,9 @@ export PATH="${BREW_PREFIX_PATH[unzip]}/bin:$PATH"
 # }}}
 
 # rust {{{
+if command -v rustup &> /dev/null; then
+    export PATH="$(rustup run stable rustc --print sysroot)/bin:$PATH"
+fi
 export PATH="$HOME/.cargo/bin:$PATH"
 # }}}
 
@@ -244,4 +247,3 @@ export PATH="${HOME}/bin:$PATH"
 
 
 # -- vim: set foldmethod=marker tw=80 sw=4 ts=4 sts =4 sta nowrap et :
-
