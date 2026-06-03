@@ -11,6 +11,7 @@ brew "helm"
 brew "fzf"
 brew "gh"
 cask "git-credential-manager"
+cask "thaw"
 
 # Rust CLI utilities
 brew "delta"
