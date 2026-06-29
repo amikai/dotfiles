@@ -90,10 +90,8 @@ export PATH="${BREW_PREFIX_PATH[awk]}/libexec/gnubin:$PATH"
 BREW_PREFIX_PATH[tar]="${HOMEBREW_PREFIX}/opt/gnu-tar"
 export PATH="${BREW_PREFIX_PATH[tar]}/libexec/gnubin:$PATH"
 
-
 # Add to $PATH is not work, because time is built-in command
 BREW_PREFIX_PATH[time]="${HOMEBREW_PREFIX}/opt/gnu-time/libexec/gnubin"
-
 
 BREW_PREFIX_PATH[curl]="${HOMEBREW_PREFIX}/opt/curl"
 export PATH="${BREW_PREFIX_PATH[curl]}/bin:$PATH"
@@ -126,9 +124,9 @@ export PATH="$GOPATH/bin:$PATH"
 export PATH="$HOME/bin:$PATH"
 # }}}
 
-
 export CODEX_HOME="${XDG_CONFIG_HOME}/codex"
 export OPENCODE_EXPERIMENTAL_LSP_TOOL=true
+export ENABLE_LSP_TOOL=true # for claude
 
 export BUN_INSTALL_BIN="${HOME}/.bun/bin"
 export BUN_INSTALL_GLOBAL_DIR="${HOME}/.bun/install/global"
@@ -244,6 +242,5 @@ x-aws-login() {
 }
 
 export PATH="${HOME}/bin:$PATH"
-
 
 # -- vim: set foldmethod=marker tw=80 sw=4 ts=4 sts =4 sta nowrap et :
