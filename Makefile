@@ -147,13 +147,9 @@ unlink-codex:
 link-opencode:
 	mkdir -p $(XDG_CONFIG_HOME)/opencode
 	ln -sf $(DOTFILES_DIR)config/opencode/opencode.jsonc $(XDG_CONFIG_HOME)/opencode/opencode.jsonc
-	ln -sf $(DOTFILES_DIR)config/opencode/AGENTS.md $(XDG_CONFIG_HOME)/opencode/AGENTS.md
-	ln -sfn $(DOTFILES_DIR)config/opencode/agent $(XDG_CONFIG_HOME)/opencode/agent
 
 unlink-opencode:
 	rm -f $(XDG_CONFIG_HOME)/opencode/opencode.jsonc
-	rm -f $(XDG_CONFIG_HOME)/opencode/AGENTS.md
-	rm -f $(XDG_CONFIG_HOME)/opencode/agent
 
 bash: BASH=/opt/homebrew/bin/bash
 bash: SHELLS=/private/etc/shells
