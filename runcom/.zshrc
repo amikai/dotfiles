@@ -9,9 +9,6 @@ eval $(/opt/homebrew/bin/brew shellenv)
 # }}}
 
 # general setting {{{
-# case insensitive completion
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'
-
 #set the PERMISSIONS for newly-created files
 umask 077
 
@@ -20,6 +17,10 @@ export SSL_CERT_FILE=/etc/ssl/cert.pem
 
 export EDITOR="nvim"
 export VISUAL="nvim"
+
+# Globbing, not completion: `*.txt` also matches Foo.TXT. CASE_GLOB is zsh's
+# default; this was on under zim, so it is kept to preserve that behaviour.
+setopt NO_CASE_GLOB
 
 # use vim keybinding
 bindkey -v
@@ -42,25 +43,46 @@ setopt HIST_IGNORE_DUPS
 setopt SHARE_HISTORY
 # }}}
 
-# zim setting {{{
-zstyle ':zim:zmodule' use 'degit'
-ZIM_HOME="${XDG_CACHE_HOME}/zim"
-ZIM_CONFIG_FILE="${XDG_CONFIG_HOME}/zsh/zimrc.zsh"
-ZVM_INIT_MODE=sourcing
+# plugins: sheldon {{{
+# plugins.toml is a manifest -- parsed, never sourced. Shell code lives here.
+export SHELDON_CONFIG_DIR="${XDG_CONFIG_HOME}/sheldon"
+export SHELDON_DATA_DIR="${XDG_DATA_HOME}/sheldon"
 
-# Download zimfw plugin manager if missing.
-if [[ ! -e ${ZIM_HOME}/zimfw.zsh ]]; then
-  curl -fsSL --create-dirs -o ${ZIM_HOME}/zimfw.zsh \
-      https://github.com/zimfw/zimfw/releases/latest/download/zimfw.zsh
+# colored-man-pages reads $fg_bold/$bg at source time.
+autoload -Uz colors && colors
+
+# zsh-vi-mode reads this at source time, so it must precede the eval.
+ZVM_VI_ESCAPE_BINDKEY=jk
+
+if (( ${+commands[sheldon]} )); then
+  eval "$(sheldon source)"
 fi
+# }}}
 
-# Install missing modules, and update ${ZIM_HOME}/init.zsh if missing or outdated.
-if [[ ! ${ZIM_HOME}/init.zsh -nt ${ZIM_CONFIG_FILE} ]]; then
-  source ${ZIM_HOME}/zimfw.zsh init -q
+# fzf {{{
+if (( ${+commands[fzf]} )); then
+  source <(fzf --zsh)
+
+  if (( ${+commands[fd]} )); then
+    export FZF_DEFAULT_COMMAND="command fd -H --no-ignore-vcs -E .git -td -tf"
+    export FZF_ALT_C_COMMAND="command fd -H --no-ignore-vcs -E .git -td"
+    export FZF_CTRL_T_COMMAND="${FZF_DEFAULT_COMMAND}"
+    _fzf_compgen_path() { command fd -H --no-ignore-vcs -E .git -td -tf . "${1}" }
+    _fzf_compgen_dir()  { command fd -H --no-ignore-vcs -E .git -td . "${1}" }
+  fi
+
+  if (( ${+commands[eza]} )); then
+    export FZF_ALT_C_OPTS="--bind ctrl-/:toggle-preview --preview 'eza --group-directories-first --color=always -1F {}' ${FZF_ALT_C_OPTS}"
+  fi
+
+  # zvm_init runs at the first prompt, after this file, and rebinds viins ^R.
+  # Its own hook is the only placement that survives.
+  zvm_after_init() {
+    bindkey -M viins '^R' fzf-history-widget
+    bindkey -M vicmd '/'  fzf-history-widget
+    bindkey -M emacs '^R' fzf-history-widget
+  }
 fi
-
-# Initialize modules.
-source ${ZIM_HOME}/init.zsh
 # }}}
 
 declare -A BREW_PREFIX_PATH
@@ -244,3 +266,74 @@ x-aws-login() {
 export PATH="${HOME}/bin:$PATH"
 
 # -- vim: set foldmethod=marker tw=80 sw=4 ts=4 sts =4 sta nowrap et :
+
+
+# Added by Antigravity CLI installer
+export PATH="$HOME/.local/bin:$PATH"
+
+# >>> grok installer >>>
+export PATH="$HOME/.grok/bin:$PATH"
+fpath=(~/.grok/completions/zsh $fpath)
+# Rerunning the installer re-adds `compinit -C` here; delete it again.
+# <<< grok installer <<<
+
+# completion {{{
+# Must stay at the very bottom: compinit has to see every fpath entry added
+# above, and it must be called exactly once.
+() {
+  local zdumpfile=${XDG_CACHE_HOME}/zsh/zcompdump
+  [[ -d ${zdumpfile:h} ]] || command mkdir -p ${zdumpfile:h}
+  autoload -Uz compinit
+  # Full rebuild if the dump is missing or older than a day, cheap load otherwise.
+  if [[ -n ${zdumpfile}(#qN.md-1) ]]; then
+    compinit -C -d ${zdumpfile}
+  else
+    compinit -d ${zdumpfile}
+    [[ ! ${zdumpfile}.zwc -nt ${zdumpfile} ]] && zcompile ${zdumpfile}
+  fi
+}
+
+setopt ALWAYS_TO_END      # move cursor to end of word on full completion
+setopt COMPLETE_IN_WORD   # complete from both ends of the cursor
+setopt NO_LIST_BEEP
+
+zstyle ':completion::complete:*' use-cache on
+zstyle ':completion:*' menu select
+zstyle ':completion:*' group-name ''
+zstyle ':completion:*' verbose yes
+zstyle ':completion:*' insert-tab false
+zstyle ':completion:*' squeeze-slashes true
+zstyle ':completion:*' single-ignored show
+
+# Case-insensitive, then partial-word, then substring.
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}' '+r:|[._-]=* r:|=*' '+l:|=*'
+
+zstyle ':completion:*:matches' group yes
+zstyle ':completion:*:options' description yes
+zstyle ':completion:*:options' auto-description '%d'
+zstyle ':completion:*:corrections'  format '%F{green}-- %d (errors: %e) --%f'
+zstyle ':completion:*:descriptions' format '%F{yellow}-- %d --%f'
+zstyle ':completion:*:messages'     format '%F{purple}-- %d --%f'
+zstyle ':completion:*:warnings'     format '%F{red}-- no matches found --%f'
+
+zstyle ':completion:*:functions' ignored-patterns '(_*|pre(cmd|exec)|prompt_*)'
+zstyle ':completion:*:*:-subscript-:*' tag-order 'indexes' 'parameters'
+
+if (( ${+LS_COLORS} )); then
+  zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+else
+  zstyle ':completion:*:default' list-colors ${(s.:.):-di=1;34:ln=35:so=32:pi=33:ex=31:bd=1;36:cd=1;33:su=30;41:sg=30;46:tw=30;42:ow=30;43}
+fi
+zstyle ':completion:*:*:cd:*:directory-stack' menu yes select
+
+zstyle ':completion:*:history-words' stop yes
+zstyle ':completion:*:history-words' remove-all-dups yes
+zstyle ':completion:*:history-words' list false
+zstyle ':completion:*:history-words' menu yes
+
+zstyle ':completion:*:(rm|kill|diff):*' ignore-line other
+zstyle ':completion:*:rm:*' file-patterns '*:all-files'
+
+zstyle ':completion:*:manuals' separate-sections true
+zstyle ':completion:*:manuals.(^1*)' insert-sections true
+# }}}

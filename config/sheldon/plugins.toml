@@ -1,0 +1,43 @@
+#
+# Plugin manifest ONLY.
+#
+# This file is data, not a script -- sheldon parses it, it is never sourced.
+# Nothing here runs at shell startup, so no shell code belongs in it. Every
+# variable, function, bindkey and zstyle lives in .zshrc, in the order it must
+# run. That split is the whole reason for moving off zimfw: .zimrc looked like a
+# shell script but was only read when zimfw regenerated init.zsh, so four
+# settings written into it had silently never applied.
+#
+# Plugins are emitted by `sheldon source` in the order they appear below.
+#
+# Docs: https://sheldon.cli.rs
+#
+
+shell = "zsh"
+
+# Only adds src/ to $fpath, via its .plugin.zsh. The single compinit call lives
+# in .zshrc and runs after this eval, so ordering within the eval is free.
+[plugins.zsh-completions]
+github = "zsh-users/zsh-completions"
+
+[plugins.pure]
+github = "sindresorhus/pure"
+use = ["async.zsh", "pure.zsh"]
+
+# `remote` fetches this single file rather than cloning all of ohmyzsh for it.
+# Requires $fg_bold/$bg/$reset_color, so .zshrc runs `autoload -Uz colors &&
+# colors` before the eval.
+[plugins.colored-man-pages]
+remote = "https://github.com/ohmyzsh/ohmyzsh/raw/master/plugins/colored-man-pages/colored-man-pages.plugin.zsh"
+
+[plugins.zsh-syntax-highlighting]
+github = "zsh-users/zsh-syntax-highlighting"
+
+[plugins.zsh-autosuggestions]
+github = "zsh-users/zsh-autosuggestions"
+
+# Initialises at the first prompt (ZVM_INIT_MODE left at its default), i.e.
+# after .zshrc has finished running. It rebinds viins ^R, so .zshrc restores the
+# fzf binding from a zvm_after_init hook.
+[plugins.zsh-vi-mode]
+github = "jeffreytse/zsh-vi-mode"

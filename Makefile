@@ -22,7 +22,8 @@ brew:
 LINK_TARGETS = link-bash-profile link-claude link-commitlintrc \
 	link-golangci link-hammerspoon link-inputrc link-zshrc link-bin \
 	link-bash link-codex link-ghostty link-git link-karabiner \
-	link-opencode link-tmux link-wezterm link-zed link-zsh link-iterm2-focus
+	link-opencode link-sheldon link-tmux link-wezterm link-zed \
+	link-iterm2-focus
 
 UNLINK_TARGETS = $(LINK_TARGETS:link-%=unlink-%)
 
@@ -129,11 +130,11 @@ link-zed:
 unlink-zed:
 	rm -f $(XDG_CONFIG_HOME)/zed
 
-link-zsh:
-	ln -sfn $(DOTFILES_DIR)config/zsh $(XDG_CONFIG_HOME)/zsh
+link-sheldon:
+	ln -sfn $(DOTFILES_DIR)config/sheldon $(XDG_CONFIG_HOME)/sheldon
 
-unlink-zsh:
-	rm -f $(XDG_CONFIG_HOME)/zsh
+unlink-sheldon:
+	rm -f $(XDG_CONFIG_HOME)/sheldon
 
 # --- config: file-level links (runtime dirs) ---
 
