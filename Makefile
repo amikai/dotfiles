@@ -22,8 +22,7 @@ brew:
 LINK_TARGETS = link-bash-profile link-claude link-commitlintrc \
 	link-golangci link-hammerspoon link-inputrc link-zshrc link-bin \
 	link-bash link-codex link-ghostty link-git link-karabiner \
-	link-opencode link-sheldon link-tmux link-wezterm link-zed \
-	link-iterm2-focus
+	link-opencode link-sheldon link-tmux link-wezterm link-zed
 
 UNLINK_TARGETS = $(LINK_TARGETS:link-%=unlink-%)
 
@@ -155,15 +154,6 @@ unlink-opencode:
 	rm -f $(XDG_CONFIG_HOME)/opencode/opencode.jsonc
 	rm -f $(XDG_CONFIG_HOME)/opencode/AGENTS.md
 	rm -f $(XDG_CONFIG_HOME)/opencode/agent
-
-# --- iterm2_focus (requires sudo) ---
-
-link-iterm2-focus:
-	sudo mkdir -p /usr/local/bin
-	sudo ln -sf $(DOTFILES_DIR)runcom/bin/iterm2_focus /usr/local/bin/iterm2_focus
-
-unlink-iterm2-focus:
-	sudo rm -f /usr/local/bin/iterm2_focus
 
 bash: BASH=/opt/homebrew/bin/bash
 bash: SHELLS=/private/etc/shells
