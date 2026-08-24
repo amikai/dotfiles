@@ -4,4 +4,5 @@ font-thicken = true
 window-title-font-family = Maple Mono Normal NF CN
 copy-on-select = clipboard
 adjust-cell-height = 20%
+shell-integration-features = sudo,ssh-terminfo,ssh-env
 
