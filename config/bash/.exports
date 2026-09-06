@@ -23,20 +23,10 @@ export PATH="${BREW_PREFIX_PATH[curl]}/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
 
 # golang
-BREW_PREFIX_PATH[golang]='/usr/local/opt/go'
-export GOROOT="${BREW_PREFIX_PATH[golang]}/libexec"
 export GOPATH="$HOME/go"
 export PATH="$GOPATH/bin:$PATH"
 
 # some binary
 export PATH="$HOME/bin:$PATH"
-
-# nvm dir
-export NVM_DIR="$XDG_CONFIG_HOME/nvm"
-
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init --path)"
-eval "$(pyenv virtualenv-init -)"
 
 export PATH="$HOME/tools/lua-language-server/bin/macOS:$PATH"

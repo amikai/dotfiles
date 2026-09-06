@@ -1,10 +1,13 @@
-TARGETS = basic extra golang node rust nvim coding_agent hammerspoon
+DOTFILES_DIR ?= $(abspath $(dir $(lastword $(MAKEFILE_LIST)))/..)
+export MISE_GLOBAL_CONFIG_FILE := $(DOTFILES_DIR)/config/mise/config.toml
+
+TARGETS = basic extra mise nvim coding_agent hammerspoon
 
 .PHONY: $(TARGETS) all pkg_install pkg_set brew_update brew_cleanup
 all: $(TARGETS)
 
 pkg_install: brew_update basic extra brew_cleanup
-pkg_set: golang rust node nvim
+pkg_set: mise nvim
 
 brew_update:
 	brew update
@@ -25,17 +28,11 @@ basic:
 extra:
 	brew bundle --file=Brewfile.extra
 
-golang: pkg_install
-	./golang.sh
+mise: pkg_install
+	mise install
 
-node: pkg_install
-	./node.sh
-
-nvim: pkg_install rust node
-	./neovim.sh
-
-rust: pkg_install
-	./rust.sh
+nvim: mise
+	mise exec -- ./neovim.sh
 
 hammerspoon: pkg_install
 	./hammerspoon.sh

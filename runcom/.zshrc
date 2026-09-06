@@ -129,15 +129,10 @@ export PATH="${BREW_PREFIX_PATH[unzip]}/bin:$PATH"
 # }}}
 
 # rust {{{
-if command -v rustup &> /dev/null; then
-    export PATH="$(rustup run stable rustc --print sysroot)/bin:$PATH"
-fi
 export PATH="$HOME/.cargo/bin:$PATH"
 # }}}
 
 # golang {{{
-BREW_PREFIX_PATH[golang]="${HOMEBREW_PREFIX}/opt/go"
-export GOROOT="${BREW_PREFIX_PATH[golang]}/libexec"
 export GOPATH="$HOME/go"
 export PATH="$GOPATH/bin:$PATH"
 # }}}
@@ -149,14 +144,6 @@ export PATH="$HOME/bin:$PATH"
 export CODEX_HOME="${XDG_CONFIG_HOME}/codex"
 export OPENCODE_EXPERIMENTAL_LSP_TOOL=true
 export ENABLE_LSP_TOOL=true # for claude
-
-export BUN_INSTALL_BIN="${HOME}/.bun/bin"
-export BUN_INSTALL_GLOBAL_DIR="${HOME}/.bun/install/global"
-export PATH="$BUN_INSTALL_BIN:$PATH"
-
-if command -v fnm &> /dev/null; then
-    eval "$(fnm env --use-on-cd --shell zsh)"
-fi
 
 ls() {
     if command -v eza &> /dev/null; then
@@ -271,6 +258,10 @@ export PATH="${HOME}/bin:$PATH"
 # Added by Antigravity CLI installer
 export PATH="$HOME/.local/bin:$PATH"
 
+# Added by OrbStack: command-line tools and integration
+# This won't be added again if you remove it.
+source ~/.orbstack/shell/init.zsh 2>/dev/null || :
+
 # >>> grok installer >>>
 export PATH="$HOME/.grok/bin:$PATH"
 fpath=(~/.grok/completions/zsh $fpath)
@@ -337,3 +328,12 @@ zstyle ':completion:*:rm:*' file-patterns '*:all-files'
 zstyle ':completion:*:manuals' separate-sections true
 zstyle ':completion:*:manuals.(^1*)' insert-sections true
 # }}}
+
+
+# Added by Antigravity CLI installer
+export PATH="/Users/amikai/.local/bin:$PATH"
+
+# Activate after PATH customizations so mise selects the runtime versions.
+if command -v mise >/dev/null 2>&1; then
+    eval "$(mise activate zsh)"
+fi

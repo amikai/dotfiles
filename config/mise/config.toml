@@ -1,0 +1,26 @@
+[tools]
+python = "latest"
+uv = "latest"
+node = "latest"
+nub = "latest"
+aube = { version = "latest", matching = "aube-v" }
+go = "latest"
+# The mise Rust backend provisions toolchains and components through rustup.
+rust = { version = "latest", components = ["rust-analyzer", "clippy"] }
+# Python language server used by Neovim (delance-langserver), outside Mason.
+"npm:@delance/runtime" = { version = "latest", allow_low_downloads = true }
+
+# mise 2026.9.1's registry still points to jdx/aube and its old signer identity.
+# Use the canonical repository, retaining GitHub artifact attestation checks.
+[tool_alias]
+aube = "github:aubepkg/aube"
+
+[settings]
+python.uv_venv_auto = "create|source"
+# Use mise's embedded aube installer for npm-backed tools.
+npm.package_manager = "aube"
+idiomatic_version_file_enable_tools = ["node", "python", "rust"]
+
+[env]
+# Keep nub on mise's selected Node rather than provisioning a second runtime.
+NODE_EXECUTABLE = { value = "{{ tools.node.path }}/bin/node", tools = true }

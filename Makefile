@@ -20,9 +20,9 @@ brew:
 	[ -x "$$(command -v brew)" ] || /bin/bash -c "$$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
 LINK_TARGETS = link-bash-profile link-claude link-commitlintrc \
-	link-golangci link-hammerspoon link-inputrc link-zshrc link-bin \
+	link-golangci link-hammerspoon link-inputrc link-zshrc link-zprofile link-bin \
 	link-bash link-codex link-ghostty link-git link-karabiner \
-	link-opencode link-sheldon link-tmux link-wezterm link-zed
+	link-opencode link-sheldon link-tmux link-wezterm link-zed link-mise
 
 UNLINK_TARGETS = $(LINK_TARGETS:link-%=unlink-%)
 
@@ -62,6 +62,12 @@ link-zshrc:
 
 unlink-zshrc:
 	rm -f $(HOME)/.zshrc
+
+link-zprofile:
+	ln -sf $(DOTFILES_DIR)runcom/.zprofile $(HOME)/.zprofile
+
+unlink-zprofile:
+	rm -f $(HOME)/.zprofile
 
 link-bin:
 	ln -sfn $(DOTFILES_DIR)runcom/bin $(HOME)/bin
@@ -137,6 +143,13 @@ unlink-sheldon:
 
 # --- config: file-level links (runtime dirs) ---
 
+link-mise:
+	mkdir -p $(XDG_CONFIG_HOME)/mise
+	ln -sf $(DOTFILES_DIR)config/mise/config.toml $(XDG_CONFIG_HOME)/mise/config.toml
+
+unlink-mise:
+	rm -f $(XDG_CONFIG_HOME)/mise/config.toml
+
 link-codex:
 	mkdir -p $(XDG_CONFIG_HOME)/codex
 	ln -sf $(DOTFILES_DIR)config/codex/config.toml $(XDG_CONFIG_HOME)/codex/config.toml
@@ -164,5 +177,5 @@ zsh: brew
 git: brew
 	brew install git git-extras
 
-brew-packages: brew
+brew-packages: brew link-mise
 	$(MAKE) -C ./script

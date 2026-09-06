@@ -15,6 +15,9 @@ brew "bash-completion2"
 brew "zsh"
 brew "sheldon" # zsh plugin manager; manifest at config/sheldon/plugins.toml
 
+# Development tool manager
+brew "mise"
+
 # HTTP client tools
 brew "wget"
 brew "curl"

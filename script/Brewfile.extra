@@ -1,11 +1,6 @@
 # Development tools
-brew "oven-sh/bun/bun"
 brew "tmux"
 brew "neovim"
-brew "go"
-brew "rustup"
-brew "fnm"
-brew "uv"
 brew "kubectl"
 brew "helm"
 brew "fzf"
