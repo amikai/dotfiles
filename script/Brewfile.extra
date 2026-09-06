@@ -16,8 +16,8 @@ brew "dust"
 brew "procs"
 
 # Coding assistants
+brew "herdr"
 brew "anomalyco/tap/opencode"
-brew "terminal-notifier"
 
 # Mac App Store CLI
 brew "mas"
