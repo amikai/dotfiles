@@ -1,16 +1,14 @@
 DOTFILES_DIR := $(dir $(realpath $(firstword $(MAKEFILE_LIST))))
 export DOTFILES_DIR
-export PATH := $(DOTFILES_DIR)runcom/bin:$(PATH)
 export PATH := /opt/homebrew/bin:$(PATH)
 export XDG_CONFIG_HOME := $(HOME)/.config
 
 SHELL = /bin/bash
-ZSHELL = /bin/zsh
 
-TARGETS = sudo brew bash git brew-packages
+TARGETS = sudo brew brew-packages
 .PHONY: $(TARGETS)
 
-all: sudo brew git bash zsh link brew-packages
+all: sudo brew link brew-packages
 
 sudo:
 	sudo -v
@@ -20,7 +18,7 @@ brew:
 	[ -x "$$(command -v brew)" ] || /bin/bash -c "$$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
 LINK_TARGETS = link-bash-profile link-claude link-commitlintrc \
-	link-golangci link-hammerspoon link-inputrc link-zshrc link-zprofile link-bin \
+	link-golangci link-hammerspoon link-inputrc link-zshrc link-zprofile \
 	link-codex link-ghostty link-git link-karabiner \
 	link-opencode link-sheldon link-tmux link-wezterm link-zed link-mise
 
@@ -68,12 +66,6 @@ link-zprofile:
 
 unlink-zprofile:
 	rm -f $(HOME)/.zprofile
-
-link-bin:
-	ln -sfn $(DOTFILES_DIR)runcom/bin $(HOME)/bin
-
-unlink-bin:
-	rm -f $(HOME)/bin
 
 # --- runcom: file-level links (runtime dirs) ---
 
@@ -163,19 +155,6 @@ link-opencode:
 
 unlink-opencode:
 	rm -f $(XDG_CONFIG_HOME)/opencode/opencode.jsonc
-
-bash: BASH=/opt/homebrew/bin/bash
-bash: SHELLS=/private/etc/shells
-bash: brew
-	if ! grep -q $(BASH) $(SHELLS); then brew install bash bash-completion@2 pcre && sudo append $(BASH) $(SHELLS); fi
-
-zsh: ZSH=/opt/homebrew/bin/zsh
-zsh: SHELLS=/private/etc/shells
-zsh: brew
-	if ! grep -q $(ZSHELL) $(SHELLS); then brew install zsh pcre && sudo append $(ZSH) $(SHELLS) && chsh -s $(ZSH); fi
-
-git: brew
-	brew install git git-extras
 
 brew-packages: brew link-mise
 	$(MAKE) -C ./script

@@ -1,7 +1,7 @@
 DOTFILES_DIR ?= $(abspath $(dir $(lastword $(MAKEFILE_LIST)))/..)
 export MISE_GLOBAL_CONFIG_FILE := $(DOTFILES_DIR)/config/mise/config.toml
 
-TARGETS = basic extra mise nvim coding_agent hammerspoon
+TARGETS = basic extra mise nvim hammerspoon
 
 .PHONY: $(TARGETS) all pkg_install pkg_set brew_update brew_cleanup
 all: $(TARGETS)
@@ -36,6 +36,3 @@ nvim: mise
 
 hammerspoon: pkg_install
 	./hammerspoon.sh
-
-coding_agent: pkg_install
-	./coding_agent.sh

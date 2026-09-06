@@ -132,10 +132,6 @@ export PATH="${BREW_PREFIX_PATH[unzip]}/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
 # }}}
 
-# some binary {{{
-export PATH="$HOME/bin:$PATH"
-# }}}
-
 export CODEX_HOME="${XDG_CONFIG_HOME}/codex"
 export OPENCODE_EXPERIMENTAL_LSP_TOOL=true
 export ENABLE_LSP_TOOL=true # for claude
@@ -245,8 +241,6 @@ x-aws-login() {
   echo "Set AWS_PROFILE=$AWS_PROFILE AWS_REGION=$AWS_REGION"
 }
 
-export PATH="${HOME}/bin:$PATH"
-
 # -- vim: set foldmethod=marker tw=80 sw=4 ts=4 sts =4 sta nowrap et :
 
 
@@ -323,10 +317,6 @@ zstyle ':completion:*:rm:*' file-patterns '*:all-files'
 zstyle ':completion:*:manuals' separate-sections true
 zstyle ':completion:*:manuals.(^1*)' insert-sections true
 # }}}
-
-
-# Added by Antigravity CLI installer
-export PATH="/Users/amikai/.local/bin:$PATH"
 
 # Activate after PATH customizations so mise selects the runtime versions.
 if command -v mise >/dev/null 2>&1; then
