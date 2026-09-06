@@ -9,6 +9,8 @@ go = "latest"
 rust = { version = "latest", components = ["rust-analyzer", "clippy"] }
 # Python language server used by Neovim (delance-langserver), outside Mason.
 "npm:@delance/runtime" = { version = "latest", allow_low_downloads = true }
+# Pi coding agent harness
+"npm:@earendil-works/pi-coding-agent" = { version = "latest", allow_low_downloads = true }
 
 # mise 2026.9.1's registry still points to jdx/aube and its old signer identity.
 # Use the canonical repository, retaining GitHub artifact attestation checks.

@@ -132,11 +132,6 @@ export PATH="${BREW_PREFIX_PATH[unzip]}/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
 # }}}
 
-# golang {{{
-export GOPATH="$HOME/go"
-export PATH="$GOPATH/bin:$PATH"
-# }}}
-
 # some binary {{{
 export PATH="$HOME/bin:$PATH"
 # }}}
