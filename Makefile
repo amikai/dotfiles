@@ -21,7 +21,7 @@ brew:
 
 LINK_TARGETS = link-bash-profile link-claude link-commitlintrc \
 	link-golangci link-hammerspoon link-inputrc link-zshrc link-zprofile link-bin \
-	link-bash link-codex link-ghostty link-git link-karabiner \
+	link-codex link-ghostty link-git link-karabiner \
 	link-opencode link-sheldon link-tmux link-wezterm link-zed link-mise
 
 UNLINK_TARGETS = $(LINK_TARGETS:link-%=unlink-%)
