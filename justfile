@@ -30,7 +30,6 @@ unlink: unlink-runcom unlink-config
 
 link-runcom:
     ln -sf "{{dotfiles_dir}}/runcom/.bash_profile" "$HOME/.bash_profile"
-    ln -sf "{{dotfiles_dir}}/runcom/.commitlintrc.yaml" "$HOME/.commitlintrc.yaml"
     ln -sf "{{dotfiles_dir}}/runcom/.golangci.yaml" "$HOME/.golangci.yaml"
     ln -sf "{{dotfiles_dir}}/runcom/.inputrc" "$HOME/.inputrc"
     ln -sf "{{dotfiles_dir}}/runcom/.zshrc" "$HOME/.zshrc"
@@ -45,7 +44,6 @@ link-runcom:
 
 unlink-runcom:
     rm -f "$HOME/.bash_profile"
-    rm -f "$HOME/.commitlintrc.yaml"
     rm -f "$HOME/.golangci.yaml"
     rm -f "$HOME/.inputrc"
     rm -f "$HOME/.zshrc"

@@ -1,3 +1,0 @@
-extends:
-  # install the config, npm install -g @commitlint/config-conventional
-  - "@commitlint/config-conventional"
