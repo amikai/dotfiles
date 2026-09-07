@@ -4,6 +4,8 @@ dotfiles_dir := justfile_directory()
 xdg_config_home := env_var_or_default("XDG_CONFIG_HOME", env_var("HOME") / ".config")
 
 export DOTFILES_DIR := dotfiles_dir
+# Some tools use XDG_CONFIG_HOME (e.g. Neovim)
+export XDG_CONFIG_HOME := xdg_config_home
 export MISE_GLOBAL_CONFIG_FILE := dotfiles_dir / "config/mise/config.toml"
 export PATH := "/opt/homebrew/bin:" + env_var("PATH")
 
@@ -60,6 +62,7 @@ link-config: link-mise
     ln -sfn "{{dotfiles_dir}}/config/ghostty" "{{xdg_config_home}}/ghostty"
     ln -sfn "{{dotfiles_dir}}/config/git" "{{xdg_config_home}}/git"
     ln -sfn "{{dotfiles_dir}}/config/karabiner" "{{xdg_config_home}}/karabiner"
+    ln -sfn "{{dotfiles_dir}}/config/nvim" "{{xdg_config_home}}/nvim"
     ln -sfn "{{dotfiles_dir}}/config/tmux" "{{xdg_config_home}}/tmux"
     ln -sfn "{{dotfiles_dir}}/config/wezterm" "{{xdg_config_home}}/wezterm"
     ln -sfn "{{dotfiles_dir}}/config/zed" "{{xdg_config_home}}/zed"
@@ -73,6 +76,7 @@ unlink-config:
     rm -f "{{xdg_config_home}}/ghostty"
     rm -f "{{xdg_config_home}}/git"
     rm -f "{{xdg_config_home}}/karabiner"
+    rm -f "{{xdg_config_home}}/nvim"
     rm -f "{{xdg_config_home}}/tmux"
     rm -f "{{xdg_config_home}}/wezterm"
     rm -f "{{xdg_config_home}}/zed"
