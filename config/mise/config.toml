@@ -2,6 +2,7 @@
 python = "latest"
 uv = "latest"
 node = "latest"
+bun = "latest"
 nub = "latest"
 aube = { version = "latest", matching = "aube-v" }
 go = "latest"
