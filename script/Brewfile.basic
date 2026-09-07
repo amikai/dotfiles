@@ -17,6 +17,7 @@ brew "sheldon" # zsh plugin manager; manifest at config/sheldon/plugins.toml
 
 # Development tool manager
 brew "mise"
+brew "just"
 
 # HTTP client tools
 brew "wget"
