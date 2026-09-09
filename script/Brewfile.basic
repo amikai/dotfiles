@@ -26,6 +26,9 @@ brew "curl"
 # GnuPG
 brew "gnupg"
 
+# Secrets management
+brew "sops"
+
 # More recent versions of some macOS tools
 brew "vim"
 brew "grep"
