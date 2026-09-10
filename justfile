@@ -91,7 +91,7 @@ link-mise:
 
 # --- package installation & setup ---
 
-brew-packages: link-mise brew-update brew-basic brew-extra brew-cleanup mise-install nvim-setup hammerspoon-setup
+brew-packages: link-mise brew-update brew-basic brew-extra brew-cleanup mise-install nvim-setup hammerspoon-setup skills-setup
 
 brew-update:
     brew update
@@ -122,3 +122,6 @@ nvim-setup: mise-install
 
 hammerspoon-setup:
     "{{dotfiles_dir}}/script/hammerspoon.sh"
+
+skills-setup: mise-install
+    mise exec -- "{{dotfiles_dir}}/script/skills.sh"
