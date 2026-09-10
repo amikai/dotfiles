@@ -19,24 +19,6 @@
         "false"
       ],
       "env": {}
-    },
-    "sequentialthinking": {
-      "type": "stdio",
-      "command": "bunx",
-      "args": [
-        "-y",
-        "@modelcontextprotocol/server-sequential-thinking"
-      ],
-      "env": {}
-    },
-    "codex": {
-      "command": "bunx",
-      "args": [
-        "@openai/codex",
-        "mcp-server",
-        "-c",
-        "sandbox_permissions=[\"disk-full-read-access\"]"
-      ]
     }
   }
 }

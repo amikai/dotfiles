@@ -68,23 +68,16 @@
       "Bash(gh gist edit *)"
     ]
   },
+  "model": "sonnet",
   "hooks": {
-    "Notification": [
+    "SessionStart": [
       {
+        "matcher": "*",
         "hooks": [
           {
             "type": "command",
-            "command": "sh -c 'BRANCH=$(git branch --show-current 2>/dev/null || echo \"none\"); terminal-notifier -title \"Claude Code ($BRANCH)\" -message \"Waiting\" -sound Frog -execute \"/usr/local/bin/iterm2_focus $ITERM_SESSION_ID\"'"
-          }
-        ]
-      }
-    ],
-    "Stop": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "sh -c 'BRANCH=$(git branch --show-current 2>/dev/null || echo \"none\"); terminal-notifier -title \"Claude Code ($BRANCH)\" -message \"Done\" -sound Frog -execute \"/usr/local/bin/iterm2_focus $ITERM_SESSION_ID\"'"
+            "command": "bash '/Users/amikai/.claude/hooks/herdr-agent-state.sh' session",
+            "timeout": 10
           }
         ]
       }
@@ -95,12 +88,45 @@
     "command": "input=$(cat); used=$(echo \"$input\" | jq -r '.context_window.used_percentage // empty'); remaining=$(echo \"$input\" | jq -r '.context_window.remaining_percentage // empty'); used_tok=$(echo \"$input\" | jq -r '.context_window.current_usage.input_tokens // empty'); total=$(echo \"$input\" | jq -r '.context_window.context_window_size // empty'); model=$(echo \"$input\" | jq -r '.model.display_name // empty'); out=\"\"; [ -n \"$model\" ] && out=\"$model\"; [ -n \"$used\" ] && out=\"$out | ctx: $(printf '%.0f' \"$used\")% used\"; [ -n \"$remaining\" ] && out=\"$out ($(printf '%.0f' \"$remaining\")% left)\"; [ -n \"$used_tok\" ] && [ -n \"$total\" ] && out=\"$out | tokens: $used_tok / $total\"; echo \"$out\""
   },
   "enabledPlugins": {
+    "clangd-lsp@claude-plugins-official": true,
     "gopls-lsp@claude-plugins-official": true,
-    "ralph-loop@claude-plugins-official": true,
-    "commit-commands@claude-plugins-official": true,
     "typescript-lsp@claude-plugins-official": true,
+    "swift-lsp@claude-plugins-official": true,
+    "commit-commands@claude-plugins-official": true,
     "code-simplifier@claude-plugins-official": true,
-    "superpowers@claude-plugins-official": true,
-    "playground@claude-plugins-official": true
-  }
+    "playground@claude-plugins-official": true,
+    "mattpocock-skills@mattpocock": true,
+    "i-have-adhd@i-have-adhd": true,
+    "amikai-skills@amikai-skills": true,
+    "caveman@caveman": true,
+    "humanizer@humanizer": true
+  },
+  "extraKnownMarketplaces": {
+    "mattpocock": {
+      "source": {
+        "source": "github",
+        "repo": "mattpocock/skills"
+      }
+    },
+    "amikai-skills": {
+      "source": {
+        "source": "github",
+        "repo": "amikai/skills"
+      }
+    },
+    "caveman": {
+      "source": {
+        "source": "github",
+        "repo": "JuliusBrussee/caveman"
+      }
+    },
+    "humanizer": {
+      "source": {
+        "source": "github",
+        "repo": "blader/humanizer"
+      }
+    }
+  },
+  "tui": "fullscreen",
+  "theme": "dark"
 }
