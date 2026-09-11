@@ -22,3 +22,9 @@ nubx -y skills add mattpocock/skills \
     --global \
     --yes \
     --agent pi codex grok antigravity antigravity-cli
+
+# Install personal skills
+nubx -y skills add amikai/skills \
+    --global \
+    --yes \
+    --agent pi claude-code codex grok antigravity antigravity-cli
