@@ -41,6 +41,9 @@ link-runcom:
     ln -sf "{{dotfiles_dir}}/runcom/.claude/.gitignore" "$HOME/.claude/.gitignore"
     ln -sf "{{dotfiles_dir}}/runcom/.claude/settings.json" "$HOME/.claude/settings.json"
     ln -sf "{{dotfiles_dir}}/runcom/.claude/skills/golang-style/SKILL.md" "$HOME/.claude/skills/golang-style/SKILL.md"
+    mkdir -p "$HOME/.pi/agent"
+    ln -sf "{{dotfiles_dir}}/runcom/.pi/agent/settings.json" "$HOME/.pi/agent/settings.json"
+    ln -sf "{{dotfiles_dir}}/runcom/.pi/web-search.json" "$HOME/.pi/web-search.json"
     mkdir -p "$HOME/.hammerspoon"
     ln -sf "{{dotfiles_dir}}/runcom/.hammerspoon/init.lua" "$HOME/.hammerspoon/init.lua"
 
@@ -54,6 +57,8 @@ unlink-runcom:
     rm -f "$HOME/.claude/.gitignore"
     rm -f "$HOME/.claude/settings.json"
     rm -f "$HOME/.claude/skills/golang-style/SKILL.md"
+    rm -f "$HOME/.pi/agent/settings.json"
+    rm -f "$HOME/.pi/web-search.json"
     rm -f "$HOME/.hammerspoon/init.lua"
 
 # --- config links ---

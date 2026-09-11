@@ -1,0 +1,15 @@
+{
+  "lastChangelogVersion": "0.85.1",
+  "theme": "dark",
+  "defaultThinkingLevel": "high",
+  "packages": [
+    "npm:pi-antigravity",
+    "npm:@open-cursor/pi-agent",
+    "npm:pi-lsp",
+    "npm:pi-web-access",
+    "npm:pi-zentui",
+    "npm:pi-thinking-steps",
+    "git:https://github.com/mitsuhiko/agent-stuff.git",
+    "git:github.com/amikai/skills"
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "workflow": "auto-summary",
+  "summaryModel": "openai-codex/gpt-5.6-luna:low",
+  "allowBrowserCookies": true,
+  "searchRouting": {
+    "providers": [
+      "gemini",
+      "openai",
+      "xai",
+      "exa"
+    ],
+    "fallbackOn": [
+      "unsupported",
+      "transient",
+      "quota",
+      "network",
+      "invalid-response"
+    ]
+  }
+}
