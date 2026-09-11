@@ -12,8 +12,8 @@
       "Glob",
       "WebFetch",
       "WebSearch",
-      "Task",
       "LSP",
+      "Agent(Explore)",
       "Bash(grep *)",
       "Bash(rg *)",
       "Bash(head *)",
@@ -68,7 +68,11 @@
       "Bash(gh gist edit *)"
     ]
   },
-  "model": "sonnet",
+  "model": "opus[1m]",
+  "attribution": {
+    "commit": "",
+    "pr": ""
+  },
   "hooks": {
     "SessionStart": [
       {
