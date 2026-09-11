@@ -40,6 +40,8 @@ link-runcom:
     ln -sf "{{dotfiles_dir}}/runcom/.claude.json" "$HOME/.claude.json"
     ln -sf "{{dotfiles_dir}}/runcom/.claude/.gitignore" "$HOME/.claude/.gitignore"
     ln -sf "{{dotfiles_dir}}/runcom/.claude/settings.json" "$HOME/.claude/settings.json"
+    mkdir -p "$HOME/.codex"
+    ln -sf "{{dotfiles_dir}}/runcom/.codex/config.toml" "$HOME/.codex/config.toml"
     mkdir -p "$HOME/.pi/agent"
     ln -sf "{{dotfiles_dir}}/runcom/.pi/agent/settings.json" "$HOME/.pi/agent/settings.json"
     ln -sf "{{dotfiles_dir}}/runcom/.pi/web-search.json" "$HOME/.pi/web-search.json"
@@ -55,6 +57,7 @@ unlink-runcom:
     rm -f "$HOME/.claude.json"
     rm -f "$HOME/.claude/.gitignore"
     rm -f "$HOME/.claude/settings.json"
+    rm -f "$HOME/.codex/config.toml"
     rm -f "$HOME/.pi/agent/settings.json"
     rm -f "$HOME/.pi/web-search.json"
     rm -f "$HOME/.hammerspoon/init.lua"
@@ -70,8 +73,6 @@ link-config: link-mise
     ln -sfn "{{dotfiles_dir}}/config/wezterm" "{{xdg_config_home}}/wezterm"
     ln -sfn "{{dotfiles_dir}}/config/zed" "{{xdg_config_home}}/zed"
     ln -sfn "{{dotfiles_dir}}/config/sheldon" "{{xdg_config_home}}/sheldon"
-    mkdir -p "{{xdg_config_home}}/codex"
-    ln -sf "{{dotfiles_dir}}/config/codex/config.toml" "{{xdg_config_home}}/codex/config.toml"
     mkdir -p "{{xdg_config_home}}/opencode"
     ln -sf "{{dotfiles_dir}}/config/opencode/opencode.jsonc" "{{xdg_config_home}}/opencode/opencode.jsonc"
 
@@ -84,7 +85,6 @@ unlink-config:
     rm -f "{{xdg_config_home}}/wezterm"
     rm -f "{{xdg_config_home}}/zed"
     rm -f "{{xdg_config_home}}/sheldon"
-    rm -f "{{xdg_config_home}}/codex/config.toml"
     rm -f "{{xdg_config_home}}/opencode/opencode.jsonc"
     rm -f "{{xdg_config_home}}/mise/config.toml"
 

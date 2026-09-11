@@ -132,7 +132,6 @@ export PATH="${BREW_PREFIX_PATH[unzip]}/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
 # }}}
 
-export CODEX_HOME="${XDG_CONFIG_HOME}/codex"
 export OPENCODE_EXPERIMENTAL_LSP_TOOL=true
 export ENABLE_LSP_TOOL=true # for claude
 

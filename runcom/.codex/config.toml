@@ -1,7 +1,3 @@
-[mcp_servers.sequentialthinking]
-command = "bunx"
-args = ["-y", "@modelcontextprotocol/server-sequential-thinking"]
-
 [mcp_servers.context7]
 url = "https://mcp.context7.com/mcp"
 http_headers = { "CONTEXT7_API_KEY" = "YOUR_API_KEY" }
@@ -9,4 +5,3 @@ http_headers = { "CONTEXT7_API_KEY" = "YOUR_API_KEY" }
 [mcp_servers.serena]
 command = "uvx"
 args = ["--from", "git+https://github.com/oraios/serena", "serena", "start-mcp-server", "--context", "codex", "--open-web-dashboard", "false"]
-
