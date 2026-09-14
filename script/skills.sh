@@ -28,3 +28,12 @@ nubx -y skills add amikai/skills \
     --global \
     --yes \
     --agent pi claude-code codex grok antigravity antigravity-cli
+
+# Install herdr skill (Claude Code only).
+# We normally run Claude as the orchestrator/planner that drives the other
+# agents through herdr, so only claude-code needs the herdr skill.
+nubx -y skills add herdrdev/herdr \
+    --skill herdr \
+    --global \
+    --yes \
+    --agent claude-code
