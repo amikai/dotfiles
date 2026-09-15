@@ -1,0 +1,10 @@
+# Neovim config is a separate repository, cloned by script/neovim.sh
+/config/nvim/
+
+# Tool-generated backups and scratch files
+*.bak.*
+*.tmp.*
+/config/karabiner/automatic_backups/
+
+# Lockfile written by the `skills` CLI at install time
+/skills-lock.json

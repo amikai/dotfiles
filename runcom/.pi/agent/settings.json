@@ -9,7 +9,6 @@
     "npm:pi-web-access",
     "npm:pi-zentui",
     "npm:pi-thinking-steps",
-    "git:https://github.com/mitsuhiko/agent-stuff.git",
-    "git:github.com/amikai/skills"
+    "git:https://github.com/mitsuhiko/agent-stuff.git"
   ]
 }

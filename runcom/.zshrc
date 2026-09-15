@@ -5,7 +5,11 @@ export XDG_DATA_HOME="$HOME/.local/share"
 # }}}
 
 # set some homebrew env variable and set path {{{
-eval $(/opt/homebrew/bin/brew shellenv)
+if [[ -x /opt/homebrew/bin/brew ]]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+elif [[ -x /usr/local/bin/brew ]]; then
+  eval "$(/usr/local/bin/brew shellenv)"
+fi
 # }}}
 
 # general setting {{{
@@ -133,7 +137,6 @@ export PATH="$HOME/.cargo/bin:$PATH"
 # }}}
 
 export OPENCODE_EXPERIMENTAL_LSP_TOOL=true
-export ENABLE_LSP_TOOL=true # for claude
 
 ls() {
     if command -v eza &> /dev/null; then
@@ -240,7 +243,7 @@ x-aws-login() {
   echo "Set AWS_PROFILE=$AWS_PROFILE AWS_REGION=$AWS_REGION"
 }
 
-# -- vim: set foldmethod=marker tw=80 sw=4 ts=4 sts =4 sta nowrap et :
+# -- vim: set foldmethod=marker tw=80 sw=4 ts=4 sts=4 sta nowrap et :
 
 
 # Added by Antigravity CLI installer

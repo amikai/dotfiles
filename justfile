@@ -7,7 +7,7 @@ export DOTFILES_DIR := dotfiles_dir
 # Some tools use XDG_CONFIG_HOME (e.g. Neovim)
 export XDG_CONFIG_HOME := xdg_config_home
 export MISE_GLOBAL_CONFIG_FILE := dotfiles_dir / "config/mise/config.toml"
-export PATH := "/opt/homebrew/bin:" + env_var("PATH")
+export PATH := "/opt/homebrew/bin:/usr/local/bin:" + env_var("PATH")
 
 # List all available recipes
 default:

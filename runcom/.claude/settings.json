@@ -1,7 +1,6 @@
 {
   "env": {
-    "ENABLE_LSP_TOOL": "1",
-    "CLAUDE_DEBUG": "lsp"
+    "ENABLE_LSP_TOOL": "1"
   },
   "permissions": {
     "allow": [
@@ -80,7 +79,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "bash '/Users/amikai/.claude/hooks/herdr-agent-state.sh' session",
+            "command": "bash \"$HOME/.claude/hooks/herdr-agent-state.sh\" session",
             "timeout": 10
           }
         ]

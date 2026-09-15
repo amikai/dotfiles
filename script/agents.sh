@@ -23,11 +23,12 @@ nubx -y skills add mattpocock/skills \
     --yes \
     --agent pi codex grok antigravity antigravity-cli
 
-# Install personal skills
+# Install personal skills (exclude claude-code, which loads amikai/skills as a
+# plugin via the marketplace entry in runcom/.claude/settings.json).
 nubx -y skills add amikai/skills \
     --global \
     --yes \
-    --agent pi claude-code codex grok antigravity antigravity-cli
+    --agent pi codex grok antigravity antigravity-cli
 
 # Install herdr skill (Claude Code only).
 # We normally run Claude as the orchestrator/planner that drives the other
