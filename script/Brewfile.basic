@@ -46,7 +46,7 @@ brew "ripgrep"
 brew "git"
 brew "git-lfs"
 brew "git-extras"
-brew "diff-so-fancy"
+brew "delta"
 
 # Misc CLI tools
 brew "gs"

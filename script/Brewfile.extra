@@ -10,7 +10,6 @@ cask "git-credential-manager"
 cask "thaw"
 
 # Rust CLI utilities
-brew "delta"
 brew "fd"
 brew "eza"
 brew "dust"

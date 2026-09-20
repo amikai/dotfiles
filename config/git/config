@@ -5,17 +5,18 @@
 [core]
     editor = nvim
 	fileMode = false
-    pager = diff-so-fancy | less --tabs=4 -RFX
+	pager = delta
 	commentChar = ";"
 
 [interactive]
-    diffFilter = diff-so-fancy --patch
+	diffFilter = delta --color-only
 
 [color]
     ui = true
 
 [merge]
 	tool = vimdiff
+	conflictStyle = zdiff3
 
 [mergetool]
 	keepBackup = true
@@ -177,3 +178,5 @@ manyFiles = true
 [credential "https://gist.github.com"]
 	helper = 
 	helper = !gh auth git-credential
+[delta]
+	navigate = true
