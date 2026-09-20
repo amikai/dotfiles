@@ -6,3 +6,6 @@ name = "catppuccin"
 
 [ui.toast]
 delivery = "terminal"
+
+[ui.sound]
+enabled = false
