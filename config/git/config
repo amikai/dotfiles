@@ -171,3 +171,9 @@ manyFiles = true
 	# Empty value resets the helper list inherited from system/global scope.
 	helper = 
 	helper = manager
+[credential "https://github.com"]
+	helper = 
+	helper = !gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !gh auth git-credential
