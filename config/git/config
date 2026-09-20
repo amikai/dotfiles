@@ -166,3 +166,8 @@ manyFiles = true
   # And seemingly no changes to your working tree.
   #
     snapshot = !git stash save "snapshot: $(date)" && git stash apply "stash@{0}"
+
+[credential]
+	# Empty value resets the helper list inherited from system/global scope.
+	helper = 
+	helper = manager
