@@ -75,6 +75,9 @@ link-config: link-mise
     ln -sfn "{{dotfiles_dir}}/config/sheldon" "{{xdg_config_home}}/sheldon"
     mkdir -p "{{xdg_config_home}}/opencode"
     ln -sf "{{dotfiles_dir}}/config/opencode/opencode.jsonc" "{{xdg_config_home}}/opencode/opencode.jsonc"
+    # herdr writes sockets and logs into this directory, so link the file only
+    mkdir -p "{{xdg_config_home}}/herdr"
+    ln -sf "{{dotfiles_dir}}/config/herdr/config.toml" "{{xdg_config_home}}/herdr/config.toml"
 
 unlink-config:
     rm -f "{{xdg_config_home}}/ghostty"
@@ -86,6 +89,7 @@ unlink-config:
     rm -f "{{xdg_config_home}}/zed"
     rm -f "{{xdg_config_home}}/sheldon"
     rm -f "{{xdg_config_home}}/opencode/opencode.jsonc"
+    rm -f "{{xdg_config_home}}/herdr/config.toml"
     rm -f "{{xdg_config_home}}/mise/config.toml"
 
 link-mise:
