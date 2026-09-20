@@ -6,3 +6,4 @@ copy-on-select = clipboard
 adjust-cell-height = 20%
 shell-integration-features = sudo,ssh-terminfo,ssh-env
 
+theme = Catppuccin Mocha
