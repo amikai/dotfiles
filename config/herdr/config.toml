@@ -3,3 +3,6 @@ onboarding = false
 [theme]
 # Catppuccin (Mocha) to match ghostty.
 name = "catppuccin"
+
+[ui.toast]
+delivery = "terminal"
