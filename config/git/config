@@ -170,5 +170,4 @@ manyFiles = true
 [credential]
 	# Empty value resets the helper list inherited from system/global scope.
 	helper = 
-	# Pick the helper per platform: macOS Keychain, Git Credential Manager elsewhere.
-	helper = "!f() { if [ \"$(uname -s)\" = Darwin ]; then git credential-osxkeychain \"$@\"; else git credential-manager \"$@\"; fi; }; f"
+	helper = manager
