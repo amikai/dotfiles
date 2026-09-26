@@ -64,7 +64,7 @@ config.cell_width = 1
 config.harfbuzz_features = { 'calt=0', 'clig=0', 'liga=0' }
 
 -- Color scheme can be found here: https://github.com/mbadolato/iTerm2-Color-Schemes/tree/master/wezterm
-config.color_scheme = "nord"
+config.color_scheme = "Catppuccin Mocha"
 
 -- Cursor settings
 config.default_cursor_style = "BlinkingBar"
