@@ -46,6 +46,7 @@ link-runcom:
     mkdir -p "$HOME/.pi/agent"
     ln -sf "{{dotfiles_dir}}/runcom/.pi/agent/settings.json" "$HOME/.pi/agent/settings.json"
     ln -sf "{{dotfiles_dir}}/runcom/.pi/agent/mcp.json" "$HOME/.pi/agent/mcp.json"
+    ln -sf "{{dotfiles_dir}}/runcom/.pi/agent/zentui.json" "$HOME/.pi/agent/zentui.json"
     ln -sf "{{dotfiles_dir}}/runcom/.pi/web-search.json" "$HOME/.pi/web-search.json"
     mkdir -p "$HOME/.hammerspoon"
     ln -sf "{{dotfiles_dir}}/runcom/.hammerspoon/init.lua" "$HOME/.hammerspoon/init.lua"
@@ -63,6 +64,7 @@ unlink-runcom:
     rm -f "$HOME/.codex/config.toml"
     rm -f "$HOME/.pi/agent/settings.json"
     rm -f "$HOME/.pi/agent/mcp.json"
+    rm -f "$HOME/.pi/agent/zentui.json"
     rm -f "$HOME/.pi/web-search.json"
     rm -f "$HOME/.hammerspoon/init.lua"
 

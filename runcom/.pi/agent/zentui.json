@@ -1,0 +1,54 @@
+{
+  "components": {
+    "userMessages": {
+      "enabled": true,
+      "style": "framed",
+      "colorSource": "terminal",
+      "styles": {
+        "framed": {},
+        "framed-copy-friendly": {},
+        "compact": {},
+        "labeled": {}
+      }
+    },
+    "editor": {
+      "codexQuota": false,
+      "enabled": true,
+      "style": "opencode-copy-friendly",
+      "colorSource": "theme",
+      "borderColorMode": "static",
+      "modelLabel": "id",
+      "viewportIndicators": true,
+      "styles": {
+        "opencode": {
+          "metadataFormat": "$model  $provider(  $thinking)(  $fast_mode)(  $codex_quota)",
+          "completionMenu": "palette"
+        },
+        "opencode-copy-friendly": {
+          "metadataFormat": "$model  $provider(  $thinking)(  $fast_mode)(  $codex_quota)",
+          "completionMenu": "palette"
+        },
+        "accent-rail": {
+          "rail": "▎",
+          "asciiRail": "|",
+          "transparent": false
+        },
+        "minimalist": {
+          "pathDisplay": "compact",
+          "contextFormat": "percent",
+          "contextGauge": false,
+          "showSessionName": true,
+          "showTimer": true,
+          "showCost": true,
+          "showCacheHit": false,
+          "showGit": true,
+          "contextThresholds": {
+            "warning": 70,
+            "error": 90
+          },
+          "separator": "dash"
+        }
+      }
+    }
+  }
+}
