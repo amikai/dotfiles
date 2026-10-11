@@ -1,0 +1,45 @@
+# Homebrew casks (macOS only), installed with `brew bundle`.
+# Formulae and Mac App Store apps are declared in config/mise/config.toml.
+#
+# Casks stay with Homebrew instead of mise's `brew-cask:` manager because:
+# - mise leaves casks Homebrew installed alone (`apply` and `upgrade` skip
+#   them), so moving an existing cask means reinstalling it under mise.
+# - Casks mise installs get only mise's receipt, not Homebrew's cask metadata,
+#   so `brew upgrade` and `brew uninstall` no longer see them.
+# - Reinstalling an app bundle can make macOS drop its privacy permissions
+#   (Accessibility for Hammerspoon, Karabiner, CleanShot, PopClip).
+# - mise implements only part of the cask artifact types; services, for
+#   example, are not supported.
+# See https://mise.jdx.dev/bootstrap/packages/brew-cask.html
+
+# Development tools
+cask "git-credential-manager"
+
+# Desktop apps
+cask "hammerspoon"
+cask "karabiner-elements"
+cask "google-gemini"
+cask "antigravity"
+cask "antigravity-cli"
+cask "chatgpt"
+cask "codex"
+cask "claude"
+cask "visual-studio-code"
+cask "zed"
+cask "wezterm"
+cask "iterm2"
+cask "ghostty"
+cask "orbstack"
+cask "fork"
+cask "telegram"
+cask "discord"
+cask "obsidian"
+cask "google-chrome"
+cask "cleanshot"
+cask "popclip"
+
+# Fonts
+cask "font-fira-code-nerd-font"
+cask "font-jetbrains-mono-nerd-font"
+cask "font-hack-nerd-font"
+cask "font-maple-mono-normal-nf-cn"

@@ -27,7 +27,13 @@ if ! command -v just >/dev/null 2>&1; then
     brew install just
 fi
 
-# 4. Hand off to justfile
+# 4. Ensure mise is installed; it installs the remaining packages
+if ! command -v mise >/dev/null 2>&1; then
+    echo "==> Installing mise..."
+    brew install mise
+fi
+
+# 5. Hand off to justfile
 DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 echo "==> Handing off to just..."
 just --justfile "${DOTFILES_DIR}/justfile" --working-directory "${DOTFILES_DIR}" all

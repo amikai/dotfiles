@@ -102,7 +102,7 @@ link-mise:
 
 # --- package installation & setup ---
 
-brew-packages: link-mise brew-update brew-basic brew-extra brew-cleanup mise-install nvim-setup hammerspoon-setup agents-setup
+brew-packages: link-mise brew-update mise-packages post-packages brew-casks brew-cleanup mise-install nvim-setup hammerspoon-setup agents-setup
 
 brew-update:
     brew update
@@ -111,19 +111,21 @@ brew-update:
 brew-cleanup:
     brew cleanup
 
-brew-basic:
+brew-casks:
+    brew bundle --file="{{dotfiles_dir}}/script/Brewfile"
+
+mise-packages: link-mise
+    mise bootstrap packages apply --yes
+
+post-packages: mise-packages
     #!/usr/bin/env bash
     set -euo pipefail
-    brew bundle --file="{{dotfiles_dir}}/script/Brewfile.basic"
     BREW_PREFIX="$(brew --prefix)"
     ln -sf "${BREW_PREFIX}/bin/gsha256sum" "${BREW_PREFIX}/bin/sha256sum"
     if ! grep -qF "${BREW_PREFIX}/bin/zsh" /etc/shells; then
         echo "${BREW_PREFIX}/bin/zsh" | sudo tee -a /etc/shells
         chsh -s "${BREW_PREFIX}/bin/zsh"
     fi
-
-brew-extra:
-    brew bundle --file="{{dotfiles_dir}}/script/Brewfile.extra"
 
 mise-install:
     mise install

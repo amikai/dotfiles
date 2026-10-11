@@ -18,6 +18,107 @@ rust = { version = "latest", components = ["rust-analyzer", "clippy"] }
 [tool_alias]
 aube = "github:aubepkg/aube"
 
+# Packages installed by `mise bootstrap packages apply`. Casks stay in
+# script/Brewfile, installed with `brew bundle`. Some formulae installed
+# with `brew install` are not declared here yet; do not run
+# `mise bootstrap packages prune` until they are, or it will remove them.
+[bootstrap.packages]
+# ===== macOS =====
+# --- basic ---
+# GNU core utilities (those that come with macOS are outdated)
+"brew:coreutils" = { os = "macos" }
+"brew:moreutils" = { os = "macos" }
+"brew:findutils" = { os = "macos" }
+"brew:gnu-sed" = { os = "macos" }
+"brew:gnu-time" = { os = "macos" }
+"brew:gawk" = { os = "macos" }
+"brew:gnu-tar" = { os = "macos" }
+"brew:texinfo" = { os = "macos" }
+"brew:less" = { os = "macos" }
+# Shells
+"brew:bash" = { os = "macos" }
+"brew:bash-completion@2" = { os = "macos" }
+"brew:zsh" = { os = "macos" }
+"brew:sheldon" = { os = "macos" }
+# Development tool manager
+"brew:mise" = { os = "macos" }
+"brew:just" = { os = "macos" }
+# HTTP client tools
+"brew:wget" = { os = "macos" }
+"brew:curl" = { os = "macos" }
+# GnuPG
+"brew:gnupg" = { os = "macos" }
+# Secrets management
+"brew:sops" = { os = "macos" }
+# More recent versions of some macOS tools
+"brew:vim" = { os = "macos" }
+"brew:grep" = { os = "macos" }
+"brew:openssh" = { os = "macos" }
+"brew:screen" = { os = "macos" }
+"brew:php" = { os = "macos" }
+"brew:gmp" = { os = "macos" }
+# Search tools
+"brew:ack" = { os = "macos" }
+"brew:the_silver_searcher" = { os = "macos" }
+"brew:ripgrep" = { os = "macos" }
+# Git
+"brew:git" = { os = "macos" }
+"brew:git-lfs" = { os = "macos" }
+"brew:git-extras" = { os = "macos" }
+"brew:git-delta" = { os = "macos" }
+# Misc CLI tools
+"brew:ghostscript" = { os = "macos" }
+"brew:imagemagick" = { os = "macos" }
+"brew:lua" = { os = "macos" }
+"brew:lynx" = { os = "macos" }
+"brew:p7zip" = { os = "macos" }
+"brew:pigz" = { os = "macos" }
+"brew:pv" = { os = "macos" }
+"brew:unzip" = { os = "macos" }
+"brew:gzip" = { os = "macos" }
+"brew:rename" = { os = "macos" }
+"brew:rlwrap" = { os = "macos" }
+"brew:ssh-copy-id" = { os = "macos" }
+"brew:tree" = { os = "macos" }
+"brew:vbindiff" = { os = "macos" }
+"brew:zopfli" = { os = "macos" }
+# LLVM
+"brew:llvm" = { os = "macos" }
+# Code indexing tools
+"brew:global" = { os = "macos" }
+"brew:cscope" = { os = "macos" }
+"brew:universal-ctags" = { os = "macos" }
+# Network utilities
+"brew:iproute2mac" = { os = "macos" }
+
+# --- extra ---
+# Development tools
+"brew:tmux" = { os = "macos" }
+"brew:tree-sitter-cli" = { os = "macos" }
+"brew:neovim" = { os = "macos" }
+"brew:kubernetes-cli" = { os = "macos" }
+"brew:helm" = { os = "macos" }
+"brew:fzf" = { os = "macos" }
+"brew:gh" = { os = "macos" }
+# Rust CLI utilities
+"brew:fd" = { os = "macos" }
+"brew:eza" = { os = "macos" }
+"brew:dust" = { os = "macos" }
+"brew:procs" = { os = "macos" }
+# Coding assistants
+"brew:herdr" = { os = "macos" }
+"brew:anomalyco/tap/opencode" = { os = "macos" }
+# Mac App Store CLI
+"brew:mas" = { os = "macos" }
+# Mac App Store apps
+"mas:539883307" = { os = "macos" } # LINE
+"mas:1355679052" = { os = "macos" } # Dropover
+"mas:1630034110" = { os = "macos" } # Bob
+
+# ===== Linux =====
+# Reserved for Linux machines; restrict each entry with os = "linux", e.g.
+# "apt:build-essential" = { os = "linux" }
+
 [settings]
 python.uv_venv_auto = "create|source"
 # Use mise's embedded aube installer for npm-backed tools.
