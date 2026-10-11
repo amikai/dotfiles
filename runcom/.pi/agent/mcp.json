@@ -1,0 +1,15 @@
+{
+  "mcpServers": {
+    "mcp-atlassian": {
+      "command": "uvx",
+      "args": [
+        "mcp-atlassian",
+        "--env-file",
+        "/Users/amikai/.config/mcp-atlassian/.env"
+      ]
+    },
+    "gitlab": {
+      "url": "https://gitlab.com/api/v4/mcp"
+    }
+  }
+}
