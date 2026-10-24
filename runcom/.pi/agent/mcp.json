@@ -1,5 +1,9 @@
 {
   "mcpServers": {
+    "semble": {
+      "command": "uvx",
+      "args": ["--from", "semble[mcp]==0.7.0", "semble"]
+    },
     "mcp-atlassian": {
       "command": "uvx",
       "args": [
