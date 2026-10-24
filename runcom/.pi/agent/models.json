@@ -6,66 +6,6 @@
       "apiKey": "$MOXA_OPENAI_API_KEY",
       "models": [
         {
-          "id": "gpt-35-turbo",
-          "name": "gpt-35-turbo",
-          "baseUrl": "https://moxaingress-gaisf-ingress.azurewebsites.net/gpt-35-turbo/v1",
-          "contextWindow": 128000,
-          "maxTokens": 51200,
-          "samplingParams": {
-            "model": "gpt-4o-mini"
-          }
-        },
-        {
-          "id": "gpt-4",
-          "name": "gpt-4",
-          "baseUrl": "https://moxaingress-gaisf-ingress.azurewebsites.net/gpt-4/v1",
-          "contextWindow": 128000,
-          "maxTokens": 51200,
-          "samplingParams": {
-            "model": "gpt-4o"
-          }
-        },
-        {
-          "id": "gpt-4o",
-          "name": "gpt-4o",
-          "baseUrl": "https://moxaingress-gaisf-ingress.azurewebsites.net/gpt-4o/v1",
-          "contextWindow": 128000,
-          "maxTokens": 51200
-        },
-        {
-          "id": "gpt-4o-mini",
-          "name": "gpt-4o-mini",
-          "baseUrl": "https://moxaingress-gaisf-ingress.azurewebsites.net/gpt-4o-mini/v1",
-          "contextWindow": 128000,
-          "maxTokens": 51200
-        },
-        {
-          "id": "gpt-4-1",
-          "name": "gpt-4.1",
-          "baseUrl": "https://moxaingress-gaisf-ingress.azurewebsites.net/gpt-4-1/v1",
-          "contextWindow": 128000,
-          "maxTokens": 51200
-        },
-        {
-          "id": "gpt-4-1-mini",
-          "name": "gpt-4.1-mini",
-          "baseUrl": "https://moxaingress-gaisf-ingress.azurewebsites.net/gpt-4-1-mini/v1",
-          "contextWindow": 128000,
-          "maxTokens": 51200
-        },
-        {
-          "id": "gpt-o3-mini",
-          "name": "gpt-o3-mini",
-          "baseUrl": "https://moxaingress-gaisf-ingress.azurewebsites.net/gpt-o3-mini/v1",
-          "contextWindow": 128000,
-          "maxTokens": 51200,
-          "reasoning": true,
-          "thinkingLevelMap": {
-            "off": null,
-            "minimal": null
-          }
-        },
-        {
           "id": "gpt-5-nano",
           "name": "gpt-5-nano",
           "baseUrl": "https://moxaingress-gaisf-ingress.azurewebsites.net/gpt-5-nano/v1",
@@ -202,28 +142,6 @@
             "off": "none",
             "minimal": null,
             "xhigh": "xhigh"
-          }
-        },
-        {
-          "id": "gemini-2-5-flash",
-          "name": "gemini-2-5-flash",
-          "baseUrl": "https://moxaingress-gaisf-ingress.azurewebsites.net/gemini-2-5-flash/v1",
-          "contextWindow": 128000,
-          "maxTokens": 51200,
-          "reasoning": true,
-          "thinkingLevelMap": {
-            "off": "none"
-          }
-        },
-        {
-          "id": "gemini-2-5-pro",
-          "name": "gemini-2-5-pro",
-          "baseUrl": "https://moxaingress-gaisf-ingress.azurewebsites.net/gemini-2-5-pro/v1",
-          "contextWindow": 128000,
-          "maxTokens": 51200,
-          "reasoning": true,
-          "thinkingLevelMap": {
-            "off": null
           }
         },
         {
