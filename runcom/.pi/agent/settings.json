@@ -18,6 +18,7 @@
     "npm:pi-agent-browser-native",
     "git:github.com/michael-denyer/pstack-claude",
     "npm:@narumitw/pi-btw",
-    "npm:@narumitw/pi-caffeinate"
+    "npm:@narumitw/pi-caffeinate",
+    "npm:@narumitw/pi-herdr"
   ]
 }
