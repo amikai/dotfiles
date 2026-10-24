@@ -1,0 +1,8 @@
+{
+  "browser": {
+    "defaultProfile": {
+      "name": "Default",
+      "policy": "always"
+    }
+  }
+}
