@@ -1,13 +1,21 @@
 {
-  "lastChangelogVersion": "0.85.1",
-  "theme": "dark",
+  "defaultModel": "gemini-4-argon",
+  "defaultProvider": "google",
+  "lastChangelogVersion": "1.4.0",
+  "theme": "prismantis-catppuccin-mocha",
   "defaultThinkingLevel": "high",
+  "retry": {
+    "maxRetries": 50,
+    "maxAgentDelayMs": 256000
+  },
   "packages": [
     "npm:pi-antigravity",
-    "npm:@open-cursor/pi-agent",
     "npm:pi-lsp",
     "npm:pi-web-access",
     "npm:pi-zentui",
-    "npm:pi-thinking-steps"
+    "npm:pi-thinking-steps",
+    "git:github.com/amikai/pi-stuff",
+    "npm:pi-agent-browser-native",
+    "git:github.com/michael-denyer/pstack-claude"
   ]
 }
