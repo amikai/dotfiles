@@ -16,6 +16,8 @@
     "npm:pi-thinking-steps",
     "git:github.com/amikai/pi-stuff",
     "npm:pi-agent-browser-native",
-    "git:github.com/michael-denyer/pstack-claude"
+    "git:github.com/michael-denyer/pstack-claude",
+    "npm:@narumitw/pi-btw",
+    "npm:@narumitw/pi-caffeinate"
   ]
 }
