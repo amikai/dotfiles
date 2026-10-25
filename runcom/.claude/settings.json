@@ -2,6 +2,10 @@
   "env": {
     "ENABLE_LSP_TOOL": "1"
   },
+  "attribution": {
+    "commit": "",
+    "pr": ""
+  },
   "permissions": {
     "allow": [
       "Read",
@@ -67,11 +71,7 @@
       "Bash(gh gist edit *)"
     ]
   },
-  "model": "opus[1m]",
-  "attribution": {
-    "commit": "",
-    "pr": ""
-  },
+  "model": "opus",
   "hooks": {
     "SessionStart": [
       {
@@ -88,7 +88,7 @@
   },
   "statusLine": {
     "type": "command",
-    "command": "input=$(cat); used=$(echo \"$input\" | jq -r '.context_window.used_percentage // empty'); remaining=$(echo \"$input\" | jq -r '.context_window.remaining_percentage // empty'); used_tok=$(echo \"$input\" | jq -r '.context_window.current_usage.input_tokens // empty'); total=$(echo \"$input\" | jq -r '.context_window.context_window_size // empty'); model=$(echo \"$input\" | jq -r '.model.display_name // empty'); out=\"\"; [ -n \"$model\" ] && out=\"$model\"; [ -n \"$used\" ] && out=\"$out | ctx: $(printf '%.0f' \"$used\")% used\"; [ -n \"$remaining\" ] && out=\"$out ($(printf '%.0f' \"$remaining\")% left)\"; [ -n \"$used_tok\" ] && [ -n \"$total\" ] && out=\"$out | tokens: $used_tok / $total\"; echo \"$out\""
+    "command": "bash \"$HOME/.claude/statusline.sh\""
   },
   "enabledPlugins": {
     "clangd-lsp@claude-plugins-official": true,
@@ -99,10 +99,15 @@
     "code-simplifier@claude-plugins-official": true,
     "playground@claude-plugins-official": true,
     "mattpocock-skills@mattpocock": true,
-    "i-have-adhd@i-have-adhd": true,
-    "amikai-skills@amikai-skills": true,
-    "caveman@caveman": true,
-    "humanizer@humanizer": true
+    "drawio@drawio": true,
+    "pilotfish@pilotfish": false,
+    "cc-image-view@cc-mod-image-view": true,
+    "cc-plugin-you-should-know@builtin": true,
+    "cc-skills-golang@samber": true,
+    "ppt-master@ppt-master": true,
+    "pstack@pstack-claude": true,
+    "prismantis@prismantis": true,
+    "model-relay@model-relay": true
   },
   "extraKnownMarketplaces": {
     "mattpocock": {
@@ -111,23 +116,58 @@
         "repo": "mattpocock/skills"
       }
     },
-    "amikai-skills": {
+    "drawio": {
       "source": {
         "source": "github",
-        "repo": "amikai/skills"
+        "repo": "jgraph/drawio-mcp"
       }
     },
-    "caveman": {
+    "pilotfish": {
       "source": {
         "source": "github",
-        "repo": "JuliusBrussee/caveman"
+        "repo": "Nanako0129/pilotfish"
       }
     },
-    "humanizer": {
+    "cc-mod-image-view": {
       "source": {
         "source": "github",
-        "repo": "blader/humanizer"
+        "repo": "GGGODLIN/cc-mod-image-view"
       }
+    },
+    "samber": {
+      "source": {
+        "source": "github",
+        "repo": "samber/cc"
+      }
+    },
+    "ppt-master": {
+      "source": {
+        "source": "github",
+        "repo": "hugohe3/ppt-master"
+      }
+    },
+    "pstack-claude": {
+      "source": {
+        "source": "github",
+        "repo": "michael-denyer/pstack-claude"
+      }
+    },
+    "prismantis": {
+      "source": {
+        "source": "github",
+        "repo": "NahumLitvin/prismantis"
+      }
+    },
+    "model-relay": {
+      "source": {
+        "source": "github",
+        "repo": "cablate/model-relay"
+      }
+    }
+  },
+  "modelSettings": {
+    "claude-opus-5-5": {
+      "effortLevel": "high"
     }
   },
   "tui": "fullscreen",
