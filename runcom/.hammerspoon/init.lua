@@ -3,21 +3,98 @@ hs.loadSpoon("SpoonInstall")
 -- use karabiner to map this hyper key
 local hyper = { "cmd", "alt", "ctrl", "shift" }
 
-local function moveToTargetScreen(win, target_screen)
-    local was_full_screen = win:isFullScreen()
+-- Native fullscreen lives in its own Space and macOS animates in and out of
+-- it. Hammerspoon has no "animation finished" callback, so poll for the state
+-- we need instead of guessing how many seconds the animation takes.
+local function waitFor(label, isReady, onReady)
+    if isReady() then return onReady() end
 
-    if was_full_screen then
-        win:setFullScreen(false)
-        hs.timer.doAfter(0.7, function()
-            if win:id() then
-                win:moveToScreen(target_screen, true, true, 0)
-                hs.timer.doAfter(0.4, function() win:setFullScreen(true) end)
-                win:focus()
-            end
-        end)
-    else
-        win:moveToScreen(target_screen, true, true, 0)
+    local started = hs.timer.secondsSinceEpoch()
+    local poller, deadline
+    poller = hs.timer.waitUntil(isReady, function()
+        deadline:stop()
+        print(string.format("[relocate] %s took %.2fs", label, hs.timer.secondsSinceEpoch() - started))
+        onReady()
+    end, 0.05)
+    deadline = hs.timer.doAfter(3, function()
+        poller:stop()
+        hs.alert.show("timed out waiting for " .. label)
+    end)
+end
+
+local function isAlive(win)
+    return win:id() ~= nil
+end
+
+local function isOnUserSpace(win)
+    if win:isFullScreen() then return false end
+
+    local spaces = hs.spaces.windowSpaces(win)
+    if not spaces or #spaces == 0 then return false end
+    for _, space in ipairs(spaces) do
+        if hs.spaces.spaceType(space) ~= "user" then return false end
     end
+
+    local screen = win:screen()
+    local active = screen and hs.spaces.activeSpaceOnScreen(screen)
+    return active ~= nil and hs.spaces.spaceType(active) == "user"
+end
+
+local function isSettledOn(win, screen)
+    local lastFrame
+    return function()
+        local current = win:screen()
+        if not current or current:id() ~= screen:id() then
+            lastFrame = nil
+            return false
+        end
+        local frame = win:frame()
+        local settled = lastFrame ~= nil and lastFrame:equals(frame)
+        lastFrame = frame
+        return settled
+    end
+end
+
+-- moves: list of { win = hs.window, to = hs.screen }
+local function relocate(moves, noResize, onDone)
+    local function forEachAlive(fn)
+        for _, m in ipairs(moves) do
+            if isAlive(m.win) then fn(m) end
+        end
+    end
+    local function allAlive(check)
+        return function()
+            for _, m in ipairs(moves) do
+                if isAlive(m.win) and not check(m) then return false end
+            end
+            return true
+        end
+    end
+
+    forEachAlive(function(m)
+        m.wasFull = m.win:isFullScreen()
+        if m.wasFull then m.win:setFullScreen(false) end
+    end)
+
+    waitFor("fullscreen exit", allAlive(function(m) return not m.wasFull or isOnUserSpace(m.win) end), function()
+        forEachAlive(function(m)
+            m.win:moveToScreen(m.to, noResize, true, 0)
+            m.isSettled = isSettledOn(m.win, m.to)
+        end)
+
+        waitFor("move", allAlive(function(m) return not m.wasFull or m.isSettled() end), function()
+            forEachAlive(function(m)
+                if m.wasFull then m.win:setFullScreen(true) end
+            end)
+            if onDone then onDone() end
+        end)
+    end)
+end
+
+local function moveToTargetScreen(win, target_screen)
+    relocate({ { win = win, to = target_screen } }, true, function()
+        if isAlive(win) then win:focus() end
+    end)
 end
 
 local function moveToNext()
@@ -79,33 +156,32 @@ end
 
 
 
+-- A fresh filter registers watchers on every running app each time getWindows()
+-- is called, which costs seconds per hotkey press. Keep one filter active for
+-- the whole session so lookups read its cached window list.
+local windowFilter = hs.window.filter.new():keepActive()
+
+local function lastFocusedWindowOn(screen)
+    for _, win in ipairs(windowFilter:getWindows()) do
+        local winScreen = win:screen()
+        if winScreen and winScreen:id() == screen:id() then return win end
+    end
+end
+
 local function swapFocusedBetween(screenA, screenB)
     if not screenA or not screenB then return end
 
-    local winA = hs.window.filter.new():setScreens(screenA:id()):getWindows()[1]
-    local winB = hs.window.filter.new():setScreens(screenB:id()):getWindows()[1]
+    local winA = lastFocusedWindowOn(screenA)
+    local winB = lastFocusedWindowOn(screenB)
 
-    if not winA and not winB then
-        return
-    end
+    local moves = {}
+    if winA then table.insert(moves, { win = winA, to = screenB }) end
+    if winB then table.insert(moves, { win = winB, to = screenA }) end
+    if #moves == 0 then return end
 
-    local fullA = winA and winA:isFullScreen() or false
-    local fullB = winB and winB:isFullScreen() or false
-
-    if fullA then winA:setFullScreen(false) end
-    if fullB then winB:setFullScreen(false) end
-
-    hs.timer.doAfter(0.7, function()
-        if winA then winA:moveToScreen(screenB, false, true, 0) end
-        if winB then winB:moveToScreen(screenA, false, true, 0) end
-
-        hs.timer.doAfter(0.3, function()
-            if fullA and winA then winA:setFullScreen(true) end
-            if fullB and winB then winB:setFullScreen(true) end
-
-            if winA then winA:focus() end
-            hs.alert.show("✅ SWAP FINISH")
-        end)
+    relocate(moves, false, function()
+        if winA and isAlive(winA) then winA:focus() end
+        hs.alert.show("✅ SWAP FINISH")
     end)
 end
 
