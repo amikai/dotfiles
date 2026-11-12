@@ -41,3 +41,6 @@ github = "zsh-users/zsh-autosuggestions"
 # fzf binding from a zvm_after_init hook.
 [plugins.zsh-vi-mode]
 github = "jeffreytse/zsh-vi-mode"
+
+[plugins.zoxide]
+github = "ajeetdsouza/zoxide"
