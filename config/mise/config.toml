@@ -106,6 +106,7 @@ aube = "github:aubepkg/aube"
 "brew:eza" = { os = "macos" }
 "brew:dust" = { os = "macos" }
 "brew:procs" = { os = "macos" }
+"brew:zoxide" = { os = "macos" }
 # Coding assistants
 "brew:herdr" = { os = "macos" }
 "brew:anomalyco/tap/opencode" = { os = "macos" }
