@@ -13,6 +13,8 @@ rust = { version = "latest", components = ["rust-analyzer", "clippy"] }
 "npm:@delance/runtime" = { version = "latest", allow_low_downloads = true }
 # Pi coding agent harness
 "npm:@earendil-works/pi-coding-agent" = { version = "latest", allow_low_downloads = true }
+# TypeScript 7 (native); tsc also serves LSP via `tsc --lsp --stdio`
+"npm:typescript" = "latest"
 
 # mise 2026.9.1's registry still points to jdx/aube and its old signer identity.
 # Use the canonical repository, retaining GitHub artifact attestation checks.
