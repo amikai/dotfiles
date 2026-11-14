@@ -5,9 +5,14 @@ node = "latest"
 bun = "latest"
 nub = "latest"
 aube = "latest"
-go = "latest"
+# Go tools are listed before go itself, so they win on PATH over the copies
+# that go.nvim `go install`s into go's bin directory.
+# gopls has no prebuilt release and is not in the registry, so it stays on the
+# go backend.
 "go:golang.org/x/tools/gopls" = "latest"
-"go:github.com/golangci/golangci-lint/v2/cmd/golangci-lint" = "latest"
+golangci-lint = "latest"
+gotestsum = "latest"
+go = "latest"
 # The mise Rust backend provisions toolchains and components through rustup.
 rust = { version = "latest", components = ["rust-analyzer", "clippy"] }
 # Python language server used by Neovim (delance-langserver), outside Mason.
