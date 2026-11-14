@@ -10,14 +10,8 @@ fi
 
 eval "$(mise activate bash)"
 
-# Install archify skill
-# Note: The `skills` CLI identifies agy as `antigravity-cli` (and `antigravity` for the GUI app).
-nubx -y skills add tt-a1i/archify \
-    --global \
-    --yes \
-    --agent pi claude-code codex grok antigravity antigravity-cli
-
 # Install Cloudflare security-audit skill
+# Note: The `skills` CLI identifies agy as `antigravity-cli` (and `antigravity` for the GUI app).
 nubx -y skills add cloudflare/security-audit-skill \
     --skill security-audit \
     --global \
@@ -26,13 +20,6 @@ nubx -y skills add cloudflare/security-audit-skill \
 
 # Install Matt Pocock skills (exclude claude-code because Claude Code manages Matt's skills via plugins)
 nubx -y skills add mattpocock/skills \
-    --global \
-    --yes \
-    --agent pi codex grok antigravity antigravity-cli
-
-# Install personal skills (exclude claude-code, which loads amikai/skills as a
-# plugin via the marketplace entry in ~/.claude/settings.json).
-nubx -y skills add amikai/skills \
     --global \
     --yes \
     --agent pi codex grok antigravity antigravity-cli
