@@ -106,8 +106,13 @@ pi = { version = "latest", auto_update = "1h", minimum_release_age = "0s", posti
 "brew:neovim" = { os = "macos" }
 "brew:kubernetes-cli" = { os = "macos" }
 "brew:helm" = { os = "macos" }
+# `x-aws-login` in .zshrc calls it.
+"brew:awscli" = { os = "macos" }
 "brew:fzf" = { os = "macos" }
+# gh and glab are also Git's credential helpers for GitHub and GitLab
+# (.config/git/config).
 "brew:gh" = { os = "macos" }
+"brew:glab" = { os = "macos" }
 # Rust CLI utilities
 "brew:fd" = { os = "macos" }
 "brew:eza" = { os = "macos" }
