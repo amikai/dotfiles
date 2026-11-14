@@ -252,7 +252,7 @@ export PATH="$HOME/.local/bin:$PATH"
 source ~/.orbstack/shell/init.zsh 2>/dev/null || :
 
 # >>> grok installer >>>
-export PATH="$HOME/.grok/bin:$PATH"
+# grok itself is a mise tool now; only its completions come from the installer.
 fpath=(~/.grok/completions/zsh $fpath)
 # Rerunning the installer re-adds `compinit -C` here; delete it again.
 # <<< grok installer <<<
@@ -318,12 +318,14 @@ zstyle ':completion:*:manuals' separate-sections true
 zstyle ':completion:*:manuals.(^1*)' insert-sections true
 # }}}
 
+# aube's global bin (`aube bin -g`). It is a static path because aube itself
+# is a mise tool and is not on PATH until mise activates.
+export PATH="$HOME/.local/share/aube/bin:$PATH"
+
 # Activate after PATH customizations so mise selects the runtime versions.
 if command -v mise >/dev/null 2>&1; then
     eval "$(mise activate zsh)"
 fi
-
-export PATH="$(aube bin -g):$PATH"
 
 # Machine-local settings and secrets stay out of the repository.
 [[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
