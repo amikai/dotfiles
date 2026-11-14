@@ -9,7 +9,7 @@ update_nvimrc() {
 }
 
 install_nvim_plugin() {
-    nvim --headless -c 'lua require("lazy").sync()' -c 'quitall'
+    nvim --headless '+Lazy! sync' +qa
 }
 
 update_nvimrc

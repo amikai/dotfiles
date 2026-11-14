@@ -2,6 +2,7 @@
 /home/.config/nvim/
 
 # Tool-generated backups and scratch files
+*.bak
 *.bak.*
 *.tmp.*
 /home/.config/karabiner/automatic_backups/

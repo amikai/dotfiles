@@ -38,6 +38,8 @@ Tools; install them, then run `git clone` again.
 
 Run `bootstrap.sh` in a terminal. Some steps ask for your password: installing
 Homebrew, adding zsh to `/etc/shells`, and casks that ship a `.pkg` installer.
+Sign in to the App Store first: `packages` installs App Store apps, and paid
+apps must already be purchased.
 
 `bootstrap.sh` installs Homebrew (for the casks) if it is missing, installs
 mise to `~/.local/bin` with its [official installer](https://mise.jdx.dev/installing-mise.html)
@@ -45,13 +47,14 @@ if it is missing, trusts `mise.toml`, and runs `mise run setup`. The `setup` tas
 order:
 
 1. `packages`: Homebrew formulae and App Store apps from `[bootstrap.packages]`.
-2. `casks`: the casks in `script/Brewfile`.
-3. `link`: clones nvimrc if it is missing, then links `home/` into `~`.
-4. `login-shell`: makes Homebrew's zsh the login shell.
-5. `tools`: the mise `[tools]`, such as languages, CLIs and language servers.
-6. `services`: the LaunchAgent that updates the coding agent CLIs every hour.
-7. `nvim`: updates nvimrc and syncs its plugins.
-8. `agents`: installs agent skills and the herdr integrations.
+2. `link`: clones nvimrc if it is missing, then links `home/` into `~`.
+3. `login-shell`: makes Homebrew's zsh the login shell.
+4. `tools`: the mise `[tools]`, such as languages, CLIs and language servers.
+5. `services`: the LaunchAgent that updates the coding agent CLIs every hour.
+6. `nvim`: updates nvimrc and syncs its plugins.
+7. `agents`: installs agent skills and the herdr integrations.
+8. `casks`: installs the casks in `script/Brewfile` that are missing. It runs
+   last, so a failing cask does not block the rest.
 
 `setup` stops at the first task that fails. Fix the cause and run
 `mise run setup` again; every task is safe to repeat, and you can also run any
@@ -70,7 +73,9 @@ this repository.
 ### Add a dotfile
 
 Move the file to the same path under `home/`, stage it, and link it. The links
-cover only files that Git tracks, so run `git add` before `link`.
+cover only files that Git tracks, so run `git add` before `link`. The
+directories linked whole (below) are the exception: everything in them shows
+up, tracked or not.
 
 ```sh
 mv ~/.foorc ~/Workspace/dotfiles/home/.foorc
@@ -93,8 +98,8 @@ mise dot apply --prune
 are each one symlink to the whole directory instead of one link per file.
 git, zed and karabiner save a file by replacing it, which turns a per-file link
 into a regular file; nvim is a separate clone. To link another directory whole,
-add it to the `exclude` list of `[dotfile_groups.home]` and add an entry under
-`[dotfiles]` in `home/.config/mise/config.toml`.
+add an entry under `[dotfile_groups.home.entries]` in
+`home/.config/mise/config.toml`.
 
 ### Packages and tools
 
@@ -127,8 +132,8 @@ Give each package one owner, so that two updaters never replace the same files:
 | Neovim plugins | `mise run nvim`, then commit `lazy-lock.json` in nvimrc |
 | Agent skills and herdr plugins | `mise run agents` |
 
-`mise run casks` runs `brew bundle`, which also upgrades outdated casks and can
-quit apps that are running.
+`mise run casks` only installs missing casks (`brew bundle install --no-upgrade`),
+so it never quits a running app to upgrade it.
 
 ### Neovim config
 

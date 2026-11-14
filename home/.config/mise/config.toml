@@ -159,26 +159,16 @@ DISABLE_AUTOUPDATER = "1"
 # Symlinks deployed by `mise dot apply` (`mise run link`). The group links each
 # file that Git tracks, so untracked files and tool scratch files stay
 # unlinked; directories that tools write state into (herdr sockets and logs)
-# get per-file links. The whole-directory links below must be excluded here,
-# because mise rejects an entry declared inside a group's tree.
+# get per-file links.
 [dotfile_groups.home]
 root = "."
 target = "~"
 manifest = "git"
-exclude = [
-    "/.config/ghostty",
-    "/.config/git",
-    "/.config/karabiner",
-    "/.config/nvim",
-    "/.config/sheldon",
-    "/.config/wezterm",
-    "/.config/zed",
-]
 
-# Linked whole: git, zed and karabiner replace their files on write, which
-# would turn per-file links into regular files, and nvim is a separate clone.
-# Without a `source`, each resolves to the same path under dotfiles.root.
-[dotfiles]
+# Linked whole instead of per file: git, zed and karabiner replace their files
+# on write, which would turn per-file links into regular files, and nvim is a
+# separate clone. Group entries are carved out of the per-file walk.
+[dotfile_groups.home.entries]
 "~/.config/ghostty" = { mode = "symlink" }
 "~/.config/git" = { mode = "symlink" }
 "~/.config/karabiner" = { mode = "symlink" }

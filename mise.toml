@@ -12,22 +12,24 @@ DOTFILES_DIR = "{{config_root}}"
 description = "Set up this machine, or bring it in line with the config"
 run = [
     { task = "packages" },
-    { task = "casks" },
     { task = "link" },
     { task = "login-shell" },
     { task = "tools" },
     { task = "services" },
     { task = "nvim" },
     { task = "agents" },
+    { task = "casks" },
 ]
 
 [tasks.packages]
 description = "Install the formulae and App Store apps in [bootstrap.packages]"
 run = "mise bootstrap packages apply --yes"
 
+# Last in setup, so a failing cask (sudo, a conflicting binary) does not block
+# the rest. --no-upgrade: apps with a built-in updater update themselves.
 [tasks.casks]
-description = "Install and upgrade the Homebrew casks in script/Brewfile"
-run = "brew bundle --file=script/Brewfile"
+description = "Install the Homebrew casks in script/Brewfile that are missing"
+run = "brew bundle install --no-upgrade --file=script/Brewfile"
 
 [tasks.link]
 description = "Link the dotfiles under home/ into $HOME"
