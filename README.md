@@ -2,8 +2,7 @@
 
 Setup for an Apple Silicon Mac, driven by [mise](https://mise.jdx.dev). mise
 installs the tools and Homebrew formulae, links the dotfiles, and runs the
-setup tasks. Homebrew itself only installs mise on a new Mac and the casks in
-`script/Brewfile`.
+setup tasks. Homebrew is only needed for the casks in `script/Brewfile`.
 
 ## Layout
 
@@ -40,8 +39,9 @@ Tools; install them, then run `git clone` again.
 Run `bootstrap.sh` in a terminal. Some steps ask for your password: installing
 Homebrew, adding zsh to `/etc/shells`, and casks that ship a `.pkg` installer.
 
-`bootstrap.sh` installs Homebrew and mise if they are missing, trusts
-`mise.toml`, and runs `mise run setup`. The `setup` task runs these tasks in
+`bootstrap.sh` installs Homebrew (for the casks) if it is missing, installs
+mise to `~/.local/bin` with its [official installer](https://mise.jdx.dev/installing-mise.html)
+if it is missing, trusts `mise.toml`, and runs `mise run setup`. The `setup` task runs these tasks in
 order:
 
 1. `packages`: Homebrew formulae and App Store apps from `[bootstrap.packages]`.
@@ -119,7 +119,8 @@ Give each package one owner, so that two updaters never replace the same files:
 | GUI apps with a built-in updater (most casks) | The app itself |
 | App Store apps | The App Store |
 | CLIs that update themselves, such as `agy` | The CLI itself. Keep them out of the Brewfile. |
-| Homebrew formulae, including mise | `mise run upgrade` |
+| mise itself | `mise self-update` |
+| Homebrew formulae | `mise run upgrade` |
 | mise tools | `mise upgrade` |
 | Casks without an updater (fonts, `git-credential-manager`, `codex`, `wezterm`) | `brew upgrade --cask <name>` |
 | Neovim plugins | `mise run nvim`, then commit `lazy-lock.json` in nvimrc |

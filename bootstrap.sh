@@ -22,10 +22,13 @@ if ! command -v brew >/dev/null 2>&1; then
     configure_homebrew
 fi
 
-# 3. Ensure mise is installed; it installs the remaining packages
+# 3. Install mise with its official installer if it is missing. It goes to
+#    ~/.local/bin, updates itself with `mise self-update`, and installs the
+#    remaining packages.
+export PATH="$HOME/.local/bin:$PATH"
 if ! command -v mise >/dev/null 2>&1; then
     echo "==> Installing mise..."
-    brew install mise
+    curl -fsSL https://mise.run | sh
 fi
 
 # 4. Hand off to the tasks in mise.toml

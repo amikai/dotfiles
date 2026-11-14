@@ -45,8 +45,6 @@ aube = "github:aubepkg/aube"
 "brew:bash-completion@2" = { os = "macos" }
 "brew:zsh" = { os = "macos" }
 "brew:sheldon" = { os = "macos" }
-# Development tool manager
-"brew:mise" = { os = "macos" }
 # HTTP client tools
 "brew:wget" = { os = "macos" }
 "brew:curl" = { os = "macos" }
