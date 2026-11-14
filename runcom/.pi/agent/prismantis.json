@@ -1,4 +1,25 @@
 {
+  "enabled": true,
+  "theme": "catppuccin-mocha",
+  "headingStyle": "banner",
+  "tableStyle": "box",
   "promptStyle": "off",
-  "clock": "off"
+  "clock": "off",
+  "toolStyle": "chat",
+  "toolOutput": "full",
+  "taskStyle": "checks",
+  "diffStyle": "card",
+  "pieStyle": "round",
+  "rtl": "auto",
+  "highlightNumbers": true,
+  "highlightPaths": true,
+  "mermaid": true,
+  "mermaidAscii": false,
+  "copyButtons": true,
+  "copyButtonStyle": "inline",
+  "toolRows": true,
+  "diagramHints": true,
+  "issueHint": true,
+  "latex": false,
+  "syncPiTheme": true
 }
