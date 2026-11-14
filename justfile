@@ -22,97 +22,22 @@ sudo:
     sudo -v
     while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
-# Create all symlinks
-link: link-runcom link-config
+# Create the symlinks declared under [dotfiles] in config/mise/config.toml.
+# Stops, without changing anything, if a target is a regular file.
+link: nvim-clone
+    mise dot apply --yes
 
-# Remove all symlinks
-unlink: unlink-runcom unlink-config
+# Remove the symlinks that `just link` created
+unlink:
+    mise dot unapply --yes
 
-# --- runcom links ---
-
-link-runcom:
-    ln -sf "{{dotfiles_dir}}/runcom/.bash_profile" "$HOME/.bash_profile"
-    ln -sf "{{dotfiles_dir}}/runcom/.golangci.yaml" "$HOME/.golangci.yaml"
-    ln -sf "{{dotfiles_dir}}/runcom/.inputrc" "$HOME/.inputrc"
-    ln -sf "{{dotfiles_dir}}/runcom/.zshrc" "$HOME/.zshrc"
-    ln -sf "{{dotfiles_dir}}/runcom/.zprofile" "$HOME/.zprofile"
-    mkdir -p "$HOME/.claude"
-    ln -sf "{{dotfiles_dir}}/runcom/.claude.json" "$HOME/.claude.json"
-    ln -sf "{{dotfiles_dir}}/runcom/.claude/.gitignore" "$HOME/.claude/.gitignore"
-    ln -sf "{{dotfiles_dir}}/runcom/.claude/settings.json" "$HOME/.claude/settings.json"
-    ln -sf "{{dotfiles_dir}}/runcom/.claude/statusline.sh" "$HOME/.claude/statusline.sh"
-    mkdir -p "$HOME/.codex"
-    ln -sf "{{dotfiles_dir}}/runcom/.codex/config.toml" "$HOME/.codex/config.toml"
-    mkdir -p "$HOME/.pi/agent"
-    ln -sf "{{dotfiles_dir}}/runcom/.pi/agent/settings.json" "$HOME/.pi/agent/settings.json"
-    ln -sf "{{dotfiles_dir}}/runcom/.pi/agent/models.json" "$HOME/.pi/agent/models.json"
-    ln -sf "{{dotfiles_dir}}/runcom/.pi/agent/mcp.json" "$HOME/.pi/agent/mcp.json"
-    ln -sf "{{dotfiles_dir}}/runcom/.pi/agent/zentui.json" "$HOME/.pi/agent/zentui.json"
-    ln -sf "{{dotfiles_dir}}/runcom/.pi/agent/prismantis.json" "$HOME/.pi/agent/prismantis.json"
-    mkdir -p "$HOME/.pi/agents"
-    ln -sf "{{dotfiles_dir}}/runcom/.pi/agents/semble-search.md" "$HOME/.pi/agents/semble-search.md"
-    mkdir -p "$HOME/.pi/config/pi-agent-browser-native"
-    ln -sf "{{dotfiles_dir}}/runcom/.pi/config/pi-agent-browser-native/config.json" "$HOME/.pi/config/pi-agent-browser-native/config.json"
-    ln -sf "{{dotfiles_dir}}/runcom/.pi/web-search.json" "$HOME/.pi/web-search.json"
-    mkdir -p "$HOME/.hammerspoon"
-    ln -sf "{{dotfiles_dir}}/runcom/.hammerspoon/init.lua" "$HOME/.hammerspoon/init.lua"
-
-unlink-runcom:
-    rm -f "$HOME/.bash_profile"
-    rm -f "$HOME/.golangci.yaml"
-    rm -f "$HOME/.inputrc"
-    rm -f "$HOME/.zshrc"
-    rm -f "$HOME/.zprofile"
-    rm -f "$HOME/.claude.json"
-    rm -f "$HOME/.claude/.gitignore"
-    rm -f "$HOME/.claude/settings.json"
-    rm -f "$HOME/.claude/statusline.sh"
-    rm -f "$HOME/.codex/config.toml"
-    rm -f "$HOME/.pi/agent/settings.json"
-    rm -f "$HOME/.pi/agent/models.json"
-    rm -f "$HOME/.pi/agent/mcp.json"
-    rm -f "$HOME/.pi/agent/zentui.json"
-    rm -f "$HOME/.pi/agent/prismantis.json"
-    rm -f "$HOME/.pi/agents/semble-search.md"
-    rm -f "$HOME/.pi/config/pi-agent-browser-native/config.json"
-    rm -f "$HOME/.pi/web-search.json"
-    rm -f "$HOME/.hammerspoon/init.lua"
-
-# --- config links ---
-
-link-config: link-mise
-    ln -sfn "{{dotfiles_dir}}/config/ghostty" "{{xdg_config_home}}/ghostty"
-    ln -sfn "{{dotfiles_dir}}/config/git" "{{xdg_config_home}}/git"
-    ln -sfn "{{dotfiles_dir}}/config/karabiner" "{{xdg_config_home}}/karabiner"
-    ln -sfn "{{dotfiles_dir}}/config/nvim" "{{xdg_config_home}}/nvim"
-    ln -sfn "{{dotfiles_dir}}/config/wezterm" "{{xdg_config_home}}/wezterm"
-    ln -sfn "{{dotfiles_dir}}/config/zed" "{{xdg_config_home}}/zed"
-    ln -sfn "{{dotfiles_dir}}/config/sheldon" "{{xdg_config_home}}/sheldon"
-    mkdir -p "{{xdg_config_home}}/opencode"
-    ln -sf "{{dotfiles_dir}}/config/opencode/opencode.jsonc" "{{xdg_config_home}}/opencode/opencode.jsonc"
-    # herdr writes sockets and logs into this directory, so link the file only
-    mkdir -p "{{xdg_config_home}}/herdr"
-    ln -sf "{{dotfiles_dir}}/config/herdr/config.toml" "{{xdg_config_home}}/herdr/config.toml"
-
-unlink-config:
-    rm -f "{{xdg_config_home}}/ghostty"
-    rm -f "{{xdg_config_home}}/git"
-    rm -f "{{xdg_config_home}}/karabiner"
-    rm -f "{{xdg_config_home}}/nvim"
-    rm -f "{{xdg_config_home}}/wezterm"
-    rm -f "{{xdg_config_home}}/zed"
-    rm -f "{{xdg_config_home}}/sheldon"
-    rm -f "{{xdg_config_home}}/opencode/opencode.jsonc"
-    rm -f "{{xdg_config_home}}/herdr/config.toml"
-    rm -f "{{xdg_config_home}}/mise/config.toml"
-
-link-mise:
-    mkdir -p "{{xdg_config_home}}/mise"
-    ln -sf "{{dotfiles_dir}}/config/mise/config.toml" "{{xdg_config_home}}/mise/config.toml"
+# mise refuses to link ~/.config/nvim while its source is missing
+nvim-clone:
+    [ -d "{{dotfiles_dir}}/config/nvim/.git" ] || git clone https://github.com/amikai/nvimrc "{{dotfiles_dir}}/config/nvim"
 
 # --- package installation & setup ---
 
-brew-packages: link-mise brew-update mise-packages post-packages brew-casks brew-cleanup mise-install nvim-setup hammerspoon-setup agents-setup
+brew-packages: brew-update mise-packages post-packages brew-casks brew-cleanup mise-install nvim-setup hammerspoon-setup agents-setup
 
 brew-update:
     brew update
@@ -124,7 +49,9 @@ brew-cleanup:
 brew-casks:
     brew bundle --file="{{dotfiles_dir}}/script/Brewfile"
 
-mise-packages: link-mise
+# Reads the repository config through MISE_GLOBAL_CONFIG_FILE, so it does not
+# wait for `link` (which stops while any target is a regular file)
+mise-packages:
     mise bootstrap packages apply --yes
 
 post-packages: mise-packages
@@ -140,7 +67,7 @@ post-packages: mise-packages
 mise-install:
     mise install
 
-nvim-setup: mise-install
+nvim-setup: mise-install nvim-clone
     mise exec -- "{{dotfiles_dir}}/script/neovim.sh"
 
 hammerspoon-setup:
