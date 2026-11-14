@@ -133,4 +133,5 @@ idiomatic_version_file_enable_tools = ["node", "python", "rust"]
 
 [env]
 # Keep nub on mise's selected Node rather than provisioning a second runtime.
-NODE_EXECUTABLE = { value = "{{ tools.node.path }}/bin/node", tools = true }
+# Guarded: tools.node is absent while node is not installed (e.g. mid-upgrade).
+NODE_EXECUTABLE = { value = "{% if tools.node is defined %}{{ tools.node.path }}/bin/node{% endif %}", tools = true }
