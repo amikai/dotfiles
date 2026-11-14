@@ -1,5 +1,3 @@
-hs.loadSpoon("SpoonInstall")
-
 -- use karabiner to map this hyper key
 local hyper = { "cmd", "alt", "ctrl", "shift" }
 
