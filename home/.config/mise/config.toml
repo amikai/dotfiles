@@ -17,8 +17,6 @@ go = "latest"
 rust = { version = "latest", components = ["rust-analyzer", "clippy"] }
 # Python language server used by Neovim (delance-langserver), outside Mason.
 "npm:@delance/runtime" = { version = "latest", allow_low_downloads = true }
-# Pi coding agent harness
-"npm:@earendil-works/pi-coding-agent" = { version = "latest", allow_low_downloads = true }
 # TypeScript 7 (native); tsc also serves LSP via `tsc --lsp --stdio`
 "npm:typescript" = "latest"
 pnpm = "12.6.0"
@@ -29,6 +27,8 @@ codex = { version = "latest", auto_update = "1h", minimum_release_age = "0s" }
 claude-code = { version = "latest", auto_update = "1h", minimum_release_age = "0s" }
 agy = { version = "latest", auto_update = "1h", minimum_release_age = "0s" }
 grok = { version = "latest", auto_update = "1h", minimum_release_age = "0s" }
+# pi refreshes its extensions after every install, including the hourly ones.
+pi = { version = "latest", auto_update = "1h", minimum_release_age = "0s", postinstall = "pi update --extensions --no-approve" }
 
 # Packages installed by `mise bootstrap packages apply`. Casks stay in
 # script/Brewfile, installed with `brew bundle`. Some formulae installed

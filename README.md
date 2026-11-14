@@ -124,7 +124,7 @@ Give each package one owner, so that two updaters never replace the same files:
 |---|---|
 | GUI apps with a built-in updater (most casks) | The app itself |
 | App Store apps | The App Store |
-| Coding agent CLIs: `codex`, `claude`, `agy`, `grok` | mise's `tool-update` LaunchAgent, every hour (`auto_update = "1h"`), with no minimum release age |
+| Coding agent CLIs: `codex`, `claude`, `agy`, `grok`, `pi` | mise's `tool-update` LaunchAgent, every hour (`auto_update = "1h"`), with no minimum release age. After each pi install, `pi update --extensions` refreshes its extensions. |
 | Other CLIs that update themselves | The CLI itself. Keep them out of the Brewfile. |
 | mise itself | `mise self-update` |
 | mise tools and Homebrew formulae | `mise run upgrade` |
