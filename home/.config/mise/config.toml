@@ -4,7 +4,7 @@ uv = "latest"
 node = "latest"
 bun = "latest"
 nub = "latest"
-aube = { version = "latest", matching = "aube-v" }
+aube = "latest"
 go = "latest"
 "go:golang.org/x/tools/gopls" = "latest"
 "go:github.com/golangci/golangci-lint/v2/cmd/golangci-lint" = "latest"
@@ -24,11 +24,6 @@ codex = { version = "latest", auto_update = "1h", minimum_release_age = "0s" }
 claude-code = { version = "latest", auto_update = "1h", minimum_release_age = "0s" }
 agy = { version = "latest", auto_update = "1h", minimum_release_age = "0s" }
 grok = { version = "latest", auto_update = "1h", minimum_release_age = "0s" }
-
-# mise 2026.9.1's registry still points to jdx/aube and its old signer identity.
-# Use the canonical repository, retaining GitHub artifact attestation checks.
-[tool_alias]
-aube = "github:aubepkg/aube"
 
 # Packages installed by `mise bootstrap packages apply`. Casks stay in
 # script/Brewfile, installed with `brew bundle`. Some formulae installed
