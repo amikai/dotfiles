@@ -1,8 +1,5 @@
 {
-  "defaultModel": "gemini-4-argon",
-  "defaultProvider": "google",
-  "lastChangelogVersion": "1.4.0",
-  "theme": "prismantis-catppuccin-mocha",
+  "lastChangelogVersion": "1.5.2",
   "defaultThinkingLevel": "high",
   "retry": {
     "maxRetries": 50,
@@ -12,13 +9,18 @@
     "npm:pi-antigravity",
     "npm:pi-lsp",
     "npm:pi-web-access",
-    "npm:pi-zentui",
-    "npm:pi-thinking-steps",
-    "git:github.com/amikai/pi-stuff",
     "npm:pi-agent-browser-native",
     "git:github.com/michael-denyer/pstack-claude",
     "npm:@narumitw/pi-btw",
     "npm:@narumitw/pi-caffeinate",
-    "npm:@narumitw/pi-herdr"
-  ]
+    "git:github.com/amikai/pi-stuff",
+    "npm:pi-zentui"
+  ],
+  "deviceId": "ce900bdd-ff6d-40f0-a124-13209e0afb9e",
+  "extensionChangelogVersions": {
+    "{\"source\":\"npm:pi-web-access\",\"scope\":\"user\"}": "0.47.0",
+    "{\"source\":\"npm:pi-agent-browser-native\",\"scope\":\"user\"}": "0.9.23",
+    "{\"source\":\"npm:@narumitw/pi-btw\",\"scope\":\"user\"}": "0.63.8",
+    "{\"source\":\"npm:@narumitw/pi-caffeinate\",\"scope\":\"user\"}": "0.49.15"
+  }
 }
