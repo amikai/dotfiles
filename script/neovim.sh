@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-NVIM_CONFIG_DIR="$DOTFILES_DIR/config/nvim"
+NVIM_CONFIG_DIR="$DOTFILES_DIR/home/.config/nvim"
 
 # The justfile's nvim-clone recipe clones the repository before this runs.
 update_nvimrc() {

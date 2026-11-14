@@ -1,5 +1,5 @@
 # Homebrew casks (macOS only), installed with `brew bundle`.
-# Formulae and Mac App Store apps are declared in config/mise/config.toml.
+# Formulae and Mac App Store apps are declared in home/.config/mise/config.toml.
 #
 # Casks stay with Homebrew instead of mise's `brew-cask:` manager because:
 # - mise leaves casks Homebrew installed alone (`apply` and `upgrade` skip

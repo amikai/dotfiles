@@ -129,37 +129,44 @@ python.uv_venv_auto = "create|source"
 # Use mise's embedded aube installer for npm-backed tools.
 npm.package_manager = "aube"
 idiomatic_version_file_enable_tools = ["node", "python", "rust"]
-# Dotfile group roots resolve from here. Relative `source` paths cannot be used
-# instead: they resolve from ~/.config/mise, where this file is linked, not from
-# the repository. So the repository must be cloned to this path.
-dotfiles.root = "~/Workspace/dotfiles"
+# home/ mirrors $HOME. Group roots and entries without a `source` resolve from
+# here. Relative `source` paths cannot be used instead: they resolve from
+# ~/.config/mise, where this file is linked, not from the repository. So the
+# repository must be cloned to ~/Workspace/dotfiles.
+dotfiles.root = "~/Workspace/dotfiles/home"
 
 [env]
 # Keep nub on mise's selected Node rather than provisioning a second runtime.
 # Guarded: tools.node is absent while node is not installed (e.g. mid-upgrade).
 NODE_EXECUTABLE = { value = "{% if tools.node is defined %}{{ tools.node.path }}/bin/node{% endif %}", tools = true }
 
-# Symlinks deployed by `mise dot apply` (`just link`). Groups link each file
-# that Git tracks, so untracked files and tool scratch files stay unlinked.
-[dotfile_groups.runcom]
-root = "runcom"
-target = "~"
-manifest = "git"
-
-# Directories that tools write state into (herdr sockets and logs)
+# Symlinks deployed by `mise dot apply` (`just link`). The group links each
+# file that Git tracks, so untracked files and tool scratch files stay
+# unlinked; directories that tools write state into (herdr sockets and logs)
 # get per-file links. The whole-directory links below must be excluded here,
 # because mise rejects an entry declared inside a group's tree.
-[dotfile_groups.config]
-root = "config"
-target = "~/.config"
+[dotfile_groups.home]
+root = "."
+target = "~"
 manifest = "git"
-exclude = ["/ghostty", "/git", "/karabiner", "/nvim", "/sheldon", "/wezterm", "/zed"]
+exclude = [
+    "/.config/ghostty",
+    "/.config/git",
+    "/.config/karabiner",
+    "/.config/nvim",
+    "/.config/sheldon",
+    "/.config/wezterm",
+    "/.config/zed",
+]
 
+# Linked whole: git, zed and karabiner replace their files on write, which
+# would turn per-file links into regular files, and nvim is a separate clone.
+# Without a `source`, each resolves to the same path under dotfiles.root.
 [dotfiles]
-"~/.config/ghostty" = { source = "~/Workspace/dotfiles/config/ghostty", mode = "symlink" }
-"~/.config/git" = { source = "~/Workspace/dotfiles/config/git", mode = "symlink" }
-"~/.config/karabiner" = { source = "~/Workspace/dotfiles/config/karabiner", mode = "symlink" }
-"~/.config/nvim" = { source = "~/Workspace/dotfiles/config/nvim", mode = "symlink" }
-"~/.config/sheldon" = { source = "~/Workspace/dotfiles/config/sheldon", mode = "symlink" }
-"~/.config/wezterm" = { source = "~/Workspace/dotfiles/config/wezterm", mode = "symlink" }
-"~/.config/zed" = { source = "~/Workspace/dotfiles/config/zed", mode = "symlink" }
+"~/.config/ghostty" = { mode = "symlink" }
+"~/.config/git" = { mode = "symlink" }
+"~/.config/karabiner" = { mode = "symlink" }
+"~/.config/nvim" = { mode = "symlink" }
+"~/.config/sheldon" = { mode = "symlink" }
+"~/.config/wezterm" = { mode = "symlink" }
+"~/.config/zed" = { mode = "symlink" }

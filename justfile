@@ -6,7 +6,7 @@ xdg_config_home := env_var_or_default("XDG_CONFIG_HOME", env_var("HOME") / ".con
 export DOTFILES_DIR := dotfiles_dir
 # Some tools use XDG_CONFIG_HOME (e.g. Neovim)
 export XDG_CONFIG_HOME := xdg_config_home
-export MISE_GLOBAL_CONFIG_FILE := dotfiles_dir / "config/mise/config.toml"
+export MISE_GLOBAL_CONFIG_FILE := dotfiles_dir / "home/.config/mise/config.toml"
 export PATH := "/opt/homebrew/bin:/usr/local/bin:" + env_var("PATH")
 
 # List all available recipes
@@ -22,7 +22,7 @@ sudo:
     sudo -v
     while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
-# Create the symlinks declared under [dotfiles] in config/mise/config.toml.
+# Create the symlinks declared under [dotfiles] in home/.config/mise/config.toml.
 # Stops, without changing anything, if a target is a regular file.
 link: nvim-clone
     mise dot apply --yes
@@ -33,7 +33,7 @@ unlink:
 
 # mise refuses to link ~/.config/nvim while its source is missing
 nvim-clone:
-    [ -d "{{dotfiles_dir}}/config/nvim/.git" ] || git clone https://github.com/amikai/nvimrc "{{dotfiles_dir}}/config/nvim"
+    [ -d "{{dotfiles_dir}}/home/.config/nvim/.git" ] || git clone https://github.com/amikai/nvimrc "{{dotfiles_dir}}/home/.config/nvim"
 
 # --- package installation & setup ---
 
