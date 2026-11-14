@@ -136,8 +136,6 @@ export PATH="${BREW_PREFIX_PATH[unzip]}/bin:$PATH"
 export PATH="$HOME/.cargo/bin:$PATH"
 # }}}
 
-export OPENCODE_EXPERIMENTAL_LSP_TOOL=true
-
 ls() {
     if command -v eza &> /dev/null; then
         command eza "$@"

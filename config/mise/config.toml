@@ -113,7 +113,6 @@ aube = "github:aubepkg/aube"
 "brew:zoxide" = { os = "macos" }
 # Coding assistants
 "brew:herdr" = { os = "macos" }
-"brew:anomalyco/tap/opencode" = { os = "macos" }
 # Mac App Store CLI
 "brew:mas" = { os = "macos" }
 # Mac App Store apps
