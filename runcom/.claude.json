@@ -1,11 +1,21 @@
 {
   "mcpServers": {
-    "context7": {
-      "type": "http",
-      "url": "https://mcp.context7.com/mcp",
-      "headers": {
-        "CONTEXT7_API_KEY": "YOUR_API_KEY"
-      }
+    "semble": {
+      "command": "uvx",
+      "args": [
+        "--from",
+        "semble[mcp]==0.7.0",
+        "semble"
+      ],
+      "type": "stdio"
+    },
+    "mcp-atlassian": {
+      "command": "uvx",
+      "args": [
+        "mcp-atlassian",
+        "--env-file",
+        "/Users/amikai/.config/mcp-atlassian/.env"
+      ]
     },
     "serena": {
       "type": "stdio",
@@ -19,6 +29,13 @@
         "false"
       ],
       "env": {}
+    },
+    "launchpad": {
+      "type": "http",
+      "url": "https://launchpad.apps.moxa.live/mcp",
+      "oauth": {
+        "clientId": "9ab45744-19d5-43e0-9949-cba70aa29a82"
+      }
     }
   }
 }
