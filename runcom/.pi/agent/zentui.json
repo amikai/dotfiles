@@ -2,23 +2,25 @@
   "components": {
     "userMessages": {
       "enabled": true,
-      "style": "framed",
-      "colorSource": "terminal",
+      "style": "labeled",
+      "colorSource": "theme",
       "styles": {
         "framed": {},
         "framed-copy-friendly": {},
         "compact": {},
         "labeled": {}
-      }
+      },
+      "rail": "|",
+      "asciiRail": "|"
     },
     "editor": {
       "codexQuota": false,
       "enabled": true,
-      "style": "opencode-copy-friendly",
-      "colorSource": "theme",
+      "style": "opencode",
+      "colorSource": "terminal",
       "borderColorMode": "static",
       "modelLabel": "id",
-      "viewportIndicators": true,
+      "viewportIndicators": false,
       "styles": {
         "opencode": {
           "metadataFormat": "$model  $provider(  $thinking)(  $fast_mode)(  $codex_quota)",
@@ -34,7 +36,7 @@
           "transparent": false
         },
         "minimalist": {
-          "pathDisplay": "compact",
+          "pathDisplay": "full",
           "contextFormat": "percent",
           "contextGauge": false,
           "showSessionName": true,
@@ -46,9 +48,116 @@
             "warning": 70,
             "error": 90
           },
-          "separator": "dash"
+          "separator": "dash",
+          "formats": {
+            "bottomLeft": "$session_name$join_sep($git_branch)"
+          }
+        }
+      },
+      "rail": "▌",
+      "asciiRail": "▌"
+    },
+    "toolDisplay": {
+      "enabled": false,
+      "style": "balanced",
+      "registerToolOverrides": {
+        "read": true,
+        "write": true,
+        "edit": true,
+        "bash": true,
+        "grep": true,
+        "find": true,
+        "ls": true
+      },
+      "builtinRendererOverrides": {
+        "bash": true
+      },
+      "customToolOverrides": {},
+      "readOutputMode": "hidden",
+      "searchOutputMode": "hidden",
+      "mcpOutputMode": "summary",
+      "bashOutputMode": "summary",
+      "previewLines": 8,
+      "expandedPreviewMaxLines": 4000,
+      "bashCollapsedLines": 10,
+      "diffViewMode": "split",
+      "diffIndicatorMode": "none",
+      "diffSplitMinWidth": 120,
+      "diffCollapsedLines": 24,
+      "diffWordWrap": true,
+      "showTruncationHints": false
+    },
+    "workingLine": {
+      "enabled": true
+    },
+    "footer": {
+      "style": "starship",
+      "codexQuota": true,
+      "colorSource": "theme",
+      "modelLabel": "id",
+      "styles": {
+        "starship": {
+          "format": "",
+          "responsive": true,
+          "compactFormat": "$cwd$wrap(in $session_name)$wrap(on $git_branch) $git_status$wrap$context$wrap_sep$tokens$wrap_sep($codex_quota)",
+          "compactMaxLines": 3,
+          "separator": "pipe",
+          "contextStyle": "text",
+          "contextThresholds": {
+            "warning": 70,
+            "error": 90
+          },
+          "pathDisplay": {
+            "mode": "basename",
+            "depth": 2
+          },
+          "segments": {
+            "cwd": true,
+            "sessionName": true,
+            "gitBranch": true,
+            "gitStatus": true,
+            "gitCounts": false,
+            "gitCommit": false,
+            "gitMetrics": false,
+            "runtime": true,
+            "modelInfo": false,
+            "context": true,
+            "tokens": true,
+            "cost": true,
+            "sessionDuration": false,
+            "username": false,
+            "time": false,
+            "os": false,
+            "packageVersion": false
+          },
+          "gitBranch": {
+            "maxLength": "full"
+          },
+          "gitCommit": {
+            "hashLength": 7,
+            "onlyDetached": true,
+            "showTag": true
+          },
+          "gitMetrics": {
+            "onlyNonzero": true,
+            "ignoreSubmodules": false
+          },
+          "extensionStatuses": {
+            "defaultPlacement": "right",
+            "placements": {},
+            "colorModes": {}
+          }
         }
       }
+    },
+    "selectorBorders": {
+      "enabled": true,
+      "style": "zentui",
+      "colorSource": "terminal"
+    },
+    "thinkingSteps": {
+      "enabled": true,
+      "mode": "streaming"
     }
   }
 }
