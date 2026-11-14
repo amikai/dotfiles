@@ -145,9 +145,6 @@ NODE_EXECUTABLE = { value = "{% if tools.node is defined %}{{ tools.node.path }}
 root = "runcom"
 target = "~"
 manifest = "git"
-# The apps replace these links with regular files and keep machine-local
-# settings in them, so they are no longer deployed from the repository.
-exclude = [".claude/settings.json", ".codex/config.toml"]
 
 # Directories that tools write state into (herdr sockets and logs)
 # get per-file links. The whole-directory links below must be excluded here,

@@ -31,7 +31,7 @@ nubx -y skills add mattpocock/skills \
     --agent pi codex grok antigravity antigravity-cli
 
 # Install personal skills (exclude claude-code, which loads amikai/skills as a
-# plugin via the marketplace entry in runcom/.claude/settings.json).
+# plugin via the marketplace entry in ~/.claude/settings.json).
 nubx -y skills add amikai/skills \
     --global \
     --yes \
