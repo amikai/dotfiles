@@ -138,6 +138,12 @@ login_shell = "/opt/homebrew/bin/zsh"
 [bootstrap.services.mise-tool-update]
 builtin = "tool-update"
 
+# The Neovim config is its own repository, cloned straight into place.
+# `mise run nvim` clones it if missing and fast-forwards it otherwise; a
+# checkout with local changes (an uncommitted lazy-lock.json) is skipped.
+[bootstrap.repos]
+"~/.config/nvim" = { url = "https://github.com/amikai/nvimrc" }
+
 [settings]
 python.uv_venv_auto = "create|source"
 # Use mise's embedded aube installer for npm-backed tools.
@@ -166,13 +172,12 @@ target = "~"
 manifest = "git"
 
 # Linked whole instead of per file: git, zed and karabiner replace their files
-# on write, which would turn per-file links into regular files, and nvim is a
-# separate clone. Group entries are carved out of the per-file walk.
+# on write, which would turn per-file links into regular files. Group entries
+# are carved out of the per-file walk.
 [dotfile_groups.home.entries]
 "~/.config/ghostty" = { mode = "symlink" }
 "~/.config/git" = { mode = "symlink" }
 "~/.config/karabiner" = { mode = "symlink" }
-"~/.config/nvim" = { mode = "symlink" }
 "~/.config/sheldon" = { mode = "symlink" }
 "~/.config/wezterm" = { mode = "symlink" }
 "~/.config/zed" = { mode = "symlink" }

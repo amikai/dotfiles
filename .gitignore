@@ -1,6 +1,3 @@
-# Neovim config is a separate repository, cloned by script/neovim.sh
-/home/.config/nvim/
-
 # Tool-generated backups and scratch files
 *.bak
 *.bak.*

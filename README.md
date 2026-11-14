@@ -12,12 +12,12 @@ setup tasks. Homebrew is only needed for the casks in `script/Brewfile`.
 | `home/.config/mise/config.toml` | The global mise config: tools, Homebrew formulae, App Store apps, the login shell and the dotfile links. It is linked to `~/.config/mise/config.toml` like any other dotfile. |
 | `mise.toml` | The setup tasks (`mise run setup`, `mise run link`, ...). |
 | `script/Brewfile` | Homebrew casks: GUI apps and fonts. |
-| `script/neovim.sh`, `script/agents.sh` | Helpers that the `nvim` and `agents` tasks run. |
+| `script/agents.sh` | The helper that the `agents` task runs. |
 | `bootstrap.sh` | The entry point for a new Mac. |
 
 The Neovim config is a separate repository,
-[amikai/nvimrc](https://github.com/amikai/nvimrc). It is cloned into
-`home/.config/nvim/`, which this repository ignores.
+[amikai/nvimrc](https://github.com/amikai/nvimrc), cloned straight into
+`~/.config/nvim` through `[bootstrap.repos]` in the global mise config.
 
 ## First install
 
@@ -47,11 +47,11 @@ if it is missing, trusts `mise.toml`, and runs `mise run setup`. The `setup` tas
 order:
 
 1. `packages`: Homebrew formulae and App Store apps from `[bootstrap.packages]`.
-2. `link`: clones nvimrc if it is missing, then links `home/` into `~`.
+2. `link`: links `home/` into `~`.
 3. `login-shell`: makes Homebrew's zsh the login shell.
 4. `tools`: the mise `[tools]`, such as languages, CLIs and language servers.
 5. `services`: the LaunchAgent that updates the coding agent CLIs every hour.
-6. `nvim`: updates nvimrc and syncs its plugins.
+6. `nvim`: clones or fast-forwards nvimrc, then syncs its plugins.
 7. `agents`: installs agent skills and the herdr integrations.
 8. `casks`: installs the casks in `script/Brewfile` that are missing. It runs
    last, so a failing cask does not block the rest.
@@ -94,10 +94,10 @@ mise dot apply --prune
 
 ### Directories linked whole
 
-`~/.config/ghostty`, `git`, `karabiner`, `nvim`, `sheldon`, `wezterm` and `zed`
+`~/.config/ghostty`, `git`, `karabiner`, `sheldon`, `wezterm` and `zed`
 are each one symlink to the whole directory instead of one link per file.
 git, zed and karabiner save a file by replacing it, which turns a per-file link
-into a regular file; nvim is a separate clone. To link another directory whole,
+into a regular file. To link another directory whole,
 add an entry under `[dotfile_groups.home.entries]` in
 `home/.config/mise/config.toml`.
 
@@ -137,9 +137,9 @@ so it never quits a running app to upgrade it.
 
 ### Neovim config
 
-Edit `~/.config/nvim` and commit in that directory: it is the nvimrc
-repository, not this one. `mise run nvim` pulls nvimrc with `--ff-only` and
-fails if the local copy has diverged.
+`~/.config/nvim` is the nvimrc repository itself: edit it and commit there.
+`mise run nvim` fast-forwards it, but skips it while it has local changes, so
+commit `lazy-lock.json` after a plugin sync or the config stops updating.
 
 ### Check for drift
 
@@ -156,7 +156,6 @@ brew bundle check --file=script/Brewfile  # casks
 | `setup` | Runs the eight tasks above, in order. |
 | `link` / `unlink` | Creates or removes the dotfile links. |
 | `upgrade` | Upgrades the mise tools and the Homebrew formulae. |
-| `nvim-clone` | Clones nvimrc if it is missing. `link` and `nvim` run it first. |
 
 `mise tasks` lists every task with its description.
 

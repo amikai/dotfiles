@@ -33,16 +33,11 @@ run = "brew bundle install --no-upgrade --file=script/Brewfile"
 
 [tasks.link]
 description = "Link the dotfiles under home/ into $HOME"
-depends = ["nvim-clone"]
 run = "mise dot apply --yes"
 
 [tasks.unlink]
 description = "Remove the links that the link task created"
 run = "mise dot unapply --yes"
-
-[tasks.nvim-clone]
-description = "Clone the Neovim config, which mise needs before it links ~/.config/nvim"
-run = "[ -d home/.config/nvim/.git ] || git clone https://github.com/amikai/nvimrc home/.config/nvim"
 
 [tasks.login-shell]
 description = "Make Homebrew's zsh the login shell ([bootstrap.user])"
@@ -57,11 +52,13 @@ description = "Install the background services in [bootstrap.services] (hourly t
 run = "mise bootstrap services apply --yes"
 
 # `mise exec` starts a fresh mise, which reads the global config even when this
-# run began before `link` linked it.
+# run began before `link` linked it. `Lazy!` waits for the sync to finish.
 [tasks.nvim]
-description = "Update the Neovim config and sync its plugins"
-depends = ["nvim-clone"]
-run = "mise exec -- script/neovim.sh"
+description = "Clone or fast-forward the Neovim config ([bootstrap.repos]) and sync its plugins"
+run = [
+    "mise bootstrap repos update --skip-dirty --yes",
+    "mise exec -- nvim --headless '+Lazy! sync' +qa",
+]
 
 [tasks.agents]
 description = "Install agent skills and herdr integrations"
