@@ -19,9 +19,6 @@ fi
 # Prompt
 PS1="\e[0;32m\u\e[m@\e[0;34m\h\e[m \e[0;33m\w\e[m \n> "
 
-# Added by Antigravity CLI installer
-export PATH="$HOME/.local/bin:$PATH"
-
 if command -v mise >/dev/null 2>&1; then
     eval "$(mise activate bash)"
 fi

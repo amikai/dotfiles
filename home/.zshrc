@@ -5,6 +5,10 @@ export XDG_DATA_HOME="$HOME/.local/share"
 # }}}
 
 # set some homebrew env variable and set path {{{
+# Keep each directory once in PATH: the lines below add directories that
+# .zprofile or a parent shell already added. The flag is set on both names
+# because zsh applies it by the name that is assigned to.
+typeset -U path PATH
 if [[ -x /opt/homebrew/bin/brew ]]; then
   eval "$(/opt/homebrew/bin/brew shellenv)"
 elif [[ -x /usr/local/bin/brew ]]; then
@@ -89,47 +93,19 @@ if (( ${+commands[fzf]} )); then
 fi
 # }}}
 
-declare -A BREW_PREFIX_PATH
-
 # set c compiler {{{
-BREW_PREFIX_PATH[llvm]="${HOMEBREW_PREFIX}/opt/llvm"
-export CC="${BREW_PREFIX_PATH[llvm]}/bin/clang"
-export CXX="${BREW_PREFIX_PATH[llvm]}/bin/clang++"
+export CC="${HOMEBREW_PREFIX}/opt/llvm/bin/clang"
+export CXX="${HOMEBREW_PREFIX}/opt/llvm/bin/clang++"
 # }}}
 
-# some basic utility {{{
-BREW_PREFIX_PATH[coreutils]="${HOMEBREW_PREFIX}/opt/coreutils"
-export PATH="${BREW_PREFIX_PATH[coreutils]}/libexec/gnubin:$PATH"
-
-BREW_PREFIX_PATH[findutils]="${HOMEBREW_PREFIX}/opt/findutils"
-export PATH="${BREW_PREFIX_PATH[findutils]}/libexec/gnubin:$PATH"
-
-BREW_PREFIX_PATH[grep]="${HOMEBREW_PREFIX}/opt/grep"
-export PATH="${BREW_PREFIX_PATH[grep]}/libexec/gnubin:$PATH"
-
-BREW_PREFIX_PATH[sed]="${HOMEBREW_PREFIX}/opt/gnu-sed"
-export PATH="${BREW_PREFIX_PATH[sed]}/libexec/gnubin:$PATH"
-
-BREW_PREFIX_PATH[awk]="${HOMEBREW_PREFIX}/opt/gawk"
-export PATH="${BREW_PREFIX_PATH[awk]}/libexec/gnubin:$PATH"
-
-BREW_PREFIX_PATH[tar]="${HOMEBREW_PREFIX}/opt/gnu-tar"
-export PATH="${BREW_PREFIX_PATH[tar]}/libexec/gnubin:$PATH"
-
-# Add to $PATH is not work, because time is built-in command
-BREW_PREFIX_PATH[time]="${HOMEBREW_PREFIX}/opt/gnu-time/libexec/gnubin"
-
-BREW_PREFIX_PATH[curl]="${HOMEBREW_PREFIX}/opt/curl"
-export PATH="${BREW_PREFIX_PATH[curl]}/bin:$PATH"
-# }}}
-
-# zip tools {{{
-BREW_PREFIX_PATH[zip]="${HOMEBREW_PREFIX}/opt/zip"
-export PATH="${BREW_PREFIX_PATH[zip]}/bin:$PATH"
-
-BREW_PREFIX_PATH[unzip]="${HOMEBREW_PREFIX}/opt/unzip"
-export PATH="${BREW_PREFIX_PATH[unzip]}/bin:$PATH"
-
+# GNU tools and Homebrew's curl and unzip, ahead of the macOS ones {{{
+() {
+  local pkg
+  for pkg in coreutils findutils grep gnu-sed gawk gnu-tar; do
+    path=("${HOMEBREW_PREFIX}/opt/${pkg}/libexec/gnubin" $path)
+  done
+}
+path=("${HOMEBREW_PREFIX}/opt/unzip/bin" "${HOMEBREW_PREFIX}/opt/curl/bin" $path)
 # }}}
 
 # rust {{{
@@ -144,11 +120,13 @@ ls() {
     fi
 }
 
+# `time` is a shell keyword, so PATH cannot select GNU time; call it by path.
 xtime() {
-    if [ -f "$BREW_PREFIX_PATH[time]/time" ]; then
-        command "${HOMEBREW_PREFIX}/opt/gnu-time/libexec/gnubin/time" "$@"
-    elif [ -f "/usr/bin/time" ]; then
-        command "/usr/bin/time" "$@"
+    local gnu_time="${HOMEBREW_PREFIX}/opt/gnu-time/libexec/gnubin/time"
+    if [[ -x $gnu_time ]]; then
+        command "$gnu_time" "$@"
+    elif [[ -x /usr/bin/time ]]; then
+        command /usr/bin/time "$@"
     else
         time "$@"
     fi
@@ -244,7 +222,8 @@ x-aws-login() {
 # -- vim: set foldmethod=marker tw=80 sw=4 ts=4 sts=4 sta nowrap et :
 
 
-# Added by Antigravity CLI installer
+# mise's official installer puts the binary here. .zprofile adds it for login
+# shells; this line covers interactive shells that are not login shells.
 export PATH="$HOME/.local/bin:$PATH"
 
 # Added by OrbStack: command-line tools and integration
