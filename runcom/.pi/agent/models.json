@@ -6,106 +6,6 @@
       "apiKey": "$MOXA_OPENAI_API_KEY",
       "models": [
         {
-          "id": "gpt-5-nano",
-          "name": "gpt-5-nano",
-          "baseUrl": "https://moxaingress-gaisf-ingress.azurewebsites.net/gpt-5-nano/v1",
-          "contextWindow": 128000,
-          "maxTokens": 128000,
-          "reasoning": true,
-          "thinkingLevelMap": {
-            "off": "minimal"
-          }
-        },
-        {
-          "id": "gpt-5-mini",
-          "name": "gpt-5-mini",
-          "baseUrl": "https://moxaingress-gaisf-ingress.azurewebsites.net/gpt-5-mini/v1",
-          "contextWindow": 128000,
-          "maxTokens": 128000,
-          "reasoning": true,
-          "thinkingLevelMap": {
-            "off": "minimal"
-          }
-        },
-        {
-          "id": "gpt-5-chat",
-          "name": "gpt-5-chat",
-          "baseUrl": "https://moxaingress-gaisf-ingress.azurewebsites.net/gpt-5-chat/v1",
-          "contextWindow": 128000,
-          "maxTokens": 51200
-        },
-        {
-          "id": "gpt-5",
-          "name": "gpt-5",
-          "baseUrl": "https://moxaingress-gaisf-ingress.azurewebsites.net/gpt-5/v1",
-          "contextWindow": 128000,
-          "maxTokens": 51200,
-          "reasoning": true,
-          "thinkingLevelMap": {
-            "off": "minimal"
-          }
-        },
-        {
-          "id": "gpt-5-1",
-          "name": "gpt-5-1",
-          "baseUrl": "https://moxaingress-gaisf-ingress.azurewebsites.net/gpt-5-1/v1",
-          "contextWindow": 128000,
-          "maxTokens": 51200,
-          "reasoning": true,
-          "thinkingLevelMap": {
-            "off": "none"
-          }
-        },
-        {
-          "id": "gpt-5-2",
-          "name": "gpt-5-2",
-          "baseUrl": "https://moxaingress-gaisf-ingress.azurewebsites.net/gpt-5-2/v1",
-          "contextWindow": 128000,
-          "maxTokens": 128000,
-          "reasoning": true,
-          "thinkingLevelMap": {
-            "off": "none",
-            "xhigh": "xhigh"
-          }
-        },
-        {
-          "id": "gpt-5-1-codex",
-          "name": "gpt-5-1-codex",
-          "baseUrl": "https://moxaingress-gaisf-ingress.azurewebsites.net/gpt-5-1-codex/v1",
-          "contextWindow": 128000,
-          "maxTokens": 51200,
-          "reasoning": true,
-          "thinkingLevelMap": {
-            "off": "none",
-            "minimal": null
-          }
-        },
-        {
-          "id": "gpt-5-3-codex",
-          "name": "gpt-5-3-codex",
-          "baseUrl": "https://moxaingress-gaisf-ingress.azurewebsites.net/gpt-5-3-codex/v1",
-          "contextWindow": 128000,
-          "maxTokens": 51200,
-          "reasoning": true,
-          "thinkingLevelMap": {
-            "off": "none",
-            "minimal": null,
-            "xhigh": "xhigh"
-          }
-        },
-        {
-          "id": "gpt-5-4",
-          "name": "gpt-5-4",
-          "baseUrl": "https://moxaingress-gaisf-ingress.azurewebsites.net/gpt-5-4/v1",
-          "contextWindow": 128000,
-          "maxTokens": 51200,
-          "reasoning": true,
-          "thinkingLevelMap": {
-            "off": "none",
-            "xhigh": "xhigh"
-          }
-        },
-        {
           "id": "gpt-5-6-sol",
           "name": "gpt-5-6-sol",
           "baseUrl": "https://moxaingress-gaisf-ingress.azurewebsites.net/gpt-5-6-sol/v1",
@@ -145,43 +45,56 @@
           }
         },
         {
-          "id": "gemini-3-pro",
-          "name": "gemini-3-pro",
-          "baseUrl": "https://moxaingress-gaisf-ingress.azurewebsites.net/gemini-3-pro/v1",
-          "contextWindow": 128000,
-          "maxTokens": 51200,
-          "samplingParams": {
-            "model": "gemini-3-1-pro"
-          },
-          "reasoning": true,
-          "thinkingLevelMap": {
-            "off": null
-          }
-        },
-        {
-          "id": "gemini-3-1-pro",
-          "name": "gemini-3-1-pro",
-          "baseUrl": "https://moxaingress-gaisf-ingress.azurewebsites.net/gemini-3-1-pro/v1",
+          "id": "gpt-6-sol",
+          "name": "gpt-6-sol",
+          "baseUrl": "https://moxaingress-gaisf-ingress.azurewebsites.net/gpt-6-sol/v1",
           "contextWindow": 128000,
           "maxTokens": 51200,
           "reasoning": true,
           "thinkingLevelMap": {
-            "off": null
+            "off": "none",
+            "minimal": null,
+            "xhigh": "xhigh"
           }
         },
         {
-          "id": "grok-4-1-fast-non-reasoning",
-          "name": "grok-4-1-fast-non-reasoning",
-          "baseUrl": "https://moxaingress-gaisf-ingress.azurewebsites.net/grok-4-1-fast-non-reasoning/v1",
+          "id": "gpt-6-1-sol",
+          "name": "gpt-6-1-sol",
+          "baseUrl": "https://moxaingress-gaisf-ingress.azurewebsites.net/gpt-6-1-sol/v1",
           "contextWindow": 128000,
-          "maxTokens": 51200
+          "maxTokens": 51200,
+          "reasoning": true,
+          "thinkingLevelMap": {
+            "off": null,
+            "minimal": null,
+            "xhigh": "xhigh"
+          }
         },
         {
-          "id": "grok-4-1-fast-reasoning",
-          "name": "grok-4-1-fast-reasoning",
-          "baseUrl": "https://moxaingress-gaisf-ingress.azurewebsites.net/grok-4-1-fast-reasoning/v1",
+          "id": "gpt-6-astra",
+          "name": "gpt-6-astra",
+          "baseUrl": "https://moxaingress-gaisf-ingress.azurewebsites.net/gpt-6-astra/v1",
           "contextWindow": 128000,
-          "maxTokens": 51200
+          "maxTokens": 51200,
+          "reasoning": true,
+          "thinkingLevelMap": {
+            "off": null,
+            "minimal": null,
+            "xhigh": "xhigh"
+          }
+        },
+        {
+          "id": "gpt-6-luna",
+          "name": "gpt-6-luna",
+          "baseUrl": "https://moxaingress-gaisf-ingress.azurewebsites.net/gpt-6-luna/v1",
+          "contextWindow": 128000,
+          "maxTokens": 51200,
+          "reasoning": true,
+          "thinkingLevelMap": {
+            "off": "none",
+            "minimal": null,
+            "xhigh": "xhigh"
+          }
         }
       ]
     }
