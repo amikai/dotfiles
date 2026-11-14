@@ -97,7 +97,6 @@ aube = "github:aubepkg/aube"
 
 # --- extra ---
 # Development tools
-"brew:tmux" = { os = "macos" }
 "brew:tree-sitter-cli" = { os = "macos" }
 "brew:neovim" = { os = "macos" }
 "brew:kubernetes-cli" = { os = "macos" }
