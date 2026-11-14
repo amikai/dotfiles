@@ -49,8 +49,9 @@ order:
 3. `link`: clones nvimrc if it is missing, then links `home/` into `~`.
 4. `login-shell`: makes Homebrew's zsh the login shell.
 5. `tools`: the mise `[tools]`, such as languages, CLIs and language servers.
-6. `nvim`: updates nvimrc and syncs its plugins.
-7. `agents`: installs agent skills and the herdr integrations.
+6. `services`: the LaunchAgent that updates the coding agent CLIs every hour.
+7. `nvim`: updates nvimrc and syncs its plugins.
+8. `agents`: installs agent skills and the herdr integrations.
 
 `setup` stops at the first task that fails. Fix the cause and run
 `mise run setup` again; every task is safe to repeat, and you can also run any
@@ -118,11 +119,11 @@ Give each package one owner, so that two updaters never replace the same files:
 |---|---|
 | GUI apps with a built-in updater (most casks) | The app itself |
 | App Store apps | The App Store |
-| CLIs that update themselves, such as `agy` | The CLI itself. Keep them out of the Brewfile. |
+| Coding agent CLIs: `codex`, `claude`, `agy`, `grok` | mise's `tool-update` LaunchAgent, every hour (`auto_update = "1h"`), with no minimum release age |
+| Other CLIs that update themselves | The CLI itself. Keep them out of the Brewfile. |
 | mise itself | `mise self-update` |
-| Homebrew formulae | `mise run upgrade` |
-| mise tools | `mise upgrade` |
-| Casks without an updater (fonts, `git-credential-manager`, `codex`, `wezterm`) | `brew upgrade --cask <name>` |
+| mise tools and Homebrew formulae | `mise run upgrade` |
+| Casks without an updater (fonts, `git-credential-manager`, `wezterm`) | `brew upgrade --cask <name>` |
 | Neovim plugins | `mise run nvim`, then commit `lazy-lock.json` in nvimrc |
 | Agent skills and herdr plugins | `mise run agents` |
 
@@ -147,9 +148,9 @@ brew bundle check --file=script/Brewfile  # casks
 
 | Task | What it does |
 |---|---|
-| `setup` | Runs the seven tasks above, in order. |
+| `setup` | Runs the eight tasks above, in order. |
 | `link` / `unlink` | Creates or removes the dotfile links. |
-| `upgrade` | Upgrades the Homebrew formulae from `[bootstrap.packages]`. |
+| `upgrade` | Upgrades the mise tools and the Homebrew formulae. |
 | `nvim-clone` | Clones nvimrc if it is missing. `link` and `nvim` run it first. |
 
 `mise tasks` lists every task with its description.

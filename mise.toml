@@ -16,6 +16,7 @@ run = [
     { task = "link" },
     { task = "login-shell" },
     { task = "tools" },
+    { task = "services" },
     { task = "nvim" },
     { task = "agents" },
 ]
@@ -49,6 +50,10 @@ run = "mise bootstrap user apply --yes"
 description = "Install the [tools] in the global config"
 run = "mise install"
 
+[tasks.services]
+description = "Install the background services in [bootstrap.services] (hourly tool updates)"
+run = "mise bootstrap services apply --yes"
+
 # `mise exec` starts a fresh mise, which reads the global config even when this
 # run began before `link` linked it.
 [tasks.nvim]
@@ -61,5 +66,8 @@ description = "Install agent skills and herdr integrations"
 run = "mise exec -- script/agents.sh"
 
 [tasks.upgrade]
-description = "Upgrade the formulae installed from [bootstrap.packages]"
-run = "mise bootstrap packages upgrade --yes"
+description = "Upgrade the mise tools and the Homebrew formulae (App Store apps update themselves)"
+run = [
+    "mise upgrade",
+    "mise bootstrap packages upgrade --manager brew --yes",
+]

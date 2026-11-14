@@ -17,6 +17,13 @@ rust = { version = "latest", components = ["rust-analyzer", "clippy"] }
 # TypeScript 7 (native); tsc also serves LSP via `tsc --lsp --stdio`
 "npm:typescript" = "latest"
 pnpm = "12.6.0"
+# Coding agent CLIs. mise owns their updates: it checks every hour and takes a
+# new release right away instead of waiting out the default 24h minimum
+# release age, which still applies to every other tool.
+codex = { version = "latest", auto_update = "1h", minimum_release_age = "0s" }
+claude-code = { version = "latest", auto_update = "1h", minimum_release_age = "0s" }
+agy = { version = "latest", auto_update = "1h", minimum_release_age = "0s" }
+grok = { version = "latest", auto_update = "1h", minimum_release_age = "0s" }
 
 # mise 2026.9.1's registry still points to jdx/aube and its old signer identity.
 # Use the canonical repository, retaining GitHub artifact attestation checks.
@@ -125,6 +132,12 @@ aube = "github:aubepkg/aube"
 [bootstrap.user]
 login_shell = "/opt/homebrew/bin/zsh"
 
+# A LaunchAgent that checks the tools with `auto_update` once an hour, so they
+# update without a shell prompt or a launch waiting on it. Installed by
+# `mise bootstrap services apply` (`mise run services`).
+[bootstrap.services.mise-tool-update]
+builtin = "tool-update"
+
 [settings]
 python.uv_venv_auto = "create|source"
 # Use mise's embedded aube installer for npm-backed tools.
@@ -140,6 +153,8 @@ dotfiles.root = "~/Workspace/dotfiles/home"
 # Keep nub on mise's selected Node rather than provisioning a second runtime.
 # Guarded: tools.node is absent while node is not installed (e.g. mid-upgrade).
 NODE_EXECUTABLE = { value = "{% if tools.node is defined %}{{ tools.node.path }}/bin/node{% endif %}", tools = true }
+# mise updates Claude Code (see [tools]); stop its own updater from competing.
+DISABLE_AUTOUPDATER = "1"
 
 # Symlinks deployed by `mise dot apply` (`mise run link`). The group links each
 # file that Git tracks, so untracked files and tool scratch files stay
