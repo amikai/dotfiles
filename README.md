@@ -144,10 +144,13 @@ commit `lazy-lock.json` after a plugin sync or the config stops updating.
 ### Check for drift
 
 ```sh
-mise dot status                           # dotfile links
-mise bootstrap packages status            # formulae and App Store apps
-brew bundle check --file=script/Brewfile  # casks
+mise dot status                                        # dotfile links
+mise bootstrap packages status                         # formulae and App Store apps
+brew bundle check --no-upgrade --file=script/Brewfile  # casks
 ```
+
+`--no-upgrade` keeps an outdated cask from counting as drift: `mise run casks`
+does not upgrade casks either.
 
 ## Tasks
 
