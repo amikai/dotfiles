@@ -1,0 +1,65 @@
+# How to set up this machine from the repository: `mise run setup`.
+# What the machine has (tools, packages, dotfiles, login shell) is declared in
+# the global config, home/.config/mise/config.toml.
+
+[env]
+# Child mise processes read the repository's global config directly, so the
+# tasks also work before `link` has linked ~/.config/mise/config.toml.
+MISE_GLOBAL_CONFIG_FILE = "{{config_root}}/home/.config/mise/config.toml"
+DOTFILES_DIR = "{{config_root}}"
+
+[tasks.setup]
+description = "Set up this machine, or bring it in line with the config"
+run = [
+    { task = "packages" },
+    { task = "casks" },
+    { task = "link" },
+    { task = "login-shell" },
+    { task = "tools" },
+    { task = "nvim" },
+    { task = "agents" },
+]
+
+[tasks.packages]
+description = "Install the formulae and App Store apps in [bootstrap.packages]"
+run = "mise bootstrap packages apply --yes"
+
+[tasks.casks]
+description = "Install and upgrade the Homebrew casks in script/Brewfile"
+run = "brew bundle --file=script/Brewfile"
+
+[tasks.link]
+description = "Link the dotfiles under home/ into $HOME"
+depends = ["nvim-clone"]
+run = "mise dot apply --yes"
+
+[tasks.unlink]
+description = "Remove the links that the link task created"
+run = "mise dot unapply --yes"
+
+[tasks.nvim-clone]
+description = "Clone the Neovim config, which mise needs before it links ~/.config/nvim"
+run = "[ -d home/.config/nvim/.git ] || git clone https://github.com/amikai/nvimrc home/.config/nvim"
+
+[tasks.login-shell]
+description = "Make Homebrew's zsh the login shell ([bootstrap.user])"
+run = "mise bootstrap user apply --yes"
+
+[tasks.tools]
+description = "Install the [tools] in the global config"
+run = "mise install"
+
+# `mise exec` starts a fresh mise, which reads the global config even when this
+# run began before `link` linked it.
+[tasks.nvim]
+description = "Update the Neovim config and sync its plugins"
+depends = ["nvim-clone"]
+run = "mise exec -- script/neovim.sh"
+
+[tasks.agents]
+description = "Install agent skills and herdr integrations"
+run = "mise exec -- script/agents.sh"
+
+[tasks.upgrade]
+description = "Upgrade the formulae installed from [bootstrap.packages]"
+run = "mise bootstrap packages upgrade --yes"

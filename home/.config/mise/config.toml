@@ -47,7 +47,6 @@ aube = "github:aubepkg/aube"
 "brew:sheldon" = { os = "macos" }
 # Development tool manager
 "brew:mise" = { os = "macos" }
-"brew:just" = { os = "macos" }
 # HTTP client tools
 "brew:wget" = { os = "macos" }
 "brew:curl" = { os = "macos" }
@@ -124,6 +123,11 @@ aube = "github:aubepkg/aube"
 # Reserved for Linux machines; restrict each entry with os = "linux", e.g.
 # "apt:build-essential" = { os = "linux" }
 
+# Set by `mise bootstrap user apply` (`mise run login-shell`), which also adds
+# the shell to /etc/shells.
+[bootstrap.user]
+login_shell = "/opt/homebrew/bin/zsh"
+
 [settings]
 python.uv_venv_auto = "create|source"
 # Use mise's embedded aube installer for npm-backed tools.
@@ -140,7 +144,7 @@ dotfiles.root = "~/Workspace/dotfiles/home"
 # Guarded: tools.node is absent while node is not installed (e.g. mid-upgrade).
 NODE_EXECUTABLE = { value = "{% if tools.node is defined %}{{ tools.node.path }}/bin/node{% endif %}", tools = true }
 
-# Symlinks deployed by `mise dot apply` (`just link`). The group links each
+# Symlinks deployed by `mise dot apply` (`mise run link`). The group links each
 # file that Git tracks, so untracked files and tool scratch files stay
 # unlinked; directories that tools write state into (herdr sockets and logs)
 # get per-file links. The whole-directory links below must be excluded here,

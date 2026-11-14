@@ -34,6 +34,6 @@ nubx -y skills add herdrdev/herdr \
     --agent claude-code
 
 # Install herdr plugins and integrations.
-# herdr is installed by `mise bootstrap packages apply`, earlier in the same just run.
+# herdr is installed by `mise bootstrap packages apply`, earlier in `mise run setup`.
 herdr plugin install -y kryptamine/herdr-auto-title
 herdr integration install claude

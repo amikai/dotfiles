@@ -14,26 +14,22 @@ configure_homebrew() {
 # 1. Discover an existing Homebrew installation before checking PATH
 configure_homebrew
 
-# 2. Install Homebrew only if missing, then load its environment
+# 2. Install Homebrew only if missing, then load its environment. It installs
+#    the casks in script/Brewfile; mise installs formulae without it.
 if ! command -v brew >/dev/null 2>&1; then
     echo "==> Installing Homebrew..."
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
     configure_homebrew
 fi
 
-# 3. Ensure just is installed
-if ! command -v just >/dev/null 2>&1; then
-    echo "==> Installing just..."
-    brew install just
-fi
-
-# 4. Ensure mise is installed; it installs the remaining packages
+# 3. Ensure mise is installed; it installs the remaining packages
 if ! command -v mise >/dev/null 2>&1; then
     echo "==> Installing mise..."
     brew install mise
 fi
 
-# 5. Hand off to justfile
+# 4. Hand off to the tasks in mise.toml
 DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-echo "==> Handing off to just..."
-just --justfile "${DOTFILES_DIR}/justfile" --working-directory "${DOTFILES_DIR}" all
+echo "==> Handing off to mise..."
+mise trust "${DOTFILES_DIR}/mise.toml"
+mise -C "${DOTFILES_DIR}" run setup
