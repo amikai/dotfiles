@@ -323,4 +323,8 @@ if command -v mise >/dev/null 2>&1; then
     eval "$(mise activate zsh)"
 fi
 
+
 export PATH="$(aube bin -g):$PATH"
+
+
+# use the davinci api key with pi agent, see ~/.pi/agent/models.json
