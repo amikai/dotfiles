@@ -4,5 +4,5 @@
 *.tmp.*
 /home/.config/karabiner/automatic_backups/
 
-# Lockfile written by the `skills` CLI at install time
-/skills-lock.json
+# Zed's prompt library database
+/home/.config/zed/prompts/

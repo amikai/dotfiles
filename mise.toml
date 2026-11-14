@@ -6,7 +6,6 @@
 # Child mise processes read the repository's global config directly, so the
 # tasks also work before `link` has linked ~/.config/mise/config.toml.
 MISE_GLOBAL_CONFIG_FILE = "{{config_root}}/home/.config/mise/config.toml"
-DOTFILES_DIR = "{{config_root}}"
 
 [tasks.setup]
 description = "Set up this machine, or bring it in line with the config"
