@@ -171,6 +171,22 @@ save_new_documents_to_cloud = false
 tap_to_click = true
 three_finger_drag = true
 
+# Three-finger drag needs the three-finger swipes off, so Mission Control, App
+# Exposé and switching full-screen apps use four fingers, as on this Mac. The
+# named three_finger_drag writes only the drag key. Both trackpad domains, as
+# the named trackpad keys write.
+[bootstrap.settings.macos.defaults."com.apple.AppleMultitouchTrackpad"]
+TrackpadThreeFingerHorizSwipeGesture = 0
+TrackpadThreeFingerVertSwipeGesture = 0
+TrackpadFourFingerHorizSwipeGesture = 2
+TrackpadFourFingerVertSwipeGesture = 2
+
+[bootstrap.settings.macos.defaults."com.apple.driver.AppleBluetoothMultitouch.trackpad"]
+TrackpadThreeFingerHorizSwipeGesture = 0
+TrackpadThreeFingerVertSwipeGesture = 0
+TrackpadFourFingerHorizSwipeGesture = 2
+TrackpadFourFingerVertSwipeGesture = 2
+
 [bootstrap.settings.macos.defaults.NSGlobalDomain]
 AppleShowAllExtensions = true
 # Tab moves between all controls in dialogs.
