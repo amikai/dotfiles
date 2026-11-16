@@ -1,6 +1,6 @@
 # How to set up this machine from the repository: `mise run setup`.
-# What the machine has (tools, packages, dotfiles, login shell) is declared in
-# the global config, home/.config/mise/config.toml.
+# What the machine has (tools, packages, dotfiles, login shell, macOS
+# preferences) is declared in the global config, home/.config/mise/config.toml.
 
 [env]
 # Child mise processes read the repository's global config directly, so the
@@ -15,6 +15,7 @@ run = [
     { task = "login-shell" },
     { task = "tools" },
     { task = "services" },
+    { task = "macos" },
     { task = "nvim" },
     { task = "agents" },
     { task = "casks" },
@@ -49,6 +50,17 @@ run = "mise install"
 [tasks.services]
 description = "Install the background services in [bootstrap.services] (hourly tool updates)"
 run = "mise bootstrap services apply --yes"
+
+# mise does not restart the apps that read these preferences, and setup runs
+# each part alone, so the post-defaults hook never fires. Restart Dock, Finder
+# and the menu bar here, only when something was written.
+[tasks.macos]
+description = "Write the macOS preferences in [bootstrap.settings.macos]"
+run = """
+mise bootstrap macos defaults status --missing >/dev/null && exit 0
+mise bootstrap macos defaults apply --yes
+killall Dock Finder SystemUIServer || true
+"""
 
 # `mise exec` starts a fresh mise, which reads the global config even when this
 # run began before `link` linked it. `Lazy!` waits for the sync to finish.

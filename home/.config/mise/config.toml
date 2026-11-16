@@ -149,6 +149,71 @@ builtin = "tool-update"
 [bootstrap.repos]
 "~/.config/nvim" = { url = "https://github.com/amikai/nvimrc" }
 
+# macOS preferences, written by `mise bootstrap macos defaults apply`
+# (`mise run macos`). Declare only what differs from the macOS default. A
+# later apply reverts a declared preference changed in System Settings, and
+# deleting a line leaves the current value: run `defaults delete` to go back.
+[bootstrap.settings.macos.keyboard]
+fn_state = true
+
+[bootstrap.settings.macos.dock]
+show_recents = false
+mru_spaces = false
+
+[bootstrap.settings.macos.finder]
+show_pathbar = true
+show_status_bar = true
+sort_folders_first = true
+show_extensions_warning = false
+save_new_documents_to_cloud = false
+
+[bootstrap.settings.macos.trackpad]
+tap_to_click = true
+three_finger_drag = true
+
+[bootstrap.settings.macos.defaults.NSGlobalDomain]
+AppleShowAllExtensions = true
+# Tab moves between all controls in dialogs.
+AppleKeyboardUIMode = 2
+NSNavPanelExpandedStateForSaveMode = true
+NSNavPanelExpandedStateForSaveMode2 = true
+PMPrintingExpandedStateForPrint = true
+PMPrintingExpandedStateForPrint2 = true
+# Control-Command drags a window from anywhere in it. Takes effect after
+# logging out.
+NSWindowShouldDragOnGesture = true
+
+[bootstrap.settings.macos.defaults."com.apple.dock"]
+# A real, as System Settings stores it. The named dock.tilesize writes an
+# integer, which never matches, so every apply would rewrite it.
+tilesize = 57.0
+minimize-to-application = true
+# Mission Control groups the windows of each app.
+expose-group-apps = true
+# Dim the icons of hidden apps.
+showhidden = true
+
+[bootstrap.settings.macos.defaults."com.apple.finder"]
+# Search the current folder instead of the whole Mac.
+FXDefaultSearchScope = "SCcf"
+# New windows open the home folder instead of Recents.
+NewWindowTarget = "PfHm"
+_FXShowPosixPathInTitle = true
+
+[bootstrap.settings.macos.defaults."com.apple.desktopservices"]
+DSDontWriteNetworkStores = true
+DSDontWriteUSBStores = true
+
+[bootstrap.settings.macos.defaults."com.apple.TimeMachine"]
+DoNotOfferNewDisksForBackup = true
+
+# Photos does not open when an iPhone or a camera is connected.
+[[bootstrap.settings.macos.defaults_entries]]
+domain = "com.apple.ImageCapture"
+key = "disableHotPlug"
+host = "current"
+value = true
+
 [settings]
 python.uv_venv_auto = "create|source"
 # Use mise's embedded aube installer for npm-backed tools.

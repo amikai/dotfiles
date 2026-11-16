@@ -9,7 +9,7 @@ setup tasks. Homebrew is only needed for the casks in `script/Brewfile`.
 | Path | Contents |
 |---|---|
 | `home/` | A mirror of `$HOME`. Every file Git tracks here is symlinked to the same path under `~`. |
-| `home/.config/mise/config.toml` | The global mise config: tools, Homebrew formulae, App Store apps, the login shell and the dotfile links. It is linked to `~/.config/mise/config.toml` like any other dotfile. |
+| `home/.config/mise/config.toml` | The global mise config: tools, Homebrew formulae, App Store apps, the login shell, the dotfile links and the macOS preferences. It is linked to `~/.config/mise/config.toml` like any other dotfile. |
 | `mise.toml` | The setup tasks (`mise run setup`, `mise run link`, ...). |
 | `script/Brewfile` | Homebrew casks: GUI apps and fonts. |
 | `script/agents.sh` | The helper that the `agents` task runs. |
@@ -51,9 +51,11 @@ order:
 3. `login-shell`: makes Homebrew's zsh the login shell.
 4. `tools`: the mise `[tools]`, such as languages, CLIs and language servers.
 5. `services`: the LaunchAgent that updates the coding agent CLIs every hour.
-6. `nvim`: clones or fast-forwards nvimrc, then syncs its plugins.
-7. `agents`: installs agent skills and the herdr integrations.
-8. `casks`: installs the casks in `script/Brewfile` that are missing. It runs
+6. `macos`: writes the macOS preferences in `[bootstrap.settings.macos]`, then
+   restarts Dock, Finder and the menu bar if any preference changed.
+7. `nvim`: clones or fast-forwards nvimrc, then syncs its plugins.
+8. `agents`: installs agent skills and the herdr integrations.
+9. `casks`: installs the casks in `script/Brewfile` that are missing. It runs
    last, so a failing cask does not block the rest.
 
 `setup` stops at the first task that fails. Fix the cause and run
@@ -116,6 +118,35 @@ Deleting a line does not uninstall the package. Uninstall it with
 Do not run `mise bootstrap packages prune`. Some formulae on this machine are
 not declared yet, and `prune` would remove them.
 
+### macOS preferences
+
+`[bootstrap.settings.macos]` in `home/.config/mise/config.toml` declares the
+preferences that differ from the macOS default. Use the named keys where mise
+has one, and `[bootstrap.settings.macos.defaults."<domain>"]` for the rest. Then
+run `mise run macos`.
+
+- A declared preference belongs to the config: change it there, not in System
+  Settings, or the next `setup` changes it back.
+- Deleting a line does not restore the default. Run
+  `defaults delete <domain> <key>` as well.
+- The type must match what macOS stores: an integer does not match a real.
+  System Settings stores the Dock's `tilesize` as a real, so it is declared as
+  a float under `defaults`; other sliders, such as key repeat, can do the
+  same. Check a type with `defaults read-type <domain> <key>` before you
+  declare a value.
+- Some preferences, such as key repeat, may take effect only after you log out.
+
+To find the key behind a setting, save every preference, change the setting in
+System Settings, and compare. Some settings, such as Control Center's, are
+current-host preferences: compare `defaults -currentHost read` too.
+
+```sh
+defaults read > ~/before.txt
+# change the setting
+defaults read > ~/after.txt
+diff ~/before.txt ~/after.txt
+```
+
 ### Upgrades
 
 Give each package one owner, so that two updaters never replace the same files:
@@ -147,6 +178,7 @@ commit `lazy-lock.json` after a plugin sync or the config stops updating.
 mise dot status                                        # dotfile links
 mise bootstrap packages status                         # formulae and App Store apps
 brew bundle check --no-upgrade --file=script/Brewfile  # casks
+mise bootstrap macos defaults status --missing         # macOS preferences
 ```
 
 `--no-upgrade` keeps an outdated cask from counting as drift: `mise run casks`
@@ -156,7 +188,7 @@ does not upgrade casks either.
 
 | Task | What it does |
 |---|---|
-| `setup` | Runs the eight tasks above, in order. |
+| `setup` | Runs the nine tasks above, in order. |
 | `link` / `unlink` | Creates or removes the dotfile links. |
 | `upgrade` | Upgrades the mise tools and the Homebrew formulae. |
 
