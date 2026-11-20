@@ -2,6 +2,7 @@
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_STATE_HOME="$HOME/.local/state"
 # }}}
 
 # set some homebrew env variable and set path {{{
@@ -41,14 +42,19 @@ bindkey -M vicmd "X" edit-command-line
 # }}}
 
 # history setting {{{
-export HISTFILE=$XDG_CACHE_HOME/.histfile
+# History is state, not cache: tools that clean ~/.cache would delete it.
+export HISTFILE=$XDG_STATE_HOME/zsh/history
+[[ -d ${HISTFILE:h} ]] || command mkdir -p ${HISTFILE:h}
 export HISTSIZE=1000000   # the number of items for the internal history list
 export SAVEHIST=1000000   # maximum number of items for the history file
 
-setopt INC_APPEND_HISTORY_TIME  # append command to history file immediately after execution
-setopt EXTENDED_HISTORY  # record command start time
-setopt HIST_IGNORE_DUPS
+# SHARE_HISTORY writes each command to the file as it runs and reads the
+# commands of the other shells. zshoptions(1) says it, INC_APPEND_HISTORY and
+# INC_APPEND_HISTORY_TIME are mutually exclusive, so set only this one.
 setopt SHARE_HISTORY
+setopt EXTENDED_HISTORY   # record command start time
+setopt HIST_IGNORE_DUPS
+setopt HIST_IGNORE_SPACE  # a command typed with a leading space is not saved
 # }}}
 
 # plugins: sheldon {{{
