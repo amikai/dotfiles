@@ -16,8 +16,9 @@ fi
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
-# Prompt
-PS1="\e[0;32m\u\e[m@\e[0;34m\h\e[m \e[0;33m\w\e[m \n> "
+# Prompt. \[ \] marks the color codes as zero-width, so bash measures the
+# prompt correctly when a long command wraps.
+PS1="\[\e[0;32m\]\u\[\e[m\]@\[\e[0;34m\]\h\[\e[m\] \[\e[0;33m\]\w\[\e[m\] \n> "
 
 if command -v mise >/dev/null 2>&1; then
     eval "$(mise activate bash)"
